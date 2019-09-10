@@ -15,9 +15,17 @@
         <?php require_once '../lib/header.php'; ?>
     </header>
     <?php
-        if ($_SERVER['REQUEST_METHOD']== "POST") { //will enter this block if the form is submitted with method POST
-            $title = $isbn = $qty = $price = $file= $titleErr= $isbnErr= $qtyErr= $priceErr= $fileErr= $return_data= "";
+        if (isset($_POST["submit"])) { //will enter this block if the form is submitted with method POST
+            $title = $isbn = $qty = $price = $image= $titleErr= $isbnErr= $qtyErr= $priceErr= $imageErr= $return_data= "";
             $is_error=false;
+            $imagename= $_FILES['image']['name'];
+            $imagetmpname= $_FILES['image']['tmp_name'];
+            $imagenamenew= uniqid()."-".$imagename;
+            $imagedestination= "/var/www/html/Project/bookworm/public/uploads/".$imagenamenew;
+            echo $imagename."<br>";
+            echo $imagetmpname."<br>";
+            echo $imagenamenew."<br>";
+            echo $imagedestination."<br>";
 
             if (empty($_POST["title"])) { // if title is left empty
                 $titleErr= " Title Required";
@@ -47,11 +55,24 @@
             else{
                 $price=test_input($_POST['price']);
             }
+            if (empty($_FILES["image"]["name"])) {
+                $imageErr= '';
+            }
+            else{
+                
+                if(false){
+                    $imageErr = 'Sorry, only JPG, JPEG, PNG, GIF files are allowed.';
+                    $is_error=true;
+                }
+                else{
+                    move_uploaded_file($imagetmpname, $imagedestination);
+                }
+            }
             if (!$is_error) { // if all entries are alright
                 require "../lib/databasedial.php"; // establishing database connection
                 $created_at=date("Y-m-d",time());
-                $stmt=$conn->prepare(" INSERT INTO book(book_isbn, title, created_at) values(?,?,?)");//inserting data into book table
-                $stmt->bind_param("sss",$isbn, $title, $created_at); 
+                $stmt=$conn->prepare(" INSERT INTO book(book_isbn, title, pic, created_at) values(?,?,?,?)");//inserting data into book table
+                $stmt->bind_param("ssss",$isbn, $title, $imagedestination, $created_at); 
                 if ($stmt->execute()) { // if data was successfully inserted into book table 
                     $last_id = $conn->insert_id; // getting the book id which was inserted just now
                     $stmt2=$conn->prepare(" INSERT INTO book_seller(book_id, user_id, quantity, price, created_at) values(?,?,?,?,?)");// inserting data into book-seller table
@@ -125,7 +146,7 @@
         </div>
         <div class="col-sm-6 pl-4 mt-4 border">
             <h4 class="text-primary border-bottom">Add to your stock:</h4>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="col-sm-8 float-right bg-light">
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data" class="col-sm-8 float-right bg-light">
                 <div class="form-group">
                     Book Title:<small class="text-danger">     * <?php echo $titleErr;?></small>
                     <input type="text" name="title" placeholder="Enter title" class="form-control">
@@ -143,8 +164,8 @@
                     <input type="number" name="price" placeholder="Enter price" class="form-control">
                 </div>
                 <div class="form-group">
-                    Add Image(s):
-                    <input class="" type="file" name="file" id="file">
+                    Add Image:<small class="text-danger">   <?php echo $imageErr;?></small>
+                    <input class="" type="file" name="image">
                 </div>
                 <div class="form-group">
                     <input type="submit" name="submit" value="Update" class="text-success">
