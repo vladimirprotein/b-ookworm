@@ -81,7 +81,7 @@
 	    }
   	?>
   	<div class="container-fluid col-sm-6 float-left mt-5 border">
-  		<h2>Log in:</h2>
+  		<h2 class="bg-success border">Log in:</h2>
   		<p><small class="text-danger">* required field</small></p>
   		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
       		<div class="form-group">

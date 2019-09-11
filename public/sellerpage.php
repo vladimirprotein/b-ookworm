@@ -21,25 +21,22 @@
             $imagename= $_FILES['image']['name'];
             $imagetmpname= $_FILES['image']['tmp_name'];
             $imagenamenew= uniqid()."-".$imagename;
-            $imagedestination= "/var/www/html/Project/bookworm/public/uploads/".$imagenamenew;
-            echo $imagename."<br>";
-            echo $imagetmpname."<br>";
-            echo $imagenamenew."<br>";
-            echo $imagedestination."<br>";
-
+            $imagedestination= "uploads/".$imagenamenew;
+            $allowed = array('jpg','jpeg', 'gif', 'png');
+            $imagetype= strtolower(pathinfo($imagedestination,PATHINFO_EXTENSION));
             if (empty($_POST["title"])) { // if title is left empty
                 $titleErr= " Title Required";
                 $is_error=true;
             }
             else{
-                $title=test_input($_POST['title']);
+                $title=strtolower(test_input($_POST['title']));
             }
             if (empty($_POST["isbn"])) { // if isbn is left empty
                 $isbnErr= " ISBN Required";
                 $is_error=true;
             }
             else{
-                $isbn=test_input($_POST['isbn']);
+                $isbn=strtolower(test_input($_POST['isbn']));
             }
             if (empty($_POST["qty"])) { // if quantity is left empty
                 $qtyErr= " Quantity Required";
@@ -55,24 +52,32 @@
             else{
                 $price=test_input($_POST['price']);
             }
-            if (empty($_FILES["image"]["name"])) {
-                $imageErr= '';
-            }
-            else{
-                
-                if(false){
-                    $imageErr = 'Sorry, only JPG, JPEG, PNG, GIF files are allowed.';
+            if (!empty($_FILES["image"]["name"])) { 
+                if(!in_array($imagetype, $allowed)){
+                    $imageErr = 'Only JPG, JPEG, PNG, GIF files are allowed.';
                     $is_error=true;
                 }
                 else{
-                    move_uploaded_file($imagetmpname, $imagedestination);
+                    if ($_FILES["image"]["size"] > 500000) {
+                        $imageErr= "Sorry, your file is too large.";
+                        $is_error=true;
+                    }
+                    else{
+                        if (!move_uploaded_file($imagetmpname, $imagedestination)) {
+                            $imageErr= "Upload Error.";
+                            $is_error=true;
+                        }
+                    }     
                 }
+            }
+            else{
+                $imagenamenew= NULL;
             }
             if (!$is_error) { // if all entries are alright
                 require "../lib/databasedial.php"; // establishing database connection
                 $created_at=date("Y-m-d",time());
                 $stmt=$conn->prepare(" INSERT INTO book(book_isbn, title, pic, created_at) values(?,?,?,?)");//inserting data into book table
-                $stmt->bind_param("ssss",$isbn, $title, $imagedestination, $created_at); 
+                $stmt->bind_param("ssss",$isbn, $title, $imagenamenew , $created_at); 
                 if ($stmt->execute()) { // if data was successfully inserted into book table 
                     $last_id = $conn->insert_id; // getting the book id which was inserted just now
                     $stmt2=$conn->prepare(" INSERT INTO book_seller(book_id, user_id, quantity, price, created_at) values(?,?,?,?,?)");// inserting data into book-seller table
