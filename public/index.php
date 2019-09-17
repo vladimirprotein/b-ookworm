@@ -23,29 +23,29 @@
                         <ul class="list-group">
                             <li class="list-group-item list-group-item-success">
                             	<div class="btn-group dropright">
-		                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                            <button type="button" class="btn btn-secondary dropdown-toggle op10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		                            Books
 		                            </button>
 		                            <div class="dropdown-menu">
 		                                <ul class="list-group">       <!-- Dropdown menu links -->
-			                                <li class="list-group-item list-group-item-secondary"><a href="">Fiction</a></li>
-			                                <li class="list-group-item list-group-item-secondary "><a href="">Literature</a></li>
-			                                <li class="list-group-item list-group-item-secondary"><a href=" ">Engineering</a></li>
-			                                <li class="list-group-item list-group-item-secondary"><a href="">Biography</a></li>
-			                                <li class="list-group-item list-group-item-secondary"><a href="">Sports</a></li>
-			                                <li class="list-group-item list-group-item-secondary"><a href="">Dictionary & Language</a></li>
-			                                <li class="list-group-item list-group-item-secondary"><a href="">Art</a></li>
+			                                <li class="list-group-item list-group-item-secondary"><a href=""><button type="button" class="btn btn-secondary">Fiction</button></a></li>
+			                                <li class="list-group-item list-group-item-secondary "><a href=""><button type="button" class="btn btn-secondary">Literature</button></a></li>
+			                                <li class="list-group-item list-group-item-secondary"><a href=" "><button type="button" class="btn btn-secondary">Engineering</button></a></li>
+			                                <li class="list-group-item list-group-item-secondary"><a href=""><button type="button" class="btn btn-secondary">Biography</button></a></li>
+			                                <li class="list-group-item list-group-item-secondary"><a href=""><button type="button" class="btn btn-secondary">Sports</button></a></li>
+			                                <li class="list-group-item list-group-item-secondary"><a href=""><button type="button" class="btn btn-secondary">Dictionary & Language</button></a></li>
+			                                <li class="list-group-item list-group-item-secondary"><a href=""><button type="button" class="btn btn-secondary">Art</button></a></li>
 		                                </ul>
 		                            </div>
 	                            </div>
                         	</li>
-                            <li class="list-group-item list-group-item-secondary"><a href=""><button type="button" class="btn btn-secondary">New Arrivals</button></a></li>
-                            <li class="list-group-item list-group-item-info"><a href=""><button type="button" class="btn btn-secondary">Pre-order</button></a></li>
-                            <li class="list-group-item list-group-item-warning"><a href=" "><button type="button" class="btn btn-secondary">Text-Book</button></a></li>
-                            <li class="list-group-item list-group-item-danger"><a href=""><button type="button" class="btn btn-secondary">Best Sellers</button></a></li>
-                            <li class="list-group-item list-group-item-primary"><a href=""><button type="button" class="btn btn-secondary">Award Winners</button></a></li>
-                            <li class="list-group-item list-group-item-dark"><a href=""><button type="button" class="btn btn-secondary">Featured Authors</button></a></li>
-                            <li class="list-group-item list-group-item-light"><a href=""><button type="button" class="btn btn-secondary">Book of the Day</button></a></li>
+                            <li class="list-group-item list-group-item-secondary"><a href=""><button type="button" class="btn btn-secondary op10">New Arrivals</button></a></li>
+                            <li class="list-group-item list-group-item-info"><a href=""><button type="button" class="btn btn-secondary op10">Pre-order</button></a></li>
+                            <li class="list-group-item list-group-item-warning"><a href=" "><button type="button" class="btn btn-secondary op10">Text-Book</button></a></li>
+                            <li class="list-group-item list-group-item-danger"><a href=""><button type="button" class="btn btn-secondary op10">Best Sellers</button></a></li>
+                            <li class="list-group-item list-group-item-primary"><a href=""><button type="button" class="btn btn-secondary op10">Award Winners</button></a></li>
+                            <li class="list-group-item list-group-item-dark"><a href=""><button type="button" class="btn btn-secondary op10">Featured Authors</button></a></li>
+                            <li class="list-group-item list-group-item-light"><a href=""><button type="button" class="btn btn-secondary op10">Book of the Day</button></a></li>
                         </ul> 
                     </aside>
                 </div>

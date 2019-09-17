@@ -42,7 +42,7 @@
         <h6 class="pl-3 mb-3">Search result for: <?php echo $search ; ?></h6>
         <?php
             require '../lib/databasedial.php';
-            $stmt=$conn->prepare("SELECT book.pic as pic, book.title as title, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price from (book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id where title LIKE ? ");
+            $stmt=$conn->prepare("SELECT book.pic as pic, book.title as title, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price from (book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id where title LIKE ? order by title ");
             $stmt->bind_param("s", $searchfinal );
             $stmt->execute();
             $result = $stmt->get_result();
@@ -61,7 +61,7 @@
                     <tbody> ";
                         while ($row=$result->fetch_assoc()) {
                             $pic="uploads/".$row['pic'];
-                            echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80   >"."</td> <td class='h5 text-success'>".$row['title']."</td><td>".$row['isbn']."</td><td>".$row['price']."</td><td>".$row['seller']."</td></tr>" ;
+                            echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80>"."</td> <td class='h5 text-success'>".$row['title']."</td><td onclick='bookpopup(this.innerHTML)'>".$row['isbn']."</td><td>".$row['price']."</td><td>".$row['seller']."</td></tr>" ;
                         }
                     echo "
                     </tbody>
@@ -77,5 +77,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/js1.js"></script>
 </body>     
 </html>

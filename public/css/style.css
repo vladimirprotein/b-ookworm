@@ -32,6 +32,14 @@
   
 }
 
+.op2 {
+  opacity: 0.5;
+}
+
+.op10{
+  opacity: 1;
+}
+
 #showcase ul li{
 	list-style: none;
 	color: grey;
