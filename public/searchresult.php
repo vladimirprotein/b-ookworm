@@ -61,7 +61,7 @@
                     <tbody> ";
                         while ($row=$result->fetch_assoc()) {
                             $pic="uploads/".$row['pic'];
-                            echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80>"."</td> <td class='h5 text-success'>".$row['title']."</td><td onclick='bookpopup(this.innerHTML)'>".$row['isbn']."</td><td>".$row['price']."</td><td>".$row['seller']."</td></tr>" ;
+                            echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80>"."</td> <td class='h5 text-success'>".ucwords($row['title'])."</td><td onclick='bookpopup(this.innerHTML)'>".$row['isbn']."</td><td>".$row['price']."</td><td>".$row['seller']."</td></tr>" ;
                         }
                     echo "
                     </tbody>
@@ -70,7 +70,10 @@
             else{
                 echo "<h3 class='pl-3 text-secondary'>Sorry :(  <br> <br>    Looks like your taste in book is better than ours..</h3>" ;
             }  
-        ?>        
+        ?> 
+        <p class="abc">iamcontent</p>
+        <p class="abc">iamalsocontent</p>
+        <button onclick="validate_alpha('dgdbdKabc')">Click Me</button>       
     </div>
     <?php require_once '../lib/footer.php'; ?>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

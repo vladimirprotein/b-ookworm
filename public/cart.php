@@ -15,8 +15,8 @@
         <?php require_once '../lib/header.php'; ?> 
         <?php require_once '../lib/navbar.php'; ?>             
     </header>
-
-    <h3 class="text-success h2 pl-5 mt-1 mb-5 border-success border bg-secondary">Your Cart:</h3>
+    <div class=" container-fluid">
+        <h3 class="text-success h2 pl-5 mt-1 mb-5 border-success border bg-secondary">Your Cart:</h3>
         <?php
             require '../lib/databasedial.php';
             $stmt=$conn->prepare("SELECT book.pic as pic, book.title as title, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price, cart.quantity as quantity from ((book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id) INNER JOIN cart ON cart.book_seller_id = book_seller.id WHERE cart.user_id = ? ");
@@ -42,7 +42,7 @@
                     $pic="uploads/".$row['pic'];
                     $subtotal= $row['quantity']*$row['price'];
                     $total+=$subtotal;
-                    echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80   >"."</td> <td class='h5 text-success'>".$row['title']."</td><td>".$row['isbn']."</td><td>".$row['seller']."</td><td>".$row['price']."</td><td>".$row['quantity']."</td><td>".$subtotal."</td></tr>" ;
+                    echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80   >"."</td> <td class='h5 text-success'>".ucwords($row['title'])."</td><td>".$row['isbn']."</td><td>".$row['seller']."</td><td>".$row['price']."</td><td>".$row['quantity']."</td><td>".$subtotal."</td></tr>" ;
                 }
                 echo "
                     <tr><td></td><td></td><td></td><td></td><td class='text-success' id='coupon'></td><th class='h5 bg-success border-warning' id='totaltext'>Total:</th><td class='h5 bg-success border-warning' id='totalprice'>".$total."</td>
@@ -53,6 +53,7 @@
                 echo "<h3 class='pl-3 text-secondary'>What!! You still have nothing in your cart!</h3>" ;
             }    
         ?>
+    </div>
                 
 
 </body>

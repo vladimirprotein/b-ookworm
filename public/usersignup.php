@@ -56,20 +56,19 @@
 	      	}
 
 	      	if (empty($_POST["type"])) {
-	        	$passErr="Usertype is required";
+	        	$typeErr="Usertype is required";
 	        	$error = true;
 	      	}
 	      	else{
 	        	$type=test_input($_POST["type"]);
 	      	}
 	      	if (!$error){ // if error variable remains false and form input is all okay
-	          	require_once 'databasedial.php'; // establishing connection with the database
+	          	require_once '../lib/databasedial.php'; // establishing connection with the database
 	          	$unique_id=uniqid();
 	          	$created_at=date("Y-m-d",time());
-	          	$hash= hash(sha1, $pass);
 	          	$stmt = $conn->prepare( "INSERT INTO user (name, user_type_id, unique_id, email, phone, pass, created_at)
 	          	VALUES (?, ?, '$unique_id', ?, ?, ?, '$created_at')"); // inserting record to the user table
-	          	$stmt->bind_param("sssss",$name, $type, $email, $phone, $hash) ;
+	          	$stmt->bind_param("sssss",$name, $type, $email, $phone, $pass) ;
 	          	if ($stmt->execute()) { // if entry is successful
 				    $return_data= "User added successfully.";
 				} else {
@@ -91,24 +90,25 @@
   		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
       		<div class="form-group">
         		Name:<small class="text-danger">* <?php echo $nameErr;?></small> <!--Displaying the error in name if present-->
-        		<input type="text" name="name" placeholder="name" class="form-control" value="<?php echo $name; ?>">
+        		<input type="text" name="name" placeholder="name" class="form-control" value="<?php echo $name; ?>" onkeydown='validate_alpha(this.value)' required>
       		</div>
       		<div class="form-group">
         		Email:<small class="text-danger">* <?php echo $emailErr;?></small> <!--Displaying the error in email if present-->
-        		<input type="Email" name="email" placeholder="email" class="form-control" value="<?php echo $email; ?>">		
+        		<input type="Email" name="email" placeholder="email" class="form-control" value="<?php echo $email; ?>" required>		
       		</div>
       		<div class="form-group">
         		Phone:<small class="text-danger">* <?php echo $phoneErr;?></small> <!--Displaying the error in phone if present-->
-        		<input type="number" name="phone" placeholder="Phone" class="form-control" value="<?php echo $phone; ?>">
+        		<input type="number" name="phone" placeholder="Phone" class="form-control" value="<?php echo $phone; ?>" required>
       		</div>
       		<div class="form-group">
         		Password:<small class="text-danger">* <?php echo $passErr;?></small> <!--Displaying the error in pswd if present-->
-        		<input type="Password" name="pass" placeholder="Password" class="form-control">
+        		<input type="Password" name="pass" placeholder="Password" class="form-control" required>
       		</div>
       		<div class="form-group">
-      			I am:<small class="text-danger">* <?php echo $typeErr;?></small><!--Displaying the error in user type if present-->
+      			I am:
       			<input type="radio" name="type" value="2">Customer
       			<input type="radio" name="type" value="3">Seller
+      			<small class="text-danger">* <?php echo $typeErr;?></small><!--Displaying the error in user type if present-->
       		</div>
       		<div class="form-group">
         		<input type="submit" name="submit" value="Sign up" class="bg-primary">
@@ -117,5 +117,7 @@
     	<?php echo "<h5 class='text-danger'>$return_data</h5>"; ?> 
   	</div>
   	<?php require_once '../lib/footer.php'; ?>
+
+  	<script type="text/javascript" src="js/js1.js"></script>
 </body>
 </html>
