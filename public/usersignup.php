@@ -46,6 +46,9 @@
 	      	}
 	      	else{
 	        	$phone=test_input($_POST["phone"]);
+	        	if (!preg_match("/^\+?[0-9]{6,12}$/", subject)) {
+	        		# code...
+	        	}
 	      	}
 	      	if (empty($_POST["pass"])) { // if password field is left empty
 	        	$passErr="Password is required";
@@ -87,18 +90,18 @@
   	<div class="container-fluid float-left col-sm-6 mt-5 border">
   		<h2 class="text-success border-bottom">Sign Up:</h2>
   		<p><small class="text-danger">* required field</small></p>
-  		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
+  		<form method="post" class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
       		<div class="form-group">
-        		Name:<small class="text-danger">* <?php echo $nameErr;?></small> <!--Displaying the error in name if present-->
-        		<input type="text" name="name" placeholder="name" class="form-control" value="<?php echo $name; ?>" onkeydown='validate_alpha(this.value)' required>
+        		Name:<small class="text-danger" id="nameErr">* <?php echo $nameErr;?></small> <!--Displaying the error in name if present-->
+        		<input type="text" name="name" id="username" placeholder="name" class="form-control" value="<?php echo $name; ?>"   onkeyup='validate_alpha(this.id, "nameErr" , "submit")' required>
       		</div>
       		<div class="form-group">
-        		Email:<small class="text-danger">* <?php echo $emailErr;?></small> <!--Displaying the error in email if present-->
-        		<input type="Email" name="email" placeholder="email" class="form-control" value="<?php echo $email; ?>" required>		
+        		Email:<small class="text-danger" id='emailErr'>* <?php echo $emailErr;?></small> <!--Displaying the error in email if present-->
+        		<input type="Email" name="email" id="email" placeholder="email" class="form-control" value="<?php echo $email; ?>" onkeyup='validate_email(this.id, "emailErr", "submit")'  required>		
       		</div>
       		<div class="form-group">
-        		Phone:<small class="text-danger">* <?php echo $phoneErr;?></small> <!--Displaying the error in phone if present-->
-        		<input type="number" name="phone" placeholder="Phone" class="form-control" value="<?php echo $phone; ?>" required>
+        		Phone:<small class="text-danger" id="phoneErr" >* <?php echo $phoneErr;?></small> <!--Displaying the error in phone if present-->
+        		<input type="text" name="phone" id="phonenumber" placeholder="Phone" class="form-control" value="<?php echo $phone; ?>" onkeyup='validate_numeric(this.id, "phoneErr", "submit")' required>
       		</div>
       		<div class="form-group">
         		Password:<small class="text-danger">* <?php echo $passErr;?></small> <!--Displaying the error in pswd if present-->
@@ -111,7 +114,7 @@
       			<small class="text-danger">* <?php echo $typeErr;?></small><!--Displaying the error in user type if present-->
       		</div>
       		<div class="form-group">
-        		<input type="submit" name="submit" value="Sign up" class="bg-primary">
+        		<input type="submit" name="submit" id="submit" value="Sign up" class="bg-primary">
       		</div>
     	</form>
     	<?php echo "<h5 class='text-danger'>$return_data</h5>"; ?> 

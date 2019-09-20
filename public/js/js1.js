@@ -97,11 +97,76 @@ function tagHTML(tag, pos, method, towrite) {
 	}
 }
 
+/** 
+   * Function to validate a field for alphabets only
+   * @param input field id and error result id
+   * @returns nothing.
+ */
+function validate_alpha(id1, id2, id3) {
+	element=document.getElementById(id1);
+	value=element.value;
+	var letters = /^[A-Za-z\s]*$/;
+   	if (!value.match(letters)) {
+		element.classList.add("border-danger");
+		element.classList.add("text-danger");
+		document.getElementById(id2).innerHTML='* Only Alphabets allowed';
+		document.getElementById(id3).disabled= true;
+	}
+	else {
+		element.classList.remove("border-danger");
+		element.classList.remove("text-danger");
+		document.getElementById(id2).innerHTML='';
+		document.getElementById(id3).disabled= false;
+	}
+}
 
-function validate_alpha(str) {
-	var letters = /^[A-Za-z\s]+$/;
-   	if (!str.match(letters)) {
-		alert("error");
+
+
+/** 
+   * Function to validate a field for numerics only and can begin with only 1 '+'
+   * @param input field id and error result id
+   * @returns nothing.
+ */
+function validate_numeric(id1, id2, id3) {
+	element=document.getElementById(id1);
+	value=element.value;
+	var number1 = /^\+[0-9]{12,13}$/;
+	var number2 = /^[0-9]{10}$/;
+   	if (!value.match(number1) && !value.match(number2)) {
+		element.classList.add("border-danger");
+		element.classList.add("text-danger");
+		document.getElementById(id2).innerHTML='* Only Numbers allowed';
+		document.getElementById(id3).disabled= true;
+	}
+	else {
+		element.classList.remove("border-danger");
+		element.classList.remove("text-danger");
+		document.getElementById(id2).innerHTML= '';
+		document.getElementById(id3).disabled= false;
+	}
+}
+
+
+/** 
+   * Function to validate a field for email
+   * @param input field id and error result id
+   * @returns nothing.
+ */
+function validate_email(id1, id2, id3) {
+	element=document.getElementById(id1);
+	value=element.value;
+	var email = /^[A-Za-z][A-Za-z0-9_]*@[A-Za-z0-9]+\.[A-Za-z]+(\.[A-Za-z]+)?$/;
+   	if (!value.match(email)) {
+		element.classList.add("border-danger");
+		element.classList.add("text-danger");
+		document.getElementById(id2).innerHTML='* Enter valid email';
+		document.getElementById(id3).disabled= true;
+	}
+	else {
+		element.classList.remove("border-danger");
+		element.classList.remove("text-danger");
+		document.getElementById(id2).innerHTML= '';
+		document.getElementById(id3).disabled= false;
 	}
 }
 

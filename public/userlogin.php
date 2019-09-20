@@ -85,8 +85,8 @@
   		<p><small class="text-danger">* required field</small></p>
   		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
       		<div class="form-group">
-        		Email:<small class="text-danger">* <?php echo $emailErr;?></small><!--Displaying the error in email if present-->
-        		<input type="Email" name="email" placeholder="email" class="form-control" value="<?php echo $email; ?>">
+        		Email:<small class='text-danger' id='emailErr'>* <?php echo $emailErr;?> </small><!--Displaying the error in email if present-->
+        		<input type="Email" id='email' onkeyup='validate_email(this.id, "emailErr", "submit")' name="email" placeholder="email" class="form-control" value="<?php echo $email; ?>">
       		</div>		
       		<div class="form-group">
         		Password:<small class="text-danger">* <?php echo $passErr;?></small><!--Displaying the error in pswd if present-->
@@ -96,11 +96,12 @@
       			<input type="checkbox" name="remember" value="yes" class=""> Remember me
       		</div>
       		<div class="form-group">
-        		<input type="submit" name="submit" value="Log In" class="bg-success">
+        		<input type="submit" id="submit" name="submit" value="Log In" class="bg-success">
       		</div>
     	</form>
       	<?php echo $return_data; ?>
   	</div>
     <?php require_once '../lib/footer.php'; ?>
+    <script type="text/javascript" src="js/js1.js"></script>
 </body>
 </html>
