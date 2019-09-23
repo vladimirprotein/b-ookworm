@@ -15,9 +15,10 @@
         <?php require_once '../view/header.php'; ?>
     </header>
     <?php
+        $title = $isbn = $qty = $price = $image= $titleErr= $isbnErr= $qtyErr= $priceErr= $imageErr= $return_data= "";
+        $is_error=false;
         if (isset($_POST["submit"])) { //will enter this block if the form is submitted with method POST
-            $title = $isbn = $qty = $price = $image= $titleErr= $isbnErr= $qtyErr= $priceErr= $imageErr= $return_data= "";
-            $is_error=false;
+            
             $imagename= $_FILES['image']['name'];
             $imagetmpname= $_FILES['image']['tmp_name'];
             $imagenamenew= uniqid()."-".$imagename;

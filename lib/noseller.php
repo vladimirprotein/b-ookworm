@@ -1,4 +1,5 @@
 <?php
+	error_reporting(0);
     include_once 'rememberme.php';
     if (isset($_SESSION)) {
 	    if($_SESSION['user_type_id']==3){

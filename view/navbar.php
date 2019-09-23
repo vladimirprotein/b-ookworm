@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <form class="form-inline my-2 my-lg-0 ml-4" action="searchresult.php" method="post">
-            <input class="form-control mr-sm-2" type="text" placeholder="What you looking for?" name="search"><small class="text-danger"><?php echo $searchErr ; ?></small>
+            <input class="form-control mr-sm-2" type="text" placeholder="What you looking for?" name="search"><small class="text-danger"></small>
             <input class="btn btn-outline-success my-2 my-sm-0" type="submit" name="submit" value="Search">
         </form>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">

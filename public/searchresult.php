@@ -70,10 +70,7 @@
             else{
                 echo "<h3 class='pl-3 text-secondary'>Sorry :(  <br> <br>    Looks like your taste in book is better than ours..</h3>" ;
             }  
-        ?> 
-        <p class="abc">iamcontent</p>
-        <p class="abc">iamalsocontent</p>
-        <button onclick="validate_alpha('dgdbdKabc')">Click Me</button>       
+        ?>      
     </div>
     <?php require_once '../view/footer.php'; ?>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
