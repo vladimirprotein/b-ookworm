@@ -1,7 +1,7 @@
 <?php
 	
-	$isbn=$_GET['isbn'];
-	require_once "../lib/databasedial.php";
+	$isbn=$_GET['a'];
+	require_once "../../lib/databasedial.php";
 	$stmt= $conn->prepare("SELECT * from book where book_isbn=?");
 	$stmt->bind_param("s",$isbn);
 	$stmt->execute();

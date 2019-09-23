@@ -1,9 +1,12 @@
 function bookpopup(str1) {
-	ajaxcall("response1.php", str1, showalert);
+	ajaxcall("api/response1.php", str1, showalert);
 }
 function showalert(obj1) {
 	alert("Title: "+obj1.title+" ISBN: "+obj1.book_isbn+" Selling Since: "+obj1.created_at);
 }
+function getbookdetails(arg1) {
+	document.getElementById(arg1).src="img/bcg.jpg";
+	}
 
 
 

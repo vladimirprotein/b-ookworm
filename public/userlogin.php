@@ -11,7 +11,7 @@
   	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<?php require_once '../lib/header.php'; ?>
+	<?php require_once '../view/header.php'; ?>
   	<?php
 	    $emailErr = $passErr= ""; // initializing error variables to empty strings
 	    $email = $pass= $remember= ""; // initializing empty string variables to store form input data
@@ -101,7 +101,7 @@
     	</form>
       	<?php echo $return_data; ?>
   	</div>
-    <?php require_once '../lib/footer.php'; ?>
+    <?php require_once '../view/footer.php'; ?>
     <script type="text/javascript" src="js/js1.js"></script>
 </body>
 </html>

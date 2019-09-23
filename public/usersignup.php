@@ -11,7 +11,7 @@
   	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-	<?php require_once '../lib/header.php'; ?>
+	<?php require_once '../view/header.php'; ?>
   	<?php
 	    $nameErr = $emailErr = $phoneErr = $passErr= $typeErr= ""; // initializing error variables to empty strings
 	    $name = $email = $unique_id = $phone = $pass= $type= "";// initializing empty string variables to store form input data
@@ -119,7 +119,7 @@
     	</form>
     	<?php echo "<h5 class='text-danger'>$return_data</h5>"; ?> 
   	</div>
-  	<?php require_once '../lib/footer.php'; ?>
+  	<?php require_once '../view/footer.php'; ?>
 
   	<script type="text/javascript" src="js/js1.js"></script>
 </body>

@@ -12,8 +12,8 @@
 </head>
 <body> 
     <header>
-        <?php require_once '../lib/header.php'; ?> 
-        <?php require_once '../lib/navbar.php'; ?>             
+        <?php require_once '../view/header.php'; ?> 
+        <?php require_once '../view/navbar.php'; ?>             
     </header>
     <div class=" container-fluid">
         <h3 class="text-success h2 pl-5 mt-1 mb-5 border-success border bg-secondary">Your Cart:</h3>

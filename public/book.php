@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
-	require_once '../lib/noseller.php'; // no entry for a seller session
+	require_once '../lib/noseller.php'; //no entry for a seller session
+    $isbn=$_GET['isbn'];
 ?>    
 <html>
 <head>
@@ -12,8 +13,29 @@
 </head>
 <body> 
     <header>
-        <?php require_once '../lib/header.php'; ?> 
-        <?php require_once '../lib/navbar.php'; ?>             
+        <?php require_once '../view/header.php'; ?> 
+        <?php require_once '../view/navbar.php'; ?>
     </header>
+
+    <div class="container-fluid row mt-4">
+        <div class="col-sm-9 row">
+            <div class="col-sm-6">
+                <img id="bookimage" src="" class="rounded ml-5" alt="book-image" width="300px" height="300px">
+            </div>
+
+            <div class="col-sm-6">
+                <h3 id="booktitle" class="text-secondary">BOOK NAME</h3>
+                <h4 id="bookisbn" class="text-center mb-3 ">ISBN</h4>
+                <h5>Sellers:</h5>
+
+            </div>
+        </div>
+        
+    </div>
+
+
+
+    <script type="text/javascript" src="js/js1.js"></script>
+    <script>getbookdetails(<?php echo "getbookimage" ; ?>)</script>
 </body>
 </html>
