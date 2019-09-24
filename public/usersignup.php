@@ -46,8 +46,9 @@
 	      	}
 	      	else{
 	        	$phone=test_input($_POST["phone"]);
-	        	if (!preg_match("/^\+?[0-9]{6,12}$/", subject)) {
-	        		# code...
+	        	if (!preg_match("/^\+?[0-9]{6,12}$/", $phone)) {
+	        		$phoneErr= "Phone is required";
+	        		$error=true;
 	        	}
 	      	}
 	      	if (empty($_POST["pass"])) { // if password field is left empty
