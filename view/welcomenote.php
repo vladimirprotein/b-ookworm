@@ -8,8 +8,8 @@
     }
 
     else{
-    	echo ("<li class='mt-4'><a class='badge badge-danger' href='/userlogin.php'>Login</a></li>");
-    	echo ("<li class='ml-3 mt-4'><a class='badge badge-success' href='/usersignup.php'>Signup</a></li>");
+    	echo ("<li class='mt-4'><a class='badge badge-success' href='/userlogin.php'>Login</a></li>");
+    	echo ("<li class='ml-3 mt-4'><a class='badge badge-primary' href='/usersignup.php'>Signup</a></li>");
 
     }
 ?>    

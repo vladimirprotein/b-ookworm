@@ -16,7 +16,7 @@
         <?php require_once '../view/navbar.php'; ?>             
     </header>
     <div class=" container-fluid">
-        <h3 class="text-success h2 pl-5 mt-1 mb-5 border-success border bg-secondary">Your Cart:</h3>
+        <h3 class=" mt-3 ml-4 mb-4 border-bottom">Your Cart</h3>
         <?php
             require '../lib/databasedial.php';
             $stmt=$conn->prepare("SELECT book.pic as pic, book.title as title, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price, cart.quantity as quantity from ((book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id) INNER JOIN cart ON cart.book_seller_id = book_seller.id WHERE cart.user_id = ? ");

@@ -5,8 +5,35 @@ function showalert(obj1) {
 	alert("Title: "+obj1.title+" ISBN: "+obj1.book_isbn+" Selling Since: "+obj1.created_at);
 }
 function getbookdetails(arg1) {
-	document.getElementById(arg1).src="img/bcg.jpg";
+	ajaxcall("api/book_detail_json.php", arg1, loadpage);
+}
+function loadpage(arg1) {
+	document.getElementById('bookimage').src='uploads/'+arg1.pic ;
+	idHTML('booktitle', 'w', arg1.title.toUpperCase() );
+	idHTML('bookisbn', 'w',  'ISBN: '+arg1.isbn.toUpperCase() );
+	var i;
+	for(i=0; i<arg1.num; i++) {
+		var row= document.createElement('TR');
+		var cell1= document.createElement('TH');
+		var cell2= document.createElement('TH');
+		var cell3= document.createElement('TH');
+		var cell4= document.createElement('TH');
+		cell1.classList.add('btn');
+		cell1.classList.add('btn-success');
+		cell4.classList.add('btn');
+		cell4.classList.add('btn-success');
+		cell1.innerHTML=arg1.seller[i];
+		cell2.innerHTML=arg1.email[i];
+		cell3.innerHTML=arg1.created_at[i];
+		cell4.innerHTML=arg1.price[i];
+		row.appendChild(cell1);
+		row.appendChild(cell2);
+		row.appendChild(cell3);
+		row.appendChild(cell4);
+		row.classList.add('mt-5');
+		document.getElementById('sellertable').appendChild(row);
 	}
+}
 
 
 

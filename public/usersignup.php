@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   	<link rel="stylesheet" type="text/css" href="../css/fontawesome.css">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  	<link rel="stylesheet" type="text/css" href="../css/style.css">
+  	<link rel="stylesheet" type="text/css" href="../css/style.css?v=2.0">
 </head>
 <body>
 	<?php require_once '../view/header.php'; ?>
@@ -87,38 +87,40 @@
 	      	return $data;
 	    }
   	?>
-  	<div class="container-fluid float-left col-sm-6 mt-5 border">
-  		<h2 class="text-success border-bottom">Sign Up:</h2>
-  		<p><small class="text-danger">* required field</small></p>
-  		<form method="post" class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
-      		<div class="form-group">
-        		Name:<small class="text-danger" id="nameErr">* <?php echo $nameErr;?></small> <!--Displaying the error in name if present-->
-        		<input type="text" name="name" id="username" placeholder="name" class="form-control" value="<?php echo $name; ?>"   onkeyup='validate_alpha(this.id, "nameErr" , "submit")' required>
-      		</div>
-      		<div class="form-group">
-        		Email:<small class="text-danger" id='emailErr'>* <?php echo $emailErr;?></small> <!--Displaying the error in email if present-->
-        		<input type="Email" name="email" id="email" placeholder="email" class="form-control" value="<?php echo $email; ?>" onkeyup='validate_email(this.id, "emailErr", "submit")'  required>		
-      		</div>
-      		<div class="form-group">
-        		Phone:<small class="text-danger" id="phoneErr" >* <?php echo $phoneErr;?></small> <!--Displaying the error in phone if present-->
-        		<input type="text" name="phone" id="phonenumber" placeholder="Phone" class="form-control" value="<?php echo $phone; ?>" onkeyup='validate_numeric(this.id, "phoneErr", "submit")' required>
-      		</div>
-      		<div class="form-group">
-        		Password:<small class="text-danger">* <?php echo $passErr;?></small> <!--Displaying the error in pswd if present-->
-        		<input type="Password" name="pass" placeholder="Password" class="form-control" required>
-      		</div>
-      		<div class="form-group">
-      			I am:
-      			<input type="radio" name="type" value="2">Customer
-      			<input type="radio" name="type" value="3">Seller
-      			<small class="text-danger">* <?php echo $typeErr;?></small><!--Displaying the error in user type if present-->
-      		</div>
-      		<div class="form-group">
-        		<input type="submit" name="submit" id="submit" value="Sign up" class="bg-primary">
-      		</div>
-    	</form>
-    	<?php echo "<h5 class='text-danger'>$return_data</h5>"; ?> 
-  	</div>
+  	<div class="row bookdetails1">
+	  	<div class=" col-sm-6 float-left mt-5 ml-5">
+	  		<h2 class="bg-primary border pl-4">Sign Up:</h2>
+	  		<p><small class="text-danger">* required field</small></p>
+	  		<form method="post" class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
+	      		<div class="form-group">
+	        		Name:<small class="text-danger" id="nameErr">* <?php echo $nameErr;?></small> <!--Displaying the error in name if present-->
+	        		<input type="text" name="name" id="username" placeholder="name" class="form-control" value="<?php echo $name; ?>"   onkeyup='validate_alpha(this.id, "nameErr" , "submit")' required>
+	      		</div>
+	      		<div class="form-group">
+	        		Email:<small class="text-danger" id='emailErr'>* <?php echo $emailErr;?></small> <!--Displaying the error in email if present-->
+	        		<input type="Email" name="email" id="email" placeholder="email" class="form-control" value="<?php echo $email; ?>" onkeyup='validate_email(this.id, "emailErr", "submit")'  required>		
+	      		</div>
+	      		<div class="form-group">
+	        		Phone:<small class="text-danger" id="phoneErr" >* <?php echo $phoneErr;?></small> <!--Displaying the error in phone if present-->
+	        		<input type="text" name="phone" id="phonenumber" placeholder="Phone" class="form-control" value="<?php echo $phone; ?>" onkeyup='validate_numeric(this.id, "phoneErr", "submit")' required>
+	      		</div>
+	      		<div class="form-group">
+	        		Password:<small class="text-danger">* <?php echo $passErr;?></small> <!--Displaying the error in pswd if present-->
+	        		<input type="Password" name="pass" placeholder="Password" class="form-control" required>
+	      		</div>
+	      		<div class="form-group btn btn-secondary">
+	      			I am:
+	      			<input type="radio" name="type" value="2">Customer
+	      			<input type="radio" name="type" value="3">Seller
+	      			<small class="text-danger">* <?php echo $typeErr;?></small><!--Displaying the error in user type if present-->
+	      		</div>
+	      		<div class="form-group">
+	        		<input type="submit" name="submit" id="submit" value="Sign up" class="btn btn-primary">
+	      		</div>
+	    	</form>
+	    	<?php echo "<h5 class='text-danger'>$return_data</h5>"; ?> 
+	  	</div>
+	</div>
   	<?php require_once '../view/footer.php'; ?>
 
   	<script type="text/javascript" src="js/js1.js"></script>

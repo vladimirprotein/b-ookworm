@@ -124,9 +124,9 @@
     <div class="row">
         <div class="col-sm-6 pl-4 mt-4 border">
             <h4 class="text-success border-bottom">Your Stock:</h4>
-            <table class="table table-dark table-striped">
+            <table class="table table-dark table-striped table-hover">
                 <thead>
-                    <tr>
+                    <tr class="bg-success">
                         <th>#</th>
                         <th>Name</th>
                         <th>ISBN</th>
@@ -143,7 +143,7 @@
                         $result = $stmt->get_result();
                         if ($result->num_rows != 0) {
                             while ($row=$result->fetch_assoc()) {
-                                echo "<tr><td></td>  <td>".$row['title']."</td><td>".$row['book_isbn']."</td><td>".$row['quantity']."</td><td>".$row['price']."</td></tr>" ;
+                                echo "<tr><td></td>  <td>".ucwords($row['title'])."</td><td>".$row['book_isbn']."</td><td>".$row['quantity']."</td><td>".$row['price']."</td></tr>" ;
                             }        
                         }    
                     ?>

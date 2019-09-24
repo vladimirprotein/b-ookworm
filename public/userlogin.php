@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   	<link rel="stylesheet" type="text/css" href="css/fontawesome.css">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  	<link rel="stylesheet" type="text/css" href="css/style.css">
+  	<link rel="stylesheet" type="text/css" href="css/style.css?v=2.4">
 </head>
 <body>
 	<?php require_once '../view/header.php'; ?>
@@ -80,27 +80,29 @@
 	      	return $data;
 	    }
   	?>
-  	<div class="container-fluid col-sm-6 float-left mt-5 border">
-  		<h2 class="bg-success border">Log in:</h2>
-  		<p><small class="text-danger">* required field</small></p>
-  		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
-      		<div class="form-group">
-        		Email:<small class='text-danger' id='emailErr'>* <?php echo $emailErr;?> </small><!--Displaying the error in email if present-->
-        		<input type="Email" id='email' onkeyup='validate_email(this.id, "emailErr", "submit")' name="email" placeholder="email" class="form-control" value="<?php echo $email; ?>">
-      		</div>		
-      		<div class="form-group">
-        		Password:<small class="text-danger">* <?php echo $passErr;?></small><!--Displaying the error in pswd if present-->
-        		<input type="Password" name="pass" placeholder="Password" class="form-control">
-      		</div>
-      		<div class="form-group">
-      			<input type="checkbox" name="remember" value="yes" class=""> Remember me
-      		</div>
-      		<div class="form-group">
-        		<input type="submit" id="submit" name="submit" value="Log In" class="bg-success">
-      		</div>
-    	</form>
-      	<?php echo $return_data; ?>
-  	</div>
+  	<div class=" row bookdetails1">
+	  	<div class=" col-sm-6 float-left mt-5 ml-5">
+	  		<h2 class="bg-success border pl-4">Log in:</h2>
+	  		<p><small class="text-danger">* required field</small></p>
+	  		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
+	      		<div class="form-group">
+	        		Email:<small class='text-danger' id='emailErr'>* <?php echo $emailErr;?> </small><!--Displaying the error in email if present-->
+	        		<input type="Email" id='email' onkeyup='validate_email(this.id, "emailErr", "submit")' name="email" placeholder="email" class="form-control" value="<?php echo $email; ?>">
+	      		</div>		
+	      		<div class="form-group">
+	        		Password:<small class="text-danger">* <?php echo $passErr;?></small><!--Displaying the error in pswd if present-->
+	        		<input type="Password" name="pass" placeholder="Password" class="form-control">
+	      		</div>
+	      		<div class="form-group btn-secondary btn">
+	      			<input type="checkbox" name="remember" value="yes" class=""> Remember me
+	      		</div>
+	      		<div class="form-group">
+	        		<input type="submit" id="submit" name="submit" value="Log In" class="btn btn-success">
+	      		</div>
+	    	</form>
+	      	<?php echo $return_data; ?>
+	  	</div>
+	</div>
     <?php require_once '../view/footer.php'; ?>
     <script type="text/javascript" src="js/js1.js"></script>
 </body>
