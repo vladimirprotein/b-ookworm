@@ -1,24 +1,28 @@
 <?php
 	class Database {
-		private $servername;
-      	private $username;
-      	private $password;
-      	private $dbname;
+		private static $connection = null;
+		private static $dbconn = null;
 
+      	private function __construct($dbname, $servername, $username, $password) {
+      		static::$dbconn = new mysqli($servername, $username, $password, $dbname);
+		}
 
-      	public function __construct() {
-			$this->dbname = 'bookworm';
-			$this->servername = "localhost:3306";
-      		$this->username = "root";
-      		$this->password = "mindfire";
+		public static function getInstance($dbname, $servername, $username, $password) {
+			if (!self::$connection) {
+				self::$connection = new self($dbname, $servername, $username, $password);
+			}
+
+			return self::$connection;
 		}
 
 		public function viewall($tablename) {
 
-			$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+			$conn = static::$dbconn;
+
 			if ($conn->connect_error) {
     			return false;
 			}
+
 			$stmt=$conn->prepare("SELECT * FROM $tablename ");
 			//$stmt->bind_param("s", $tablename);
 
@@ -28,10 +32,10 @@
 		}
 	}
 
-
-	$bookworm = new Database();
-	echo $bookworm->viewall('book')->fetch_assoc()['id'];
-	echo $bookworm->viewall('book')->fetch_assoc()['id'];
+	$bookworm = Database::getInstance("bookworm", "localhost:3306", "root", "mindfire");
+	$ele= $bookworm->viewall('book');
+	echo $ele->fetch_assoc()['id']."<br>";
+	echo $ele->fetch_assoc()['id'];
 
 
 
