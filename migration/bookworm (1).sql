@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 24, 2019 at 07:13 PM
+-- Generation Time: Sep 26, 2019 at 08:56 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -170,8 +170,8 @@ CREATE TABLE `book_tag` (
 
 CREATE TABLE `cart` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED DEFAULT NULL,
-  `book_seller_id` int(10) UNSIGNED DEFAULT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `book_seller_id` int(10) UNSIGNED NOT NULL,
   `quantity` int(11) DEFAULT '1',
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
@@ -183,11 +183,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `book_seller_id`, `quantity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 37, 4, NULL, NULL, NULL),
-(2, 1, 40, 5, NULL, NULL, NULL),
-(3, 1, 35, 6, NULL, NULL, NULL),
-(4, 49, 38, 10, NULL, NULL, NULL),
-(6, 1, 38, 1, NULL, NULL, NULL);
+(1, 1, 44, 1, '2019-09-26', NULL, NULL),
+(2, 1, 40, 1, '2019-09-26', NULL, NULL),
+(3, 1, 39, 1, '2019-09-26', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -541,7 +539,7 @@ ALTER TABLE `book_tag`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `city`
 --

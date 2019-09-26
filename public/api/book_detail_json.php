@@ -2,7 +2,7 @@
 	error_reporting(0);
 	$isbn=$_GET['a'];
 	require_once "../../lib/databasedial.php";
-	$stmt= $conn->prepare("SELECT book.id as id, book.book_isbn as isbn, book.title as title, book.pic as pic, book_seller.created_at as created_at, book_seller.user_id as seller_id, `user`.name as seller, `user`.email as email, `user`.phone as phone, book_seller.price as price FROM (book INNER JOIN book_seller ON book.id = book_seller.book_id) INNER JOIN `user` on book_seller.user_id = user.id WHERE book.book_isbn= ? ");
+	$stmt= $conn->prepare("SELECT book.id as id, book.book_isbn as isbn, book.title as title, book.pic as pic, book_seller.created_at as created_at, book_seller.user_id as seller_id, book_seller.id as bsid, `user`.name as seller, `user`.email as email, `user`.phone as phone, book_seller.price as price FROM (book INNER JOIN book_seller ON book.id = book_seller.book_id) INNER JOIN `user` on book_seller.user_id = user.id WHERE book.book_isbn= ? ");
 	$stmt->bind_param("s",$isbn);
 	$stmt->execute();
 	$result=$stmt->get_result();
@@ -18,6 +18,7 @@
 		$obj->email[$i]=$row['email'];
 		$obj->phone[$i]=$row['phone'];
 		$obj->price[$i]=$row['price'];
+		$obj->bsid[$i]=$row['bsid'];
 		$i++;	
 	}
 	$obj->num=$i;

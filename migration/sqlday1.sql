@@ -180,8 +180,8 @@ CREATE TABLE book_seller(
 
 CREATE TABLE cart(
     id int unsigned primary key AUTO_INCREMENT,
-    user_id int unsigned, 
-    book_seller_id int unsigned,
+    user_id int unsigned not null, 
+    book_seller_id int unsigned not null,
     quantity int default 1,
     created_at date,
     updated_at date,

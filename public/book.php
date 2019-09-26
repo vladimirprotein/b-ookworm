@@ -17,7 +17,7 @@
 ?>  
 <html>
 <head>
-    <title>BOOKWORM | Home</title>
+    <title>BOOKWORM | Book</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome.css">
@@ -30,7 +30,7 @@
     </header>
 
     <div class=" row bookdetails1">
-        <div class="col-sm-10 row">
+        <div class="col-sm-11 row">
             <div class="col-sm-4">
                 <img id="bookimage" src="" class="rounded ml-4 mt-4 mb-4" alt="book-image" width="300px" height="380px">
             </div>
@@ -38,14 +38,15 @@
             <div class="col-sm-8">
                 <h3 id="booktitle" class="text-secondary border-bottom pl-2 mt-4 border-success">BOOK NAME</h3>
                 <h5 id="bookisbn" class="btn-success btn border-top border-success pt-2 float-right mb-3 ">ISBN</h5>
-                <h5 class="mb-4 mt-5" id="sellers">Sellers:</h5>
-                <div class="col-sm-11 float-right" id=" ">
+                <h5 class="mb-4 mt-5 text-primary" id="sellers"><b>Sellers:</b></h5>
+                <div class="col-sm-11" id=" ">
                     <table class="table table-striped table-dark table-hover" id="sellertable">
                         <tr class="table-success text-dark">
                             <th>Name</th>
                             <th>Email</th>
                             <th>Listed on</th>
                             <th>Price</th>
+                            <th></th>
                         </tr>
                     </table>
                 </div>
@@ -59,7 +60,7 @@
 
 
 
-    <script type="text/javascript" src="js/js1.js"></script>
+    <script type="text/javascript" src="js/js1.js?v=2.0"></script>
     <script>
         var isbn = "<?php echo $isbn ; ?>";
         getbookdetails(isbn);

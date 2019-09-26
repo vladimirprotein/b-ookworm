@@ -18,21 +18,38 @@ function loadpage(arg1) {
 		var cell2= document.createElement('TH');
 		var cell3= document.createElement('TH');
 		var cell4= document.createElement('TH');
-		cell1.classList.add('btn');
-		cell1.classList.add('btn-success');
+		var cell5= document.createElement('BUTTON');
+		//cell1.classList.add('btn-sm');
+		//cell1.classList.add('btn-success');
 		cell4.classList.add('btn');
 		cell4.classList.add('btn-success');
+		cell5.addEventListener("click", function(){addtocart(this.name)});
+		cell5.classList.add('btn-sm');
+		cell5.classList.add('btn-warning');
+		cell5.classList.add('float-right');
+		cell5.classList.add('mt-2');
 		cell1.innerHTML=arg1.seller[i];
 		cell2.innerHTML=arg1.email[i];
 		cell3.innerHTML=arg1.created_at[i];
 		cell4.innerHTML=arg1.price[i];
+		cell5.innerHTML="Add to Cart";
+		cell5.name=arg1.bsid[i];
 		row.appendChild(cell1);
 		row.appendChild(cell2);
 		row.appendChild(cell3);
 		row.appendChild(cell4);
+		row.appendChild(cell5);
 		row.classList.add('mt-5');
 		document.getElementById('sellertable').appendChild(row);
+
 	}
+}
+
+function addtocart(bsid) {
+	ajaxcall("api/addtocart.php", bsid , xyz);
+}
+function xyz(arg){
+	alert("item added to cart");
 }
 
 
@@ -129,7 +146,7 @@ function tagHTML(tag, pos, method, towrite) {
 
 /** 
    * Function to validate a field for alphabets only
-   * @param input field id and error result id
+   * @param input field id, error result id and submit button id
    * @returns nothing.
  */
 function validate_alpha(id1, id2, id3) {
