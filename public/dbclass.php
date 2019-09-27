@@ -1,9 +1,9 @@
 <?php
 	class Database {
-		private static $connection = null;
-		private static $dbconn = null;
+		protected static $connection = null;
+		protected static $dbconn = null;
 
-      	private function __construct($servername, $username, $password, $dbname) {
+      	protected function __construct($servername, $username, $password, $dbname) {
       		static::$dbconn = new mysqli($servername, $username, $password, $dbname);
 		}
 
@@ -38,31 +38,36 @@
 			return $result;
 		}
 
-		/** 
-   		* Method to get all the records from a table
-   		* param table name.
-   		* @returns result object.
- 		*/
+		function select($select_fields) {
+			if (empty($select_fields)) {
+				$select = 'SELECT * FROM ';
+			}
+			else{
+				$select = 'SELECT '.$select_fields . ' FROM ';
+			}
+			$select = $select." ".$this;
+
+			return $select;
+		}
 
 		
 	}
 
-	$bookworm = Database::getInstance("localhost:3306", "root", "mindfire", "bookworm");
 
-	$conn = Database::getConn();
 
-			if ($conn->connect_error) {
-    			return false;
-			}
+	/**
+	 * 
+	 */
+	class Select extends Database
+	{
+		
+		function __construct(argument)
+		{
+			
+		}
+	}
 
-			$stmt=$conn->prepare("SELECT * FROM book ");
-			//$stmt->bind_param("s", $tablename);
-
-			$stmt->execute();
-			$result=$stmt->get_result();
-	$ele= $result;
-	echo $ele->fetch_assoc()['id']."<br>";
-	echo $ele->fetch_assoc()['id'];
+	
 
 
 
