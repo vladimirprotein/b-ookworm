@@ -2,12 +2,13 @@
 	class Database {
 		protected static $connection = null;
 		protected static $dbconn = null;
+		protected $query= null;
 
       	protected function __construct($servername, $username, $password, $dbname) {
       		static::$dbconn = new mysqli($servername, $username, $password, $dbname);
 		}
 
-		public static function getInstance($servername, $username, $password, $dbname) {
+		protected static function getInstance($servername, $username, $password, $dbname) {
 			if (!self::$connection) {
 				self::$connection = new self($servername, $username, $password, $dbname);
 			}
@@ -15,19 +16,32 @@
 			return self::$connection;
 		}
 
-		function select($select_str) {
+		function get($select_str) {
 			$select= "*";
 			if (!empty($select_str)) {
 				$select= $select_str;
+			}
 			$conn= self::getInstance("localhost:3306", "root", "mindfire", "bookworm");
 			$conn= self::$dbconn;
-			$stmt= $conn->prepare("SELECT ".$select_str." from ".$this->tablename);
-			$stmt->bind_param("ss", $select_str, $this->tablename);
-			$stmt->execute();
-			$result=$stmt->get_result();
-			echo $result->fetch_assoc();
+			$stmt= $conn->prepare("SELECT ? FROM ".$this->tablename);
+			$stmt->bind_param("s", $select);
+			if(!$stmt->execute()) {
+				exit;
 			}
+			$result=$stmt->get_result();
+			echo $result->fetch_assoc()['title'];
+			echo $result->fetch_assoc()['id'];
 		}
+
+
+		// function select($select_str) {
+		// 	$select = '*';
+		// 	if (!) {
+		// 		# code...
+		// 	}
+		// }
+
+		// function insert
 
 
 		/** 
@@ -75,7 +89,7 @@
 	}
 
 	$book1= new Book();
-	$book1->select("id, title");
+	$book1->get("");
 
 
 
