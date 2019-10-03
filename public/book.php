@@ -49,6 +49,8 @@
                             <th></th>
                         </tr>
                     </table>
+
+                    <h6 class="text-danger mt-5 text-center" id='added_to_cart_message'></h6>
                 </div>
 
 
@@ -60,7 +62,7 @@
 
 
 
-    <script type="text/javascript" src="js/js1.js?v=2.0"></script>
+    <script type="text/javascript" src="js/js1.js?v=2.1"></script>
     <script>
         var isbn = "<?php echo $isbn ; ?>";
         getbookdetails(isbn);

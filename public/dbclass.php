@@ -16,32 +16,41 @@
 			return self::$connection;
 		}
 
-		function get($select_str) {
-			$select= "*";
-			if (!empty($select_str)) {
-				$select= $select_str;
-			}
+		function get() {
 			$conn= self::getInstance("localhost:3306", "root", "mindfire", "bookworm");
 			$conn= self::$dbconn;
-			$stmt= $conn->prepare("SELECT ? FROM ".$this->tablename);
-			$stmt->bind_param("s", $select);
+			$stmt= $conn->prepare($this->query);
+			//$stmt->bind_param("s", $select);
 			if(!$stmt->execute()) {
 				exit;
 			}
 			$result=$stmt->get_result();
-			echo $result->fetch_assoc()['title'];
-			echo $result->fetch_assoc()['id'];
+			while ($row= $result->fetch_assoc()){
+				echo $row['id'];
+				echo "<br>";
+			}
 		}
 
 
-		// function select($select_str) {
-		// 	$select = '*';
-		// 	if (!) {
-		// 		# code...
-		// 	}
-		// }
+		function select($select_str = '*') {
+			$query = "SELECT ".$select_str." FROM ".$this->tablename." ";
+			$this->query .= $query;
+			return $this;
+		}
 
-		// function insert
+		function where($where) {
+			$query = " WHERE ".$where;
+			$this->query .= $query;
+			return $this;
+		}
+
+		function orderby($orderby) {
+			$query = " ORDER BY ".$orderby;
+			$this->query .= $query;
+			return $this;
+		}
+
+
 
 
 		/** 
@@ -89,7 +98,7 @@
 	}
 
 	$book1= new Book();
-	$book1->get("");
+	$book1->select('')->where('id = 63')->orderby('id asc')->first();
 
 
 
@@ -99,42 +108,42 @@
 	
 
 
-	class Person {
-		var $name;
-		var $gender;
-		var $age;
+	// class Person {
+	// 	var $name;
+	// 	var $gender;
+	// 	var $age;
 
-		function __construct($name, $gender, $age) {
-			$this->name= $name;
-			$this->gender= $gender;
-			$this->age= $age;
-		}
+	// 	function __construct($name, $gender, $age) {
+	// 		$this->name= $name;
+	// 		$this->gender= $gender;
+	// 		$this->age= $age;
+	// 	}
 
-		function person_details() {
-			echo $this->name.", ".$this->gender.", is ".$this->age."<br>";
-		}
-	}
+	// 	function person_details() {
+	// 		echo $this->name.", ".$this->gender.", is ".$this->age."<br>";
+	// 	}
+	// }
 
 
-	class Employee extends Person {
-		var $dept;
-		function __construct($name, $gender, $age, $dept) {
-			parent::__construct($name, $gender, $age);
-			$this->dept = $dept;
-		}
+	// class Employee extends Person {
+	// 	var $dept;
+	// 	function __construct($name, $gender, $age, $dept) {
+	// 		parent::__construct($name, $gender, $age);
+	// 		$this->dept = $dept;
+	// 	}
 
-		function employee_details() {
-			echo $this->name.", ".$this->gender.", is ".$this->age." and works in ".$this->dept."<br>";
-		}
-	}
+	// 	function employee_details() {
+	// 		echo $this->name.", ".$this->gender.", is ".$this->age." and works in ".$this->dept."<br>";
+	// 	}
+	// }
 
-	$person1= new Person("Animesh", "Male", "22");
-	$employee1= new Employee("XYZ", "Female", "21", "IT");
-	$employee2= new Employee("ABCD", "Male", "25", "HR");
+	// $person1= new Person("Animesh", "Male", "22");
+	// $employee1= new Employee("XYZ", "Female", "21", "IT");
+	// $employee2= new Employee("ABCD", "Male", "25", "HR");
 
-	$person1->person_details();
-	$employee2->person_details();
-	$employee1->employee_details();
+	// $person1->person_details();
+	// $employee2->person_details();
+	// $employee1->employee_details();
 
 	
 

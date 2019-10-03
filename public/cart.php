@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=2.0">
 </head>
 <body> 
     <header>
@@ -42,10 +42,10 @@
                     $pic="uploads/".$row['pic'];
                     $subtotal= $row['quantity']*$row['price'];
                     $total+=$subtotal;
-                    echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80   >"."</td> <td class='h5 text-success'>".ucwords($row['title'])."</td><td>".$row['isbn']."</td><td>".$row['seller']."</td><td>".$row['price']."</td><td>".$row['quantity']."</td><td>".$subtotal."</td></tr>" ;
+                    echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80   >"."</td> <td class='h5 text-success'>".ucwords($row['title'])."</td><td>".$row['isbn']."</td><td>".$row['seller']."</td><td class='h5'>".$row['price']."</td><td class='h5'><button id='decrease_qty' class=' mr-1 btn'>-</button>".$row['quantity']."<button id='increase_qty' onclick='decrease_qty()' class='ml-1 btn '>+</button></td><td class='h5 text-success'>".$subtotal."</td></tr>" ;
                 }
                 echo "
-                    <tr><td></td><td></td><td></td><td></td><td class='text-success' id='coupon'></td><th class='h5 bg-success border-warning' id='totaltext'>Total:</th><td class='h5 bg-success border-warning' id='totalprice'>".$total."</td>
+                    <tr><td></td><td></td><td></td><td></td><td class='text-success' id='coupon'></td><th class='h5 bg-success border-warning' id='totaltext'>Total:</th><td class='h4 bg-success border-warning' id='totalprice'>".$total."</td>
                     </tbody>
                     </table>";     
             }
