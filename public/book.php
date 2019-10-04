@@ -28,13 +28,11 @@
         <?php require_once '../view/header.php'; ?> 
         <?php require_once '../view/navbar.php'; ?>
     </header>
-
     <div class=" row bookdetails1">
         <div class="col-sm-11 row">
             <div class="col-sm-4">
                 <img id="bookimage" src="" class="rounded ml-4 mt-4 mb-4" alt="book-image" width="300px" height="380px">
             </div>
-
             <div class="col-sm-8">
                 <h3 id="booktitle" class="text-secondary border-bottom pl-2 mt-4 border-success">BOOK NAME</h3>
                 <h5 id="bookisbn" class="btn-success btn border-top border-success pt-2 float-right mb-3 ">ISBN</h5>
@@ -52,17 +50,14 @@
 
                     <h6 class="text-danger mt-5 text-center" id='added_to_cart_message'></h6>
                 </div>
-
-
-
             </div>
         </div>
-        
     </div>
+    <?php require_once '../view/footer.php'; ?>
 
 
 
-    <script type="text/javascript" src="js/js1.js?v=2.1"></script>
+    <script type="text/javascript" src="js/js1.js?v=2.9"></script>
     <script>
         var isbn = "<?php echo $isbn ; ?>";
         getbookdetails(isbn);

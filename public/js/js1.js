@@ -8,7 +8,6 @@ function getbookdetails(arg1) {
 	ajaxcall("api/book_detail_json.php", arg1, loadpage);
 }
 function loadpage(arg1) {
-	arg1=JSON.parse(arg1);
 	document.getElementById('bookimage').src='uploads/'+arg1.pic ;
 	idHTML('booktitle', 'w', arg1.title.toUpperCase() );
 	idHTML('bookisbn', 'w',  'ISBN: '+arg1.isbn.toUpperCase() );
@@ -50,7 +49,12 @@ function addtocart(bsid) {
 	ajaxcall("api/addtocart.php", bsid , addedtocart);
 }
 function addedtocart(arg){
-	document.getElementById('added_to_cart_message').innerHTML=arg;
+	if(arg.responsecode ==100){
+		window.open("userlogin.php", "_blank");
+	}
+	else{
+		document.getElementById('added_to_cart_message').innerHTML=arg.message;
+	}
 }
 
 
@@ -64,7 +68,8 @@ function ajaxcall(url, val, callback) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			callback(this.responseText);
+			var response = JSON.parse(this.responseText);
+			callback(response);
 		}
 	}
 	xmlhttp.open("GET" , url+"?a="+val, true);
