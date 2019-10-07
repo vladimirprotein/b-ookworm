@@ -98,7 +98,7 @@
 	}
 
 	$book1= new Book();
-	$book1->select('')->where('id = 63')->orderby('id asc')->first();
+	$book1->select('')->where('id = 63')->orderby('id asc')->get();
 
 
 

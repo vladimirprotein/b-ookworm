@@ -104,6 +104,6 @@
 	  	</div>
 	</div>
     <?php require_once '../view/footer.php'; ?>
-    <script type="text/javascript" src="js/js1.js"></script>
+    <script type="text/javascript" src="js/js1.js?v=2.0"></script>
 </body>
 </html>

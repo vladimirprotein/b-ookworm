@@ -2,6 +2,7 @@
     <div class="row bg-secondary">
     	<div class="col-6 ">
     		<p class="mt-4 text-right">&copy Copyright 2019 Bookworm.com</p>
+    		<p class="mt-4 text-right">Author: Animesh Sharma</p>
     	</div>
     	<div class="col-6">
 	        <div class="social float-right mt-2">

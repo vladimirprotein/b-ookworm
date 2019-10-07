@@ -57,7 +57,7 @@
 
 
 
-    <script type="text/javascript" src="js/js1.js?v=2.9"></script>
+    <script type="text/javascript" src="js/js1.js?v=3.0"></script>
     <script>
         var isbn = "<?php echo $isbn ; ?>";
         getbookdetails(isbn);

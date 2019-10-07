@@ -1,4 +1,5 @@
 <?php
+	error_reporting(0);
 	require_once '../../lib/rememberme.php';
 	if (!isset($_SESSION['id'])) {
 		$obj->responsecode = 100;

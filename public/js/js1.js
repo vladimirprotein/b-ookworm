@@ -57,6 +57,22 @@ function addedtocart(arg){
 	}
 }
 
+function increase_qty(bsid) {
+	ajaxcall("api/addtocart.php", bsid, updatecartpage);
+}
+
+function decrease_qty(bsid) {
+	ajaxcall("api/removefromcart.php", bsid, updatecartpage);
+}
+
+function updatecartpage(obj){
+	window.open("cart.php", "_self");
+}
+
+function removeitem(bsid){
+	ajaxcall("api/deleteitem.php", bsid, updatecartpage);
+}
+
 
 
 
@@ -163,7 +179,7 @@ function validate_alpha(id1, id2, id3) {
 	else {
 		element.classList.remove("border-danger");
 		element.classList.remove("text-danger");
-		document.getElementById(id2).innerHTML='';
+		document.getElementById(id2).innerHTML='*';
 		document.getElementById(id3).disabled= false;
 	}
 }
@@ -189,7 +205,7 @@ function validate_numeric(id1, id2, id3) {
 	else {
 		element.classList.remove("border-danger");
 		element.classList.remove("text-danger");
-		document.getElementById(id2).innerHTML= '';
+		document.getElementById(id2).innerHTML= '*';
 		document.getElementById(id3).disabled= false;
 	}
 }
@@ -213,7 +229,7 @@ function validate_email(id1, id2, id3) {
 	else {
 		element.classList.remove("border-danger");
 		element.classList.remove("text-danger");
-		document.getElementById(id2).innerHTML= '';
+		document.getElementById(id2).innerHTML= '*';
 		document.getElementById(id3).disabled= false;
 	}
 }
