@@ -20,6 +20,7 @@
 				$obj->message= "Quantity Updated for an Item in Cart";
 			}
 		}
+		
 	}
 	$return = json_encode($obj);
 	echo $return;
