@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=2.1">
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=2.2">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity = "sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 </head>
 <body> 
     <header>
@@ -42,7 +44,7 @@
                     $pic="uploads/".$row['pic'];
                     $subtotal= $row['quantity']*$row['price'];
                     $total+=$subtotal;
-                    echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80   >"."</td> <td class='h5 text-success'>"."<a href='book.php?isbn=".$row['isbn'].  "' "." style='text-decoration:none' class='text-success' >".ucwords($row['title'])."</a>"."</td><td onclick='bookpopup(this.innerHTML)'>".$row['isbn']."</td><td>".$row['seller']."</td><td class='h5'>".$row['price']."</td><td class='h5'><button name=".$row['bsid']." id='decrease_qty' onclick='decrease_qty(this.name)' class=' mr-1 btn'>-</button>".$row['quantity']."<button name=".$row['bsid']." id='increase_qty' onclick='increase_qty(this.name)' class='ml-1 btn '>+</button></td><td class='h5 text-success'>".$subtotal."</td><td><button name=".$row['bsid']." class='ml-2 btn btn-warning' id='removeitem' onclick='removeitem(this.name)'>Remove</button></td></tr>" ;
+                    echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80   >"."</td> <td class='h5 text-success'>"."<a href='book.php?isbn=".$row['isbn'].  "' "." style='text-decoration:none' class='text-success' >".ucwords($row['title'])."</a>"."</td><td onclick='bookpopup(this.innerHTML)'>".$row['isbn']."</td><td>".$row['seller']."</td><td class='h5 price'>".$row['price']."</td><td class='h5'><button name=".$row['bsid']." id=' ' oonclick='decrease_qty(this.name)' class=' mr-1 btn decrease_qty'>-</button><span>".$row['quantity']."</span><button name=".$row['bsid']." id=' ' oonclick='increase_qty(this.name)' class='ml-1 btn  increase_qty'>+</button></td><td class='h5 text-success subtotal'>".$subtotal."</td><td><button name=".$row['bsid']." class='ml-2 btn btn-warning removeitem' id=' ' oonclick='removeitem(this.name)'>Remove</button></td></tr>" ;
                 }
                 echo "
                     <tr><td></td><td></td><td></td><td></td><td class='text-success' id='coupon'></td><th class='h5 bg-success border-warning' id='totaltext'>Total:</th><td class='h4 bg-success border-warning' id='totalprice'>".$total."</td>
@@ -58,7 +60,7 @@
         <?php require_once '../view/footer.php'; ?>
     </footer>
 
-    <script type="text/javascript" src="js/js1.js?v=3.3"></script>
+    <script type="text/javascript" src="js/js1.js?v=3.4"></script>
                 
 
 </body>

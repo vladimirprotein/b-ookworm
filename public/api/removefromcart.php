@@ -16,6 +16,7 @@
 		$stmt->bind_param("sss", $created_at, $_SESSION['id'], $bsid);
 		$stmt->execute();
 		$obj->message= "Cart Updated";
+		$obj->responsecode = 200;
 	}
 	$return = json_encode($obj);
 	echo $return;

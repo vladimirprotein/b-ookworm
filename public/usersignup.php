@@ -59,18 +59,6 @@
 	        	$pass=test_input($_POST["pass"]);
 	      	}
 
-	      	if (empty($_POST["pass2"])) { // if password field is left empty
-	        	$passErr="Password is required";
-	        	$error=true;
-	      	}
-	      	else{
-	        	$pass2=test_input($_POST["pass2"]);
-	      	}
-	      	if ($pass != $pass2) {
-	      		$passErr= "Password Mismatch";
-	      		$error= true;
-	      	}
-
 	      	if (empty($_POST["type"])) {
 	        	$typeErr="Usertype is required";
 	        	$error = true;
@@ -121,10 +109,6 @@
 	        		Password:<small class="text-danger">* <?php echo $passErr;?></small> <!--Displaying the error in pswd if present-->
 	        		<input type="Password" name="pass" placeholder="Password" class="form-control" required>
 	      		</div>
-	      		<div class="form-group">
-	        		Re-Type Password:<small class="text-danger">* <?php echo $passErr;?></small> <!--Displaying the error in pswd if present-->
-	        		<input type="Password" name="pass2" placeholder="Password" class="form-control" required>
-	      		</div>
 	      		<div class="form-group btn btn-secondary">
 	      			I am:
 	      			<input type="radio" name="type" value="2">Customer
@@ -140,6 +124,6 @@
 	</div>
   	<?php require_once '../view/footer.php'; ?>
 
-  	<script type="text/javascript" src="js/js1.js?v=2.0"></script>
+  	<script type="text/javascript" src="js/js1.js"></script>
 </body>
 </html>

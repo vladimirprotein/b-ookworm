@@ -12,12 +12,14 @@
 		$stmt->bind_param("sss",$_SESSION['id'], $bsid, $created_at);
 		if ($stmt->execute()) {
 			$obj->message= "New Item added to Cart";
+			$obj->responsecode = 200;
 		}
 		else{
 			$stmt= $conn->prepare("UPDATE cart SET quantity= quantity+1 , updated_at=? WHERE user_id=? and book_seller_id=?");
 			$stmt->bind_param("sss", $created_at, $_SESSION['id'], $bsid);
 			if($stmt->execute()) {
 				$obj->message= "Quantity Updated for an Item in Cart";
+				$obj->responsecode = 200;
 			}
 		}
 		

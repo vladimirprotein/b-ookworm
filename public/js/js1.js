@@ -73,6 +73,71 @@ function removeitem(bsid){
 	ajaxcall("api/deleteitem.php", bsid, updatecartpage);
 }
 
+var ggg;
+
+$(document).ready(function(){
+	$(".decrease_qty").click(function(){
+		var decrease = $(this);
+		$.get("api/removefromcart.php?a="+($(this).attr("name")), function(data, status){
+			if (status === 'success') {
+				if(decrease.next().html()>0){
+					decrease.next().html(decrease.next().html() - 1);
+					decrease.parent().next().html(decrease.parent().next().html() - decrease.parent().prev().html());
+					$("#totalprice").html($("#totalprice").html() - decrease.parent().prev().html());
+				}
+			}
+		});
+	});
+	$(".increase_qty").click(function(){
+		var increase = $(this);
+		$.get("api/addtocart.php?a="+($(this).attr("name")), function(data, status){
+			if (status === 'success') {
+				increase.prev().html(parseInt(increase.prev().html()) + 1);
+				increase.parent().next().html(parseInt(increase.parent().next().html()) + parseInt(increase.parent().prev().html()));
+				$("#totalprice").html(parseInt($("#totalprice").html()) + parseInt(increase.parent().prev().html()));	
+			}
+		});
+	});
+	$(".removeitem").click(function(){
+		var remove = $(this);
+		$.get("api/deleteitem.php?a="+($(this).attr("name")), function(data, status){
+			if (status === 'success') {
+				$("#totalprice").html($("#totalprice").html() - remove.parent().prev().html());
+				remove.parents('tr').remove();
+			}
+		});
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

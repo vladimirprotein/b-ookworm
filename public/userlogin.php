@@ -59,11 +59,11 @@
 	        			setcookie("currentusername",$_SESSION['name'],  time()+60*60*24*30,"/");
 	        		}
 	        		if ($row['user_type_id']=='2') { // if credential is for customer, redirect to homepage
-	        			header('Location: /index.php');
+	        			header('Location: index.php');
 	     				exit();
 	        		}
 	        		if ($row['user_type_id']=='3') { // if credential is for seller, redirecct to seller homepage
-	        			header('Location: /sellerpage.php');
+	        			header('Location: sellerpage.php');
 	     				exit();
 	        		}	
 	      		} 

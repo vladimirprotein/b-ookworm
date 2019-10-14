@@ -12,6 +12,7 @@
 		$stmt->bind_param("ss",$_SESSION['id'], $bsid);
 		if($stmt->execute()){
 			$obj->message="Item Removed";
+			$obj->responsecode = 200;
 		}
 	}
 	$return = json_encode($obj);

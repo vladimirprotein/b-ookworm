@@ -101,7 +101,7 @@ figure img{
     line-height: 1;
 }
 
-#decrease_qty, #increase_qty, #removeitem{
+.decrease_qty, .increase_qty, .removeitem{
   font-size: 10px;
   padding-top: 0px;
   padding-bottom: 0px;
@@ -112,6 +112,6 @@ figure img{
   background-color: #ffc107;
 }
 
-#removeitem{
+.removeitem{
   width: 45px;
 }
