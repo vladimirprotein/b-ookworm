@@ -14,7 +14,7 @@
 	<?php require_once '../view/header.php'; ?>
   	<?php
 	    $nameErr = $emailErr = $phoneErr = $passErr= $typeErr= ""; // initializing error variables to empty strings
-	    $name = $email = $unique_id = $phone = $pass= $type= "";// initializing empty string variables to store form input data
+	    $name = $email = $unique_id = $phone = $pass= $pass2= $type= "";// initializing empty string variables to store form input data
 	    $return_data= ""; // variable to store output string
 	    $error=false; // initializing error variable with false
 	    if ($_SERVER["REQUEST_METHOD"] == "POST") { //will enter this block if the form is submitted with method POST
@@ -58,7 +58,17 @@
 	      	else{
 	        	$pass=test_input($_POST["pass"]);
 	      	}
-
+	      	if (empty($_POST["pass2"])) { // if password field is left empty
+	        	$passErr="Password is required";
+	        	$error=true;
+	      	}
+	      	else{
+	        	$pass2=test_input($_POST["pass2"]);
+	      	}
+	      	if($pass != $pass2){
+	      		$passErr="Passwords do not match";
+	      		$error=true;
+	      	}
 	      	if (empty($_POST["type"])) {
 	        	$typeErr="Usertype is required";
 	        	$error = true;
@@ -90,7 +100,7 @@
   	?>
   	<div class="row bookdetails1">
 	  	<div class=" col-sm-6 float-left mt-5 ml-5">
-	  		<h2 class="bg-primary border pl-4">Sign Up:</h2>
+	  		<h2 class="bg-primary border pl-4 rounded">Sign Up:</h2>
 	  		<p><small class="text-danger">* required field</small></p>
 	  		<form method="post" class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
 	      		<div class="form-group">
@@ -106,8 +116,12 @@
 	        		<input type="text" name="phone" id="phonenumber" placeholder="Phone" class="form-control" value="<?php echo $phone; ?>" onkeyup='validate_numeric(this.id, "phoneErr", "submit")' required>
 	      		</div>
 	      		<div class="form-group">
-	        		Password:<small class="text-danger">* <?php echo $passErr;?></small> <!--Displaying the error in pswd if present-->
-	        		<input type="Password" name="pass" placeholder="Password" class="form-control" required>
+	        		Password:<small class="text-danger" id="passErr">* <?php echo $passErr;?></small> <!--Displaying the error in pswd if present-->
+	        		<input type="Password" name="pass" id="pass" placeholder="Password" class="form-control" required>
+	      		</div>
+	      		<div class="form-group">
+	        		Re-Enter Password:<small class="text-danger" id="pass2Err">* <?php echo $passErr;?></small> <!--Displaying the error in pswd if present-->
+	        		<input type="Password" name="pass2" id="pass2" placeholder="Password" class="form-control" onkeyup='match_field(this.id, "pass", "pass2Err", "submit")' required>
 	      		</div>
 	      		<div class="form-group btn btn-secondary">
 	      			I am:

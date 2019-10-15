@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 26, 2019 at 08:56 PM
+-- Generation Time: Oct 15, 2019 at 08:00 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -53,6 +53,13 @@ CREATE TABLE `author` (
   `updated_at` date DEFAULT NULL,
   `deleted_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Dumping data for table `author`
+--
+
+INSERT INTO `author` (`id`, `author_reg`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(99, 'aaaaaz', ' aaaaaaaaaqqqqq', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -136,7 +143,7 @@ CREATE TABLE `book_seller` (
 --
 
 INSERT INTO `book_seller` (`id`, `user_id`, `book_id`, `quantity`, `price`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(35, 49, 60, 56, 550, '2019-09-11', NULL, NULL),
+(35, 49, 60, 256, 550, '2019-09-11', '2019-10-14', NULL),
 (36, 51, 61, 1000, 600, '2019-09-11', NULL, NULL),
 (37, 51, 62, 300, 460, '2019-09-11', NULL, NULL),
 (38, 50, 63, 400, 550, '2019-09-11', NULL, NULL),
@@ -183,9 +190,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `book_seller_id`, `quantity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 44, 1, '2019-09-26', NULL, NULL),
-(2, 1, 40, 1, '2019-09-26', NULL, NULL),
-(3, 1, 39, 1, '2019-09-26', NULL, NULL);
+(4, 1, 41, 4, '2019-10-15', '2019-10-15', NULL),
+(8, 1, 37, 6, '2019-10-15', '2019-10-15', NULL);
 
 -- --------------------------------------------------------
 
@@ -311,7 +317,7 @@ CREATE TABLE `user` (
   `unique_id` varchar(20) COLLATE utf8mb4_bin NOT NULL,
   `name` varchar(80) COLLATE utf8mb4_bin NOT NULL,
   `email` varchar(300) COLLATE utf8mb4_bin NOT NULL,
-  `phone` int(10) UNSIGNED NOT NULL,
+  `phone` bigint(15) UNSIGNED NOT NULL,
   `pass` varchar(100) COLLATE utf8mb4_bin NOT NULL,
   `user_type_id` int(1) NOT NULL,
   `created_at` date DEFAULT NULL,
@@ -324,13 +330,17 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `unique_id`, `name`, `email`, `phone`, `pass`, `user_type_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '5d6e34a32736f', 'Animesh Sharma', 'animesh1@live.com', 34322, 'qwerty', 2, '2019-09-01', NULL, NULL),
-(49, '5d70dc842387e', 'sellerabc', 'seller@seller.com', 1234567, 'qwerty', 3, '2019-09-05', NULL, NULL),
+(1, '5d6e34a32736f', 'Animesh', 'animesh1@live.com', 333333333, 'qwerty', 2, '2019-09-01', '2019-10-15', NULL),
+(49, '5d70dc842387e', 'sellerABC', 'seller@seller.com', 1111111112, 'qwerty', 3, '2019-09-05', '2019-10-15', NULL),
 (50, '5d70fd74cb1ef', 'sellerxyz', 'sellerxyz@seller.com', 123456, 'qwerty', 3, '2019-09-05', NULL, NULL),
 (51, '5d710babb7635', 'sellerqwe', 'seller2@seller.com', 56775, 'qwerty', 3, '2019-09-05', NULL, NULL),
 (52, '5d7276a345b28', 'sevii', 'hgcgnjcvj@aaaqq.com', 1234511, '1111', 3, '2019-09-06', NULL, NULL),
 (53, '5d84c4feb9ce2', 'aniemsh', 'dfs@jhjh.com', 1221212121, 'qwerty', 2, '2019-09-20', NULL, NULL),
-(54, '5d84c5b547ca2', 'animehss', 'sevi@sevi.com', 909898769, '12345', 2, '2019-09-20', NULL, NULL);
+(54, '5d84c5b547ca2', 'animehss', 'sevi@sevi.com', 8986722466, '12345', 2, '2019-09-20', '2019-10-15', NULL),
+(65, '5da5a6fcc8142', 'animesh', 'seller@saeller.com', 8986722466, 'qqqqq', 2, '2019-10-15', NULL, NULL),
+(66, '5da5a76541c5a', 'animesh', 'sellaaaaaer@seller.com', 8986722466, 'qqq', 2, '2019-10-15', NULL, NULL),
+(67, '5da5a832a28a8', 'animesh', 'sellaaaaaer@seller.comz', 8986722466, 'aaaaa', 2, '2019-10-15', NULL, NULL),
+(68, '5da5ae625879c', 'dcd', 'dds@fvsv.v', 9999876565, 'qqqq', 3, '2019-10-15', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -509,7 +519,7 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 --
 -- AUTO_INCREMENT for table `book`
 --
@@ -539,7 +549,7 @@ ALTER TABLE `book_tag`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `city`
 --
@@ -579,7 +589,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- Constraints for dumped tables
 --

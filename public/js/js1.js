@@ -253,7 +253,7 @@ function validate_alpha(id1, id2, id3) {
 
 /** 
    * Function to validate a field for numerics only and can begin with only 1 '+'
-   * @param input field id and error result id
+   * @param input field id, error result id, submit button id
    * @returns nothing.
  */
 function validate_numeric(id1, id2, id3) {
@@ -278,7 +278,7 @@ function validate_numeric(id1, id2, id3) {
 
 /** 
    * Function to validate a field for email
-   * @param input field id and error result id
+   * @param input field id, error result id, submit button id
    * @returns nothing.
  */
 function validate_email(id1, id2, id3) {
@@ -296,6 +296,30 @@ function validate_email(id1, id2, id3) {
 		element.classList.remove("text-danger");
 		document.getElementById(id2).innerHTML= '*';
 		document.getElementById(id3).disabled= false;
+	}
+}
+/** 
+   * Function to validate  field match to another field
+   * @param input field id, reference field id, error result id, submit button id
+   * @returns nothing.
+ */
+function match_field(id1,id2,id3,id4){
+	element=document.getElementById(id1);
+	value= element.value;
+	val= document.getElementById(id2).value;
+	if(value!=val){
+		element.classList.add("border-danger");
+		document.getElementById(id3).innerHTML="* Mismatch";
+		document.getElementById(id3).classList.remove("text-success");
+		document.getElementById(id3).classList.add("text-danger");
+		document.getElementById(id4).disabled= true;
+	}
+	else{
+		element.classList.remove("border-danger");
+		document.getElementById(id3).innerHTML="Perfect!";
+		document.getElementById(id3).classList.remove("text-danger");
+		document.getElementById(id3).classList.add("text-success")
+		document.getElementById(id4).disabled= false;
 	}
 }
 
