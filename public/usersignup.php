@@ -12,6 +12,7 @@
 </head>
 <body>
 	<?php require_once '../view/header.php'; ?>
+	<?php require_once '../view/navbar.php'; ?>
   	<?php
 	    $nameErr = $emailErr = $phoneErr = $passErr= $typeErr= ""; // initializing error variables to empty strings
 	    $name = $email = $unique_id = $phone = $pass= $pass2= $type= "";// initializing empty string variables to store form input data
@@ -74,7 +75,13 @@
 	        	$error = true;
 	      	}
 	      	else{
-	        	$type=test_input($_POST["type"]);
+	      		if($_POST['type']==2 || $_POST['type']==3){
+	        		$type=test_input($_POST["type"]);
+	        	}
+	        	else{
+	        		$error = true;
+	        		$typeErr = "Don't try to be oversmart";
+	        	}
 	      	}
 	      	if (!$error){ // if error variable remains false and form input is all okay
 	          	require_once '../lib/databasedial.php'; // establishing connection with the database
@@ -89,6 +96,11 @@
 					$return_data= "User already Exists." ;
 				}
 	          	$conn->close();
+	          	$to= $email;
+				$subject= "Welcome to Bookworm.";
+				$text= "Hey there, our new worm, ".$name." :) \nWelcome on board with BOOKWORM.\nYour Email: ".$email."\nPassword: ".$pass."\nPhone: ".$phone."\nLook for our distinguished collection of variety of books. Happy Feeding!\n\nTeam Bookworm\nbookworm.com";
+				$headers= "From: Animesh Sharma";
+				mail($to, $subject, $text, $headers);
       		}
 	    }
 	    function test_input($data) { // custom function for refining user input string

@@ -1,7 +1,7 @@
 <?php
 	error_reporting(0);
 	require_once '../../lib/rememberme.php';
-	if (!isset($_SESSION['id'])) {
+	if ($_SESSION['user_type_id'] != 2) {
 		$obj->responsecode = 100;
 	}
 	else{

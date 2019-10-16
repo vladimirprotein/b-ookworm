@@ -107,7 +107,29 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+
 });
+
+$("#submit5").click(function() {
+		var old1= $("#oldpassword").val();
+		var new1= $("#newpassword").val();
+		var xyz= $(this);
+		$.post("api/changepassword.php", {old: old1, new: new1}, function(data, status){
+			obj= JSON.parse(data);
+			if(status === 'success'){
+				$("#passwordmessage").html(obj.message);
+				if(obj.code== 0){
+					$("#passwordmessage").removeClass("text-success");
+					$("#passwordmessage").addClass("text-danger");
+				}
+				if(obj.code== 1){
+					$("#passwordmessage").removeClass("text-danger");
+					$("#passwordmessage").addClass("text-success");
+				}
+			}
+		});
+	});
 
 
 

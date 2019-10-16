@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-	require_once '../lib/noseller.php'; //no entry for a seller session
+    session_start();
     if (!isset($_GET['isbn'])) {
         header('Location: index.php');
         exit();

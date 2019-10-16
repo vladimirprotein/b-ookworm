@@ -12,7 +12,8 @@
 </head>
 <body>
     <header>
-        <?php require_once '../view/header.php'; ?>
+        <?php require_once '../view/header.php';
+              require_once '../view/navbar.php'; ?>
     </header>
     <?php
         $title = $isbn = $qty = $price = $image= $titleErr= $isbnErr= $qtyErr= $priceErr= $imageErr= $return_data= "";
@@ -143,7 +144,7 @@
                         $result = $stmt->get_result();
                         if ($result->num_rows != 0) {
                             while ($row=$result->fetch_assoc()) {
-                                echo "<tr><td></td>  <td>".ucwords($row['title'])."</td><td>".$row['book_isbn']."</td><td>".$row['quantity']."</td><td>".$row['price']."</td></tr>" ;
+                                echo "<tr><td></td>  <td class='text-light'><a href='book.php?isbn=".$row['book_isbn']."' style='text-decoration:none' class='text-light'>".ucwords($row['title'])."</a></td><td>".$row['book_isbn']."</td><td>".$row['quantity']."</td><td>".$row['price']."</td></tr>" ;
                             }        
                         }    
                     ?>

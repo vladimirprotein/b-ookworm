@@ -2,6 +2,9 @@
 	error_reporting(0);
 	$isbn=$_GET['a'];
 	require_once "../../lib/databasedial.php";
+	$stmt = $conn->prepare("UPDATE book SET popularity = popularity + 1 where book_isbn = ?");
+	$stmt->bind_param("s", $isbn);
+	$stmt->execute();
 	$stmt= $conn->prepare("SELECT book.id as id, book.book_isbn as isbn, book.title as title, book.pic as pic, book_seller.created_at as created_at, book_seller.user_id as seller_id, book_seller.id as bsid, `user`.name as seller, `user`.email as email, `user`.phone as phone, book_seller.price as price FROM (book INNER JOIN book_seller ON book.id = book_seller.book_id) INNER JOIN `user` on book_seller.user_id = user.id WHERE book.book_isbn= ? ");
 	$stmt->bind_param("s",$isbn);
 	$stmt->execute();

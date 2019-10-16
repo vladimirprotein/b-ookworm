@@ -12,6 +12,7 @@
 </head>
 <body>
 	<?php require_once '../view/header.php'; ?>
+	<?php require_once '../view/navbar.php'; ?>
   	<?php
 	    $emailErr = $passErr= ""; // initializing error variables to empty strings
 	    $email = $pass= $remember= ""; // initializing empty string variables to store form input data
@@ -82,7 +83,7 @@
   	?>
   	<div class=" row bookdetails1">
 	  	<div class=" col-sm-6 float-left mt-5 ml-5">
-	  		<h2 class="bg-success border pl-4">Log in:</h2>
+	  		<h2 class="bg-success border pl-4 rounded">Log in:</h2>
 	  		<p><small class="text-danger">* required field</small></p>
 	  		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
 	      		<div class="form-group">

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php 
+<?php
+	error_reporting(0);
 	require_once "../lib/onlysession.php";
 
 ?>
@@ -62,6 +63,11 @@
 	          	$stmt->bind_param("ssd",$name, $email, $phone);
 	   			if ($stmt->execute()) {
 				    $return_data= "Update successful";
+				    $to= $email;
+					$subject= "Bookworm Profile Changes";
+					$text= "Hey There.\nYour Profile details were changed just now. New credentials are as followed.\nName: ".$name."\nEmail: ".$email."\nPhone: ".$phone."\nUpdated on: ".$created_at."\n\nIf it weren't you, write us immediately to bookworm.mindfire@gmail.com\n\nTeam Bookworm\nbookworm.com";
+					$headers= "From: Animesh Sharma";
+					mail($to, $subject, $text, $headers);
 				} else {
 					$return_data= "Update failed." ;
 				}
@@ -87,10 +93,59 @@
     ?>
     <div class="container-fluid bookdetails1">
     	<div class="row pt-4">
-    		<div class="col-sm-6">
-    			
+    		<div class="col-sm-6 pl-4">
+    			<!-- Button to Open the Modal -->
+  				<li class="mb-3"><button type="button" class="btn-sm" data-toggle="modal" data-target="#myModal">
+    				Change Password
+  				</button></li>
+  				<li><button type="button" class="btn-sm">
+    				My Orders
+  				</button></li>
+
+  				<!-- The Modal -->
+  				<div class="modal fade" id="myModal">
+    				<div class="modal-dialog">
+      					<div class="modal-content" style="background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('img/passbg.png');">
+      
+        					<!-- Modal Header -->
+        					<div class="modal-header">
+          						<h4 class="modal-title text-italic text-success">Change Your Password:</h4>
+          						<button type="button" class="close" data-dismiss="modal">&times;</button>
+        					</div>
+        
+        					<!-- Modal body -->
+        					<div class="modal-body">
+          						<form>
+          							<div class="form-group">
+          								Old Password:<small class="text-danger" id="oldpassErr">*</small>
+          								<input type="Password" id="oldpassword" class="form-control bg-warning" required>
+          							</div>
+                        <div class="form-group">
+                          New Password:<small class="text-danger" id="newpassErr">*</small>
+                          <input type="Password" id="newpassword" class="form-control bg-light" required>
+                        </div>
+                        <div class="form-group">
+                          Re-Enter New Password:<small class="text-danger" id="newpass2Err">*</small>
+                          <input type="Password" id="newpassword2" class="form-control bg-light" onkeyup='match_field(this.id, "newpassword", "newpass2Err", "submit5")' required>
+                        </div>
+                        <div class="form-group">
+                          <input type="button" name="submit" id="submit5" value="Update" class="form-control btn-sm btn-primary">
+                        </div>
+          						</form>
+        					</div>
+        
+        					<!-- Modal footer -->
+        					<div class="modal-footer">
+          						<p class="text-success font-weight-bold" id="passwordmessage"></p>
+        					</div>
+        
+      					</div>
+    				</div>
+  				</div>
     		</div>
+
     		<div class="col-sm-6">
+    			<h3 class="lead mb-4 font-weight-bold font-italic border-bottom border-warning border-dashed">Update Details:</h3>
     			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method='POST'>
     				<div class="form-group">
     					Name:<small class="text-danger" id="nameErr2">* <?php echo $nameErr;?></small>
@@ -122,6 +177,6 @@
     	</div>
     </div>
     <?php require_once "../view/footer.php" ?>
-    <script type="text/javascript" src="js/js1.js"></script>
+    <script type="text/javascript" src="js/js1.js?v=2.0"></script>
 </body>
 </html>
