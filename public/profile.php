@@ -22,56 +22,57 @@
 	    	$return_data= ""; // variable to store output string
 	    	$error=false; // initializing error variable with false
 
-	      	if (empty($_POST["name"])) { // if name field is left empty
-	        $nameErr="Name is required";
-	        $error=true;
-	      	}
-	      	else{ // if name field has some input
-	        	$name=test_input($_POST["name"]);
-	        	if (!preg_match("/^[a-zA-Z ]*$/",$name)) { // for ensuring the input is a name format
-	          		$nameErr="Only letters and white spaces allowed";
-	          		$error=true;
-	        	}
-	      	}
-	      	if (empty($_POST["email"])) { // if email field is left empty
-	        	$emailErr="Email is required";
-	        	$error=true;
-	      	}
-	      	else{ // if email field has some input
-	        	$email=test_input($_POST["email"]);
-	        	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // for ensuring the input is an email format
-	        		$emailErr = "Invalid email format";
-	        		$error=true;
-	        	}
-	      	}
-	      	if (empty($_POST["phone"])) {
-	        	$phoneErr="Phone number is required";
-	        	$error=true;
-	      	}
-	      	else{
-	        	$phone=test_input($_POST["phone"]);
-	        	if (!preg_match("/^\+?[0-9]{6,12}$/", $phone)) {
-	        		$phoneErr= "Incorrect Phone Number";
-	        		$error=true;
-	        	}
-	      	}
+      	if (empty($_POST["name"])) { // if name field is left empty
+        $nameErr="Name is required";
+        $error=true;
+      	}
+      	else{ // if name field has some input
+        	$name=test_input($_POST["name"]);
+        	if (!preg_match("/^[a-zA-Z ]*$/",$name)) { // for ensuring the input is a name format
+          		$nameErr="Only letters and white spaces allowed";
+          		$error=true;
+        	}
+      	}
+      	if (empty($_POST["email"])) { // if email field is left empty
+        	$emailErr="Email is required";
+        	$error=true;
+      	}
+      	else{ // if email field has some input
+        	$email=test_input($_POST["email"]);
+        	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // for ensuring the input is an email format
+        		$emailErr = "Invalid email format";
+        		$error=true;
+        	}
+      	}
+      	if (empty($_POST["phone"])) {
+        	$phoneErr="Phone number is required";
+        	$error=true;
+      	}
+      	else{
+        	$phone=test_input($_POST["phone"]);
+        	if (!preg_match("/^\+?[0-9]{6,12}$/", $phone)) {
+        		$phoneErr= "Incorrect Phone Number";
+        		$error=true;
+        	}
+      	}
 
-	      	
-	      	if (!$error){ // if error variable remains false and form input is all okay
-	          	$created_at=date("Y-m-d",time());
-	          	$stmt = $conn->prepare("UPDATE `user` SET name=?, email=?, phone=?, updated_at='$created_at' WHERE id=".$_SESSION['id']);
-	          	$stmt->bind_param("ssd",$name, $email, $phone);
+      	
+      	if (!$error){ // if error variable remains false and form input is all okay
+          $created_at=date("Y-m-d",time());
+          $stmt = $conn->prepare("UPDATE `user` SET name=?, email=?, phone=?, updated_at='$created_at' WHERE id=".$_SESSION['id']);
+          $stmt->bind_param("ssd",$name, $email, $phone);
 	   			if ($stmt->execute()) {
 				    $return_data= "Update successful";
 				    $to= $email;
-					$subject= "Bookworm Profile Changes";
-					$text= "Hey There.\nYour Profile details were changed just now. New credentials are as followed.\nName: ".$name."\nEmail: ".$email."\nPhone: ".$phone."\nUpdated on: ".$created_at."\n\nIf it weren't you, write us immediately to bookworm.mindfire@gmail.com\n\nTeam Bookworm\nbookworm.com";
-					$headers= "From: Animesh Sharma";
-					mail($to, $subject, $text, $headers);
-				} else {
-					$return_data= "Update failed." ;
-				}
-      		}
+            $subject= "Bookworm Profile Changes";
+            $text= "Hey There.\nYour Profile details were changed just now. New credentials are as followed.\nName: ".$name."\nEmail: ".$email."\nPhone: ".$phone."\nUpdated on: ".$created_at."\n\nIf it weren't you, write us immediately to bookworm.mindfire@gmail.com\n\nTeam Bookworm\nbookworm.com";
+            $headers= "From: Ani";
+            mail($to, $subject, $text, $headers);
+				  } 
+          else {
+					 $return_data= "Update failed." ;
+				  }
+    		}
 	    }
 	    function test_input($data) { // custom function for refining user input string
 	      	$data = trim($data);

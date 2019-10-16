@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+	error_reporting(0);
 	require_once '../lib/no_entry_with_session.php';
 ?>
 <html>

@@ -1,4 +1,5 @@
 <?php
+	error_reporting(0);
 	require_once "../../lib/rememberme.php";
 	$old= $_POST['old'];
 	$new= $_POST['new'];

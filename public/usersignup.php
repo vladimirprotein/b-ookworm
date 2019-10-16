@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <?php
+	error_reporting(0);
 	require_once '../lib/no_entry_with_session.php';
 ?>
 <html>
 <head>
 	<title>Sign Up</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  	<link rel="stylesheet" type="text/css" href="../css/fontawesome.css">
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  	<link rel="stylesheet" type="text/css" href="../css/style.css?v=2.0">
+	<?php require_once "../lib/resource.php";  ?>
 </head>
 <body>
 	<?php require_once '../view/header.php'; ?>
@@ -92,15 +90,16 @@
 	          	$stmt->bind_param("sssss",$name, $type, $email, $phone, $pass) ;
 	          	if ($stmt->execute()) { // if entry is successful
 				    $return_data= "User added successfully.";
+				    $to= $email;
+					$subject= "Welcome to Bookworm.";
+					$text= "Hey there, our new worm, ".$name." :) \nWelcome on board with BOOKWORM.\nYour Email: ".$email."\nPassword: ".$pass."\nPhone: ".$phone."\nLook for our distinguished collection of variety of books. Happy Feeding!\n\nTeam Bookworm\nbookworm.com";
+					$headers= "From: Ani";
+					mail($to, $subject, $text, $headers);
 				} else {
 					$return_data= "User already Exists." ;
 				}
 	          	$conn->close();
-	          	$to= $email;
-				$subject= "Welcome to Bookworm.";
-				$text= "Hey there, our new worm, ".$name." :) \nWelcome on board with BOOKWORM.\nYour Email: ".$email."\nPassword: ".$pass."\nPhone: ".$phone."\nLook for our distinguished collection of variety of books. Happy Feeding!\n\nTeam Bookworm\nbookworm.com";
-				$headers= "From: Animesh Sharma";
-				mail($to, $subject, $text, $headers);
+	          	
       		}
 	    }
 	    function test_input($data) { // custom function for refining user input string
@@ -150,6 +149,6 @@
 	</div>
   	<?php require_once '../view/footer.php'; ?>
 
-  	<script type="text/javascript" src="js/js1.js"></script>
+  	<script type="text/javascript" src="js/js1.js?v=2.0"></script>
 </body>
 </html>
