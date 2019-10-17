@@ -63,6 +63,8 @@
           $stmt->bind_param("ssd",$name, $email, $phone);
 	   			if ($stmt->execute()) {
 				    $return_data= "Update successful";
+            $_SESSION['name']= $name;
+            $_SESSION['email']= $email;
 				    $to= $email;
             $subject= "Bookworm Profile Changes";
             $text= "Hey There.\nYour Profile details were changed just now. New credentials are as followed.\nName: ".$name."\nEmail: ".$email."\nPhone: ".$phone."\nUpdated on: ".$created_at."\n\nIf it weren't you, write us immediately to bookworm.mindfire@gmail.com\n\nTeam Bookworm\nbookworm.com";
@@ -96,7 +98,7 @@
     	<div class="row pt-4">
     		<div class="col-sm-6 pl-4">
     			<!-- Button to Open the Modal -->
-  				<li class="mb-3"><button type="button" class="btn-sm" data-toggle="modal" data-target="#myModal">
+  				<li class="mb-3 "><button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#myModal">
     				Change Password
   				</button></li>
   				<li><button type="button" class="btn-sm">
