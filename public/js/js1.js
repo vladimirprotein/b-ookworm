@@ -12,7 +12,7 @@ function loadpage(arg1) {
 	idHTML('booktitle', 'w', arg1.title.toUpperCase() );
 	idHTML('bookisbn', 'w',  'ISBN: '+arg1.isbn.toUpperCase() );
 	var i;
-	for(i=0; i<arg1.num; i++) {
+	for(i=0; i<arg1.sellerno; i++) {
 		var row= document.createElement('TR');
 		var cell1= document.createElement('TH');
 		var cell2= document.createElement('TH');
@@ -41,7 +41,21 @@ function loadpage(arg1) {
 		row.appendChild(cell5);
 		row.classList.add('mt-5');
 		document.getElementById('sellertable').appendChild(row);
-
+	}
+	for(i=0;i<arg1.authorno;i++){
+		cell= document.createElement("LI");
+		cell.innerHTML=arg1.authors[i].toUpperCase();
+		document.getElementById('authors').appendChild(cell);
+	}
+	for(i=0;i<arg1.genreno;i++){
+		cell= document.createElement("LI");
+		cell.innerHTML=arg1.genres[i].toUpperCase();
+		document.getElementById('genres').appendChild(cell);
+	}
+	for(i=0;i<arg1.tagno;i++){
+		cell= document.createElement("LI");
+		cell.innerHTML=arg1.tags[i].toUpperCase();
+		document.getElementById('tags').appendChild(cell);
 	}
 }
 

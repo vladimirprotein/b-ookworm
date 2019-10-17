@@ -16,7 +16,7 @@
               require_once '../view/navbar.php'; ?>
     </header>
     <?php
-        $title = $isbn = $qty = $price = $image= $titleErr= $isbnErr= $qtyErr= $priceErr= $imageErr= $return_data= "";
+        $title = $isbn = $qty = $price = $author= $genre= $tag= $image= $titleErr= $isbnErr= $qtyErr= $priceErr= $authorErr= $genreErr= $imageErr= $return_data= "";
         $is_error=false;
         if (isset($_POST["submit"])) { //will enter this block if the form is submitted with method POST
             
@@ -39,6 +39,29 @@
             }
             else{
                 $isbn=strtolower(test_input($_POST['isbn']));
+            }
+            if(empty($_POST['author'])){
+                $authorErr= "Author Name(s) required";
+                $is_error= true;
+            }
+            else{
+                $author= test_input($_POST['author']);
+                $authors= explode(",", $author);
+            }
+            if(empty($_POST['genre'])){
+                $genreErr= "Genre(s) required";
+                $is_error= true;
+            }
+            else{
+                $genre= test_input($_POST['genre']);
+                $genres= explode(",", $genre);
+            }
+            if(empty($_POST['tag'])){
+                ;
+            }
+            else{
+                $tag= test_input($_POST['tag']);
+                $tags= explode(",", $tag);
             }
             if (empty($_POST["qty"])) { // if quantity is left empty
                 $qtyErr= " Quantity Required";
@@ -89,6 +112,65 @@
                     }
                     else{
                         $return_data= "Daaaaaaaaaaa" ;
+                    }
+                    for($i=0; $i<sizeof($authors); $i++){
+                        $stmt3= $conn->prepare("INSERT INTO author(name, created_at) VALUES(?,?)");
+                        $stmt3->bind_param("ss", $authors[$i], $created_at);
+                        if($stmt3->execute()){
+                            $last = $conn->insert_id;
+                            $stmt4 = $conn->prepare("INSERT INTO book_author(author_id, book_id, created_at) VALUES(?,?,?)");
+                            $stmt4->bind_param("iis", $last, $last_id, $created_at);
+                            $stmt4->execute();
+                        }
+                        else{
+                            $stmt5= $conn->prepare("SELECT id from author where name=?");
+                            $stmt5->bind_param("s", $authors[$i]);
+                            $stmt5->execute();
+                            $row= $stmt5->get_result()->fetch_assoc();
+                            $stmt6 = $conn->prepare("INSERT INTO book_author(author_id, book_id, created_at) VALUES(?,?,?)");
+                            $stmt6->bind_param("iis", $row['id'], $last_id, $created_at);
+                            $stmt6->execute();
+                        }
+                    }
+                    for($i=0; $i<sizeof($genres); $i++){
+                        $stmt3= $conn->prepare("INSERT INTO genre(name, created_at) VALUES(?,?)");
+                        $stmt3->bind_param("ss", $genres[$i], $created_at);
+                        if($stmt3->execute()){
+                            $last = $conn->insert_id;
+                            $stmt4 = $conn->prepare("INSERT INTO book_genre(genre_id, book_id, created_at) VALUES(?,?,?)");
+                            $stmt4->bind_param("iis", $last, $last_id, $created_at);
+                            $stmt4->execute();
+                        }
+                        else{
+                            $stmt5= $conn->prepare("SELECT id from genre where name=?");
+                            $stmt5->bind_param("s", $genres[$i]);
+                            $stmt5->execute();
+                            $row= $stmt5->get_result()->fetch_assoc();
+                            $stmt6 = $conn->prepare("INSERT INTO book_genre(genre_id, book_id, created_at) VALUES(?,?,?)");
+                            $stmt6->bind_param("iis", $row['id'], $last_id, $created_at);
+                            $stmt6->execute();
+                        }
+                    }
+                    if(!empty($_POST['tag'])){
+                        for($i=0; $i<sizeof($tags); $i++){
+                            $stmt3= $conn->prepare("INSERT INTO tag(name, created_at) VALUES(?,?)");
+                            $stmt3->bind_param("ss", $tags[$i], $created_at);
+                            if($stmt3->execute()){
+                                $last = $conn->insert_id;
+                                $stmt4 = $conn->prepare("INSERT INTO book_tag(tag_id, book_id, created_at) VALUES(?,?,?)");
+                                $stmt4->bind_param("iis", $last, $last_id, $created_at);
+                                $stmt4->execute();
+                            }
+                            else{
+                                $stmt5= $conn->prepare("SELECT id from tag where name=?");
+                                $stmt5->bind_param("s", $tags[$i]);
+                                $stmt5->execute();
+                                $row= $stmt5->get_result()->fetch_assoc();
+                                $stmt6 = $conn->prepare("INSERT INTO book_tag(tag_id, book_id, created_at) VALUES(?,?,?)");
+                                $stmt6->bind_param("iis", $row['id'], $last_id, $created_at);
+                                $stmt6->execute();
+                            }
+                        }
                     }
                 }
                 else { // if data couldn't enter the book table coz it was already present in there
@@ -155,12 +237,24 @@
             <h4 class="text-primary border-bottom">Add to your stock:</h4>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data" class="col-sm-8 float-right bg-light">
                 <div class="form-group">
+                    ISBN:<small class="text-danger">     * <?php echo $isbnErr;?></small>
+                    <input type="text" name="isbn" placeholder="Enter ISBN" class="form-control">
+                </div>
+                <div class="form-group">
                     Book Title:<small class="text-danger">     * <?php echo $titleErr;?></small>
                     <input type="text" name="title" placeholder="Enter title" class="form-control">
                 </div>
                 <div class="form-group">
-                    ISBN:<small class="text-danger">     * <?php echo $isbnErr;?></small>
-                    <input type="text" name="isbn" placeholder="Enter ISBN" class="form-control">
+                    Author(s):<small class="text-danger">     * <?php echo $authorErr;?></small>
+                    <input type="text" name="author" placeholder="Enter Author(s) -separated by comma" class="form-control">
+                </div>
+                <div class="form-group">
+                    Genre(s):<small class="text-danger">     * <?php echo $genreErr;?></small>
+                    <input type="text" name="genre" placeholder="Enter Genre(s) -separated by comma" class="form-control">
+                </div>
+                <div class="form-group">
+                    Tag(s):<small class="text-danger"></small>
+                    <input type="text" name="tag" placeholder="Enter Tag(s) -separated by comma" class="form-control">
                 </div>
                 <div class="form-group">
                     Quantity:<small class="text-danger">     * <?php echo $qtyErr;?></small>
