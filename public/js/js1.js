@@ -87,7 +87,6 @@ function removeitem(bsid){
 	ajaxcall("api/deleteitem.php", bsid, updatecartpage);
 }
 
-var ggg;
 
 $(document).ready(function(){
 	$(".decrease_qty").click(function(){
