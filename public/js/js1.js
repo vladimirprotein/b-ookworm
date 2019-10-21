@@ -125,24 +125,45 @@ $(document).ready(function(){
 });
 
 $("#submit5").click(function() {
-		var old1= $("#oldpassword").val();
-		var new1= $("#newpassword").val();
-		var xyz= $(this);
-		$.post("api/changepassword.php", {old: old1, new: new1}, function(data, status){
-			obj= JSON.parse(data);
-			if(status === 'success'){
-				$("#passwordmessage").html(obj.message);
-				if(obj.code== 0){
-					$("#passwordmessage").removeClass("text-success");
-					$("#passwordmessage").addClass("text-danger");
-				}
-				if(obj.code== 1){
-					$("#passwordmessage").removeClass("text-danger");
-					$("#passwordmessage").addClass("text-success");
-				}
+	var old1= $("#oldpassword").val();
+	var new1= $("#newpassword").val();
+	var xyz= $(this);
+	$.post("api/changepassword.php", {old: old1, new: new1}, function(data, status){
+		obj= JSON.parse(data);
+		if(status === 'success'){
+			$("#passwordmessage").html(obj.message);
+			if(obj.code== 0){
+				$("#passwordmessage").removeClass("text-success");
+				$("#passwordmessage").addClass("text-danger");
 			}
-		});
+			if(obj.code== 1){
+				$("#passwordmessage").removeClass("text-danger");
+				$("#passwordmessage").addClass("text-success");
+			}
+		}
 	});
+});
+
+$("#pincode").focusout(function() {
+	var pin = $("#pincode").val();
+	$.get("api/pincode.php?a="+pin, function(data, status) {
+		obj = JSON.parse(data);
+		if(status === 'success'){
+			$("#city").val(obj.city);
+			$("#district").val(obj.district);
+			$("#state").val(obj.state);
+		}
+	});
+});
+
+$("#submit6").click(function() {
+	$.post("api/addaddress.php", {name: $("#name1").val(), contact: $("#contact").val(), addr1: $("#addline1").val(), addr2: $("#addline2").val(), addr3: $("#addline3").val(), pin: $("#pincode").val()}, function(data, status) {
+		obj = JSON.parse(data);
+		if (status === 'success') {
+			$("#addressmessage").html(obj.message);
+		}
+	});
+});
 
 
 
@@ -299,7 +320,7 @@ function validate_numeric(id1, id2, id3) {
    	if (!value.match(number1) && !value.match(number2)) {
 		element.classList.add("border-danger");
 		element.classList.add("text-danger");
-		document.getElementById(id2).innerHTML='* Only Numbers allowed';
+		document.getElementById(id2).innerHTML='* Invalid';
 		document.getElementById(id3).disabled= true;
 	}
 	else {

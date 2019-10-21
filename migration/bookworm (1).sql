@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 17, 2019 at 07:52 PM
+-- Generation Time: Oct 21, 2019 at 07:16 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -28,16 +28,24 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `address` (
   `id` int(10) UNSIGNED NOT NULL,
-  `addr` varchar(50) COLLATE utf8mb4_bin NOT NULL,
-  `city_id` int(10) UNSIGNED DEFAULT NULL,
-  `state_id` int(10) UNSIGNED DEFAULT NULL,
-  `country_id` int(10) UNSIGNED DEFAULT NULL,
-  `pin` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
+  `name` varchar(30) COLLATE utf8mb4_bin NOT NULL,
+  `contact` bigint(15) UNSIGNED NOT NULL,
+  `addr1` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `addr2` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `addr3` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `pin` int(10) UNSIGNED NOT NULL,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   `deleted_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`id`, `user_id`, `name`, `contact`, `addr1`, `addr2`, `addr3`, `pin`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(5, 1, 'Animesh Kumar Sharma', 8986722466, 'Qr.No.273', 'Street- 34', 'Sector- 9D', 827009, '2019-10-21', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -100,7 +108,7 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`id`, `book_isbn`, `title`, `pic`, `popularity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(60, '123456', 'engineering thermodynamics', '5d78dccdcbc8a-engineering-thermodynamics-original-imaehwanf7xmvcht.jpeg', 25, '2019-09-11', NULL, NULL),
+(60, '123456', 'engineering thermodynamics', '5d78dccdcbc8a-engineering-thermodynamics-original-imaehwanf7xmvcht.jpeg', 27, '2019-09-11', NULL, NULL),
 (61, '234rdd', 'design of machine elements', '5d78e4a9c64f0-designof.jpeg', 30, '2019-09-11', NULL, NULL),
 (62, 'kjih68', 'i c engines', '5d78e4ed11f39-ice.jpg', 2, '2019-09-11', NULL, NULL),
 (63, 'asxxxc', 'theory of machines', '5d78e56c91a1e-ssr.jpg', 2, '2019-09-11', NULL, NULL),
@@ -108,7 +116,7 @@ INSERT INTO `book` (`id`, `book_isbn`, `title`, `pic`, `popularity`, `created_at
 (65, 'trtgd', 'engineering mathematics', '5d80a9241abd9-daspal.jpg', 4, '2019-09-17', NULL, NULL),
 (66, 'rev2355', 'revolution 2020', '5d823142b16c2-rev2020.jpeg', 4, '2019-09-18', NULL, NULL),
 (67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 5, '2019-09-24', NULL, NULL),
-(72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 4, '2019-10-17', NULL, NULL);
+(72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 7, '2019-10-17', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -270,37 +278,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `book_seller_id`, `quantity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(13, 1, 36, 5, '2019-10-17', '2019-10-17', NULL),
-(21, 1, 49, 1, '2019-10-17', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `city`
---
-
-CREATE TABLE `city` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(30) COLLATE utf8mb4_bin NOT NULL,
-  `created_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL,
-  `deleted_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `country`
---
-
-CREATE TABLE `country` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `country_code` int(10) UNSIGNED NOT NULL,
-  `name` varchar(30) COLLATE utf8mb4_bin NOT NULL,
-  `created_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL,
-  `deleted_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+(21, 1, 49, 2, '2019-10-17', '2019-10-21', NULL),
+(22, 1, 35, 1, '2019-10-18', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -353,15 +332,44 @@ CREATE TABLE `payment_mode` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `state`
+-- Table structure for table `pincode`
 --
 
-CREATE TABLE `state` (
+CREATE TABLE `pincode` (
+  `pin` int(7) UNSIGNED NOT NULL,
+  `city` varchar(20) COLLATE utf8mb4_bin NOT NULL,
+  `district` varchar(20) COLLATE utf8mb4_bin NOT NULL,
+  `state` varchar(20) COLLATE utf8mb4_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Dumping data for table `pincode`
+--
+
+INSERT INTO `pincode` (`pin`, `city`, `district`, `state`) VALUES
+(378767, '', '', ''),
+(400001, 'Mumbai', 'Mumbai', 'Maharashtra'),
+(700036, 'Kolkata', 'Kolkata', 'West Bengal'),
+(700107, 'Kolkata', 'Kolkata', 'West Bengal'),
+(751024, 'Bhubaneswar', 'Khorda', 'Odisha'),
+(822101, 'Daltonganj', 'Palamau', 'Jharkhand'),
+(827001, 'Chas', 'Bokaro', 'Jharkhand'),
+(827004, 'Chas', 'Bokaro', 'Jharkhand'),
+(827008, '', '', ''),
+(827009, 'Bokaro', 'Bokaro', 'Jharkhand'),
+(827013, 'Bokaro', 'Bokaro', 'Jharkhand');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `searches`
+--
+
+CREATE TABLE `searches` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(30) COLLATE utf8mb4_bin NOT NULL,
-  `created_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL,
-  `deleted_at` date DEFAULT NULL
+  `user_id` int(7) NOT NULL,
+  `search` varchar(20) COLLATE utf8mb4_bin NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -427,7 +435,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `unique_id`, `name`, `email`, `phone`, `pass`, `user_type_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '5d6e34a32736f', 'Animesh Sharma', 'animesh1@live.com', 8986722466, 'qwerty', 2, '2019-09-01', '2019-10-17', NULL),
+(1, '5d6e34a32736f', 'Animesh', 'animesh1@live.com', 9470984747, 'qwerty', 2, '2019-09-01', '2019-10-21', NULL),
 (49, '5d70dc842387e', 'Seller Ani', 'hypstar124@gmail.com', 1111111112, 'qwerty', 3, '2019-09-05', '2019-10-17', NULL),
 (50, '5d70fd74cb1ef', 'sellerxyz', 'sellerxyz@seller.com', 123456, 'qwerty', 3, '2019-09-05', NULL, NULL),
 (51, '5d710babb7635', 'sellerqwe', 'seller2@seller.com', 56775, 'qwerty', 3, '2019-09-05', NULL, NULL),
@@ -473,10 +481,8 @@ INSERT INTO `user_type` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`)
 --
 ALTER TABLE `address`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fkcity` (`city_id`),
-  ADD KEY `fkstate` (`state_id`),
-  ADD KEY `fkcountry` (`country_id`),
-  ADD KEY `fkuser` (`user_id`);
+  ADD KEY `fkuser` (`user_id`),
+  ADD KEY `fkpin` (`pin`);
 
 --
 -- Indexes for table `author`
@@ -534,21 +540,6 @@ ALTER TABLE `cart`
   ADD KEY `fkbookseller` (`book_seller_id`);
 
 --
--- Indexes for table `city`
---
-ALTER TABLE `city`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexes for table `country`
---
-ALTER TABLE `country`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `country_code` (`country_code`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
 -- Indexes for table `genre`
 --
 ALTER TABLE `genre`
@@ -570,11 +561,16 @@ ALTER TABLE `payment_mode`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `state`
+-- Indexes for table `pincode`
 --
-ALTER TABLE `state`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
+ALTER TABLE `pincode`
+  ADD PRIMARY KEY (`pin`);
+
+--
+-- Indexes for table `searches`
+--
+ALTER TABLE `searches`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tag`
@@ -615,7 +611,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `author`
 --
@@ -625,12 +621,12 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT for table `book_author`
 --
 ALTER TABLE `book_author`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `book_genre`
 --
@@ -640,7 +636,7 @@ ALTER TABLE `book_genre`
 -- AUTO_INCREMENT for table `book_seller`
 --
 ALTER TABLE `book_seller`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `book_tag`
 --
@@ -650,17 +646,7 @@ ALTER TABLE `book_tag`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
---
--- AUTO_INCREMENT for table `city`
---
-ALTER TABLE `city`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `country`
---
-ALTER TABLE `country`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `genre`
 --
@@ -670,11 +656,6 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `state`
---
-ALTER TABLE `state`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tag`
@@ -699,9 +680,7 @@ ALTER TABLE `user`
 -- Constraints for table `address`
 --
 ALTER TABLE `address`
-  ADD CONSTRAINT `fkcity` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`),
-  ADD CONSTRAINT `fkcountry` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`),
-  ADD CONSTRAINT `fkstate` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`),
+  ADD CONSTRAINT `fkpin` FOREIGN KEY (`pin`) REFERENCES `pincode` (`pin`),
   ADD CONSTRAINT `fkuser` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
