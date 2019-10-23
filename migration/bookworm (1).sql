@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 21, 2019 at 07:16 PM
+-- Generation Time: Oct 23, 2019 at 07:14 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -113,10 +113,10 @@ INSERT INTO `book` (`id`, `book_isbn`, `title`, `pic`, `popularity`, `created_at
 (62, 'kjih68', 'i c engines', '5d78e4ed11f39-ice.jpg', 2, '2019-09-11', NULL, NULL),
 (63, 'asxxxc', 'theory of machines', '5d78e56c91a1e-ssr.jpg', 2, '2019-09-11', NULL, NULL),
 (64, 'lkoiijh', 'power plant engineering', '5d78e5ae53d79-ppe.jpg', 3, '2019-09-11', NULL, NULL),
-(65, 'trtgd', 'engineering mathematics', '5d80a9241abd9-daspal.jpg', 4, '2019-09-17', NULL, NULL),
+(65, 'trtgd', 'engineering mathematics', '5d80a9241abd9-daspal.jpg', 6, '2019-09-17', NULL, NULL),
 (66, 'rev2355', 'revolution 2020', '5d823142b16c2-rev2020.jpeg', 4, '2019-09-18', NULL, NULL),
-(67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 5, '2019-09-24', NULL, NULL),
-(72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 7, '2019-10-17', NULL, NULL);
+(67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 7, '2019-09-24', NULL, NULL),
+(72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 9, '2019-10-17', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -278,7 +278,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `book_seller_id`, `quantity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(21, 1, 49, 2, '2019-10-17', '2019-10-21', NULL),
+(21, 1, 49, 1, '2019-10-17', '2019-10-23', NULL),
 (22, 1, 35, 1, '2019-10-18', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -366,11 +366,22 @@ INSERT INTO `pincode` (`pin`, `city`, `district`, `state`) VALUES
 --
 
 CREATE TABLE `searches` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(7) NOT NULL,
+  `id` int(9) UNSIGNED NOT NULL,
+  `user_id` int(9) UNSIGNED NOT NULL,
   `search` varchar(20) COLLATE utf8mb4_bin NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Dumping data for table `searches`
+--
+
+INSERT INTO `searches` (`id`, `user_id`, `search`, `date`) VALUES
+(1, 1, 'dd', '2019-10-23 13:30:19'),
+(4, 1, 'a', '2019-10-23 13:32:48'),
+(6, 1, 'bb', '2019-10-23 13:34:34'),
+(7, 1, 'v b', '2019-10-23 13:34:56'),
+(8, 1, 'fluid', '2019-10-23 13:35:09');
 
 -- --------------------------------------------------------
 
@@ -570,7 +581,8 @@ ALTER TABLE `pincode`
 -- Indexes for table `searches`
 --
 ALTER TABLE `searches`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fkuser9` (`user_id`);
 
 --
 -- Indexes for table `tag`
@@ -646,7 +658,7 @@ ALTER TABLE `book_tag`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `genre`
 --
@@ -657,6 +669,11 @@ ALTER TABLE `genre`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `searches`
+--
+ALTER TABLE `searches`
+  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tag`
 --
@@ -723,6 +740,12 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `fktransaction` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`id`);
+
+--
+-- Constraints for table `searches`
+--
+ALTER TABLE `searches`
+  ADD CONSTRAINT `fkuser9` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `transaction`

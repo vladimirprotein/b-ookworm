@@ -17,6 +17,12 @@
             $searchfinal="%$search%";
         }
     }
+    require_once "../lib/databasedial.php";
+    if(strlen($search)>0){
+        $stmt = $conn->prepare("INSERT INTO searches(user_id, search) values (?, ?)");
+        $stmt->bind_param("is", $_SESSION['id'], $search);
+        $stmt->execute();
+    }
     function test_input($data) { // custom function for refining user input string
         $data = trim($data);
         $data = stripslashes($data);
@@ -39,9 +45,8 @@
             <h3 class=" pl-3 mb-5 border border-dark">Here's what we have:</h3>
             <h6 class="pl-3 mb-3">Search result for: <?php echo $search ; ?></h6>
             <?php
-                require '../lib/databasedial.php';
-                $stmt=$conn->prepare("SELECT book.pic as pic, book.title as title, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price from (book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id where title LIKE ? order by title ");
-                $stmt->bind_param("s", $searchfinal );
+                $stmt=$conn->prepare("SELECT book.title as title, book.pic as pic, author.name as author, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price from (((book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id) INNER JOIN book_author on book.id = book_author.book_id) inner join author on book_author.author_id = author.id where author.name like ? OR book.title like ? order by title ");
+                $stmt->bind_param("ss", $searchfinal, $searchfinal);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 if ($result->num_rows != 0) {
