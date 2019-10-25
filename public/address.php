@@ -22,7 +22,7 @@
   			<!-- The Modal -->
   			<div class="modal fade" id="myAddress">
 					<div class="modal-dialog">
-            <div class="modal-content" style="background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('img/passbg.png');">
+            <div class="modal-content" style="background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('img/address.jpeg');">
 							<!-- Modal Header -->
 							<div class="modal-header">
   							<h4 class="modal-title text-italic text-success">Add new Address:</h4>
