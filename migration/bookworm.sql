@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 25, 2019 at 04:36 PM
--- Server version: 5.7.27-0ubuntu0.18.04.1
--- PHP Version: 7.2.19-0ubuntu0.18.04.2
+-- Generation Time: Oct 29, 2019 at 05:22 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -27,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `address` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(8) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `name` varchar(30) COLLATE utf8mb4_bin NOT NULL,
   `contact` bigint(15) UNSIGNED NOT NULL,
@@ -45,8 +47,8 @@ CREATE TABLE `address` (
 --
 
 INSERT INTO `address` (`id`, `user_id`, `name`, `contact`, `addr1`, `addr2`, `addr3`, `pin`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(5, 1, 'Animesh Kumar Sharma', 8986722466, 'Qr.No.273', 'Street- 34', 'Sector- 9D', 827009, '2019-10-21', NULL, NULL),
-(6, 1, 'abhi', 3333333333, 'fefw', 'fsf', 'nbvnvn', 822101, '2019-10-25', NULL, NULL);
+(7, 1, 'Animesh Kr', 8986722466, 'q3515', 'g542', 'sec 9', 827009, '2019-10-29', NULL, NULL),
+(8, 1, 'Chotu', 7753020484, 'a34', '66yui', 'sec 8', 822101, '2019-10-29', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -57,7 +59,7 @@ INSERT INTO `address` (`id`, `user_id`, `name`, `contact`, `addr1`, `addr2`, `ad
 CREATE TABLE `author` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(30) COLLATE utf8mb4_bin NOT NULL,
-  `popularity` int(9) UNSIGNED NOT NULL DEFAULT '0',
+  `popularity` int(9) UNSIGNED NOT NULL DEFAULT 0,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   `deleted_at` date DEFAULT NULL
@@ -98,7 +100,7 @@ CREATE TABLE `book` (
   `book_isbn` varchar(20) COLLATE utf8mb4_bin NOT NULL,
   `title` varchar(30) COLLATE utf8mb4_bin NOT NULL,
   `pic` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL,
-  `popularity` int(9) UNSIGNED NOT NULL DEFAULT '0',
+  `popularity` int(9) UNSIGNED NOT NULL DEFAULT 0,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   `deleted_at` date DEFAULT NULL
@@ -109,15 +111,15 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`id`, `book_isbn`, `title`, `pic`, `popularity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(60, '123456', 'engineering thermodynamics', '5d78dccdcbc8a-engineering-thermodynamics-original-imaehwanf7xmvcht.jpeg', 27, '2019-09-11', NULL, NULL),
-(61, '234rdd', 'design of machine elements', '5d78e4a9c64f0-designof.jpeg', 31, '2019-09-11', NULL, NULL),
-(62, 'kjih68', 'i c engines', '5d78e4ed11f39-ice.jpg', 2, '2019-09-11', NULL, NULL),
+(60, '123456', 'engineering thermodynamics', '5d78dccdcbc8a-engineering-thermodynamics-original-imaehwanf7xmvcht.jpeg', 29, '2019-09-11', NULL, NULL),
+(61, '234rdd', 'design of machine elements', '5d78e4a9c64f0-designof.jpeg', 43, '2019-09-11', NULL, NULL),
+(62, 'kjih68', 'i c engines', '5d78e4ed11f39-ice.jpg', 3, '2019-09-11', NULL, NULL),
 (63, 'asxxxc', 'theory of machines', '5d78e56c91a1e-ssr.jpg', 2, '2019-09-11', NULL, NULL),
-(64, 'lkoiijh', 'power plant engineering', '5d78e5ae53d79-ppe.jpg', 3, '2019-09-11', NULL, NULL),
-(65, 'trtgd', 'engineering mathematics', '5d80a9241abd9-daspal.jpg', 7, '2019-09-17', NULL, NULL),
-(66, 'rev2355', 'revolution 2020', '5d823142b16c2-rev2020.jpeg', 4, '2019-09-18', NULL, NULL),
-(67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 10, '2019-09-24', NULL, NULL),
-(72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 10, '2019-10-17', NULL, NULL);
+(64, 'lkoiijh', 'power plant engineering', '5d78e5ae53d79-ppe.jpg', 5, '2019-09-11', NULL, NULL),
+(65, 'trtgd', 'engineering mathematics', '5d80a9241abd9-daspal.jpg', 16, '2019-09-17', NULL, NULL),
+(66, 'rev2355', 'revolution 2020', '5d823142b16c2-rev2020.jpeg', 6, '2019-09-18', NULL, NULL),
+(67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 17, '2019-09-24', NULL, NULL),
+(72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 12, '2019-10-17', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -268,7 +270,8 @@ CREATE TABLE `cart` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `book_seller_id` int(10) UNSIGNED NOT NULL,
-  `quantity` int(11) DEFAULT '1',
+  `quantity` int(5) DEFAULT 1,
+  `order_uid` varchar(40) COLLATE utf8mb4_bin DEFAULT NULL,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   `deleted_at` date DEFAULT NULL
@@ -278,8 +281,12 @@ CREATE TABLE `cart` (
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `user_id`, `book_seller_id`, `quantity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(23, 1, 44, 2, '2019-10-25', '2019-10-25', NULL);
+INSERT INTO `cart` (`id`, `user_id`, `book_seller_id`, `quantity`, `order_uid`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(10, 1, 41, 3, 'OD-2019-10-29-5db8653136b2d', '2019-10-29', '2019-10-29', NULL),
+(11, 1, 37, 2, 'OD-2019-10-29-5db8653136b2d', '2019-10-29', '2019-10-29', NULL),
+(12, 1, 36, 2, 'OD-2019-10-29-5db8669b7d599', '2019-10-29', '2019-10-29', NULL),
+(13, 1, 42, 1, 'OD-2019-10-29-5db8669b7d599', '2019-10-29', '2019-10-29', NULL),
+(14, 1, 39, 1, 'OD-2019-10-29-5db8670a84eed', '2019-10-29', '2019-10-29', NULL);
 
 -- --------------------------------------------------------
 
@@ -310,10 +317,23 @@ INSERT INTO `genre` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VAL
 --
 
 CREATE TABLE `orders` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `order_number` varchar(20) COLLATE utf8mb4_bin NOT NULL,
-  `transaction_id` int(10) UNSIGNED DEFAULT NULL
+  `id` int(8) UNSIGNED NOT NULL,
+  `order_uid` varchar(40) COLLATE utf8mb4_bin NOT NULL,
+  `user_id` int(9) UNSIGNED NOT NULL,
+  `transaction_id` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL,
+  `address_id` int(8) NOT NULL,
+  `amount` int(9) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `order_uid`, `user_id`, `transaction_id`, `address_id`, `amount`, `order_date`) VALUES
+(18, 'OD-2019-10-29-5db8653136b2d', 1, NULL, 7, 0, '2019-10-29 16:13:37'),
+(19, 'OD-2019-10-29-5db8669b7d599', 1, NULL, 8, 0, '2019-10-29 16:19:39'),
+(20, 'OD-2019-10-29-5db8670a84eed', 1, NULL, 7, 0, '2019-10-29 16:21:30');
 
 -- --------------------------------------------------------
 
@@ -347,6 +367,7 @@ CREATE TABLE `pincode` (
 --
 
 INSERT INTO `pincode` (`pin`, `city`, `district`, `state`) VALUES
+(0, '', '', ''),
 (378767, '', '', ''),
 (400001, 'Mumbai', 'Mumbai', 'Maharashtra'),
 (700036, 'Kolkata', 'Kolkata', 'West Bengal'),
@@ -369,7 +390,7 @@ CREATE TABLE `searches` (
   `id` int(9) UNSIGNED NOT NULL,
   `user_id` int(9) UNSIGNED NOT NULL,
   `search` varchar(20) COLLATE utf8mb4_bin NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
@@ -384,7 +405,12 @@ INSERT INTO `searches` (`id`, `user_id`, `search`, `date`) VALUES
 (8, 1, 'fluid', '2019-10-23 13:35:09'),
 (9, 1, 'a', '2019-10-25 07:00:29'),
 (10, 1, 'py', '2019-10-25 07:21:23'),
-(11, 1, 'a', '2019-10-25 09:44:55');
+(11, 1, 'a', '2019-10-25 09:44:55'),
+(12, 1, 'inside edge', '2019-10-28 15:33:29'),
+(13, 1, 'f', '2019-10-29 10:44:41'),
+(14, 1, 'fl', '2019-10-29 10:48:51'),
+(15, 1, 'c', '2019-10-29 12:34:33'),
+(16, 1, 's', '2019-10-29 12:34:42');
 
 -- --------------------------------------------------------
 
@@ -412,22 +438,6 @@ INSERT INTO `tag` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaction`
---
-
-CREATE TABLE `transaction` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `transaction_number` varchar(20) COLLATE utf8mb4_bin NOT NULL,
-  `user_id` int(10) UNSIGNED DEFAULT NULL,
-  `payment_mode_id` int(11) DEFAULT NULL,
-  `created_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL,
-  `deleted_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
@@ -449,7 +459,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `unique_id`, `name`, `email`, `phone`, `pass`, `user_type_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '5d6e34a32736f', 'Animesh', 'animesh1@live.com', 9470984747, 'qwerty', 2, '2019-09-01', '2019-10-21', NULL),
+(1, '5d6e34a32736f', 'Animesh Sharma', 'animesh1@live.com', 8986722466, 'qwerty', 2, '2019-09-01', '2019-10-28', NULL),
 (49, '5d70dc842387e', 'Seller Ani', 'hypstar124@gmail.com', 1111111112, 'qwerty', 3, '2019-09-05', '2019-10-17', NULL),
 (50, '5d70fd74cb1ef', 'sellerxyz', 'sellerxyz@seller.com', 123456, 'qwerty', 3, '2019-09-05', NULL, NULL),
 (51, '5d710babb7635', 'sellerqwe', 'seller2@seller.com', 56775, 'qwerty', 3, '2019-09-05', NULL, NULL),
@@ -550,8 +560,9 @@ ALTER TABLE `book_tag`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_id` (`user_id`,`book_seller_id`),
-  ADD KEY `fkbookseller` (`book_seller_id`);
+  ADD UNIQUE KEY `user_id` (`user_id`,`book_seller_id`,`order_uid`),
+  ADD KEY `fkbookseller` (`book_seller_id`),
+  ADD KEY `fkorderuid1` (`order_uid`);
 
 --
 -- Indexes for table `genre`
@@ -565,8 +576,8 @@ ALTER TABLE `genre`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `order_number` (`order_number`),
-  ADD KEY `fktransaction` (`transaction_id`);
+  ADD UNIQUE KEY `order_uid` (`order_uid`),
+  ADD KEY `fkuser13` (`user_id`);
 
 --
 -- Indexes for table `payment_mode`
@@ -595,15 +606,6 @@ ALTER TABLE `tag`
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexes for table `transaction`
---
-ALTER TABLE `transaction`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `transaction_number` (`transaction_number`),
-  ADD KEY `fkuser1` (`user_id`),
-  ADD KEY `fkpayment_mode` (`payment_mode_id`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -626,72 +628,80 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+
 --
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
 --
 -- AUTO_INCREMENT for table `book_author`
 --
 ALTER TABLE `book_author`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
 --
 -- AUTO_INCREMENT for table `book_genre`
 --
 ALTER TABLE `book_genre`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- AUTO_INCREMENT for table `book_seller`
 --
 ALTER TABLE `book_seller`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
 --
 -- AUTO_INCREMENT for table `book_tag`
 --
 ALTER TABLE `book_tag`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT for table `searches`
 --
 ALTER TABLE `searches`
-  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `transaction`
---
-ALTER TABLE `transaction`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
 --
 -- Constraints for dumped tables
 --
@@ -736,13 +746,14 @@ ALTER TABLE `book_tag`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `fkbookseller` FOREIGN KEY (`book_seller_id`) REFERENCES `book_seller` (`id`),
+  ADD CONSTRAINT `fkorderuid1` FOREIGN KEY (`order_uid`) REFERENCES `orders` (`order_uid`),
   ADD CONSTRAINT `fkuser2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `fktransaction` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`id`);
+  ADD CONSTRAINT `fkuser13` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `searches`
@@ -751,17 +762,11 @@ ALTER TABLE `searches`
   ADD CONSTRAINT `fkuser9` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `transaction`
---
-ALTER TABLE `transaction`
-  ADD CONSTRAINT `fkpayment_mode` FOREIGN KEY (`payment_mode_id`) REFERENCES `payment_mode` (`id`),
-  ADD CONSTRAINT `fkuser1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
-
---
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `fkuser_type` FOREIGN KEY (`user_type_id`) REFERENCES `user_type` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

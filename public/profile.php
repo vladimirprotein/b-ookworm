@@ -104,8 +104,11 @@
 				<li class="mb-3"><button type="button" class="btn-sm">
   				My Orders
 				</button></li>
-        <li><a href="address.php"><button type="button" class="btn-sm btn-success">
+        <li class="mb-3"><a href="address.php"><button type="button" class="btn-sm btn-success">
           My Addresses
+        </button></a></li>
+        <li><a href="cart.php"><button type="button" class="btn-sm">
+          My CART
         </button></a></li>
 
 				<!-- The Modal -->
@@ -159,15 +162,11 @@
   				</div>
   				<div class="form-group">
   					Phone:<small class="text-danger" id="phoneErr2">* <?php echo $phoneErr;?></small>
-  					<input type="text" name="phone" id="phone2" class="form-control bg-warning" placeholder="PHONE" value="<?php echo $phone; ?>" onkeyup='validate_numeric(this.id, "phoneErr2", "submit2")' required>
+  					<input type="text" name="phone" id="phone2" class="form-control" placeholder="PHONE" value="<?php echo $phone; ?>" onkeyup='validate_numeric(this.id, "phoneErr2", "submit2")' required>
   				</div>
   				<div class="form-group">
   					Email:<small class="text-danger" id="emailErr2">* <?php echo $emailErr;?></small>
   					<input type="Email" id="email2" name="email" class="form-control" placeholder="EMAIL" value="<?php echo $email; ?>" onkeyup='validate_email(this.id, "emailErr2" , "submit2")'>
-  				</div>
-  				<div class="form-group">
-  					Address:
-  					<input type="text" name="address" class="form-control bg-warning" placeholder="ADDRESS" value="<?php echo $address; ?>">
   				</div>
   				<div class="form-group">
         		<input type="submit" name="submit" id="submit2" value="UPDATE" class="btn btn-secondary">

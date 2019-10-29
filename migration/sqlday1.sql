@@ -183,10 +183,12 @@ CREATE TABLE cart(
     user_id int unsigned not null, 
     book_seller_id int unsigned not null,
     quantity int default 1,
+    order_uid varchar(40),
     created_at date,
     updated_at date,
     deleted_at date,
     constraint fkuser2 foreign key (user_id) references `user`(id),
     constraint fkbookseller foreign key (book_seller_id) references book_seller(id),
-    unique (user_id,book_seller_id)
+    constraint fkorderuid1 foreign key (order_uid) references orders(order_uid),
+    unique (user_id,book_seller_id,order_uid)
     );
