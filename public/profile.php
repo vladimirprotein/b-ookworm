@@ -96,14 +96,14 @@
   ?>
   <div class="container-fluid bookdetails1">
   	<div class="row pt-4">
-  		<div class="col-sm-6 pl-4">
+  		<div class="col-sm-6 pl-4 pb-3">
   			<!-- Button to Open the Modal -->
 				<li class="mb-3 "><button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#myModal">
   				Change Password
 				</button></li>
-				<li class="mb-3"><button type="button" class="btn-sm">
+				<li class="mb-3"><a href="myorders.php"><button type="button" class="btn-sm">
   				My Orders
-				</button></li>
+				</button></a></li>
         <li class="mb-3"><a href="address.php"><button type="button" class="btn-sm btn-success">
           My Addresses
         </button></a></li>
@@ -153,7 +153,7 @@
 				</div>
   		</div>
 
-  		<div class="col-sm-6">
+  		<div class="col-sm-6 pt-3">
   			<h3 class="lead mb-4 font-weight-bold font-italic border-bottom border-warning border-dashed">Update Details:</h3>
   			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method='POST'>
   				<div class="form-group">

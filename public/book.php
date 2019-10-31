@@ -30,15 +30,15 @@
             <div class="col-sm-4">
                 <img id="bookimage" src="" class="rounded ml-4 mt-4 mb-4" alt="book-image" width="300px" height="380px">
             </div>
-            <div class="col-sm-8">
-                <h3 id="booktitle" class="text-secondary border-bottom pl-2 mt-4 border-success">BOOK NAME</h3>
+            <div class="col-sm-8 pl-3">
+                <h3 id="booktitle" class="text-secondary border-bottom pl-3 mt-4 border-success">BOOK NAME</h3>
                 <div class="container-fluid text-right">
                     <h5 id="bookisbn" class="btn-success btn border-top border-success pt-2 mb-3 ">ISBN</h5>
                 </div>
-                <h5 class="font-weight-bold text-primary">Author(s):   <ul class="h5 ml-5 text-secondary" id="authors"></ul></h5>
-                <h6 class="font-weight-bold text-primary">Genre(s):   <ul class="h6 ml-5 text-secondary" id="genres"></ul></h6>
-                <h6 class="font-weight-bold text-primary">Tag(s):   <ul class="h6 ml-5 text-secondary" id="tags"></ul></h6>
-                <h5 class="mb-4 mt-5 text-primary" id="sellers"><b>Sellers:</b></h5>
+                <h5 class="font-weight-bold text-primary pl-3">Author(s):   <ul class="h5 ml-5 text-secondary" id="authors"></ul></h5>
+                <h6 class="font-weight-bold text-primary pl-3">Genre(s):   <ul class="h6 ml-5 text-secondary" id="genres"></ul></h6>
+                <h6 class="font-weight-bold text-primary pl-3">Tag(s):   <ul class="h6 ml-5 text-secondary" id="tags"></ul></h6>
+                <h5 class="mb-4 mt-5 text-primary pl-3" id="sellers"><b>Sellers:</b></h5>
                 <div class="col-sm-11" id=" ">
                     <table class="table table-striped table-dark table-hover" id="sellertable">
                         <tr class="table-success text-dark">
