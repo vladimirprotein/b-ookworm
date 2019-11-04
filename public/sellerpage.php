@@ -204,77 +204,81 @@
             return $data;
         }   
     ?>
-    <div class="row">
-        <div class="col-sm-6 pl-4 mt-4 border">
-            <h4 class="text-success border-bottom">Your Stock:</h4>
-            <table class="table table-dark table-striped table-hover">
-                <thead>
-                    <tr class="bg-success">
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>ISBN</th>
-                        <th>qty</th>
-                        <th>price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        require '../lib/databasedial.php';
-                        $stmt=$conn->prepare("SELECT title, book_isbn, quantity, price from book INNER JOIN book_seller on `book`.id=book_seller.book_id AND user_id=?");//showing the stock of the seller
-                        $stmt->bind_param("s", $_SESSION['id']);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        if ($result->num_rows != 0) {
-                            while ($row=$result->fetch_assoc()) {
-                                echo "<tr><td></td>  <td class='text-light'><a href='book.php?isbn=".$row['book_isbn']."' style='text-decoration:none' class='text-light'>".ucwords($row['title'])."</a></td><td>".$row['book_isbn']."</td><td>".$row['quantity']."</td><td>".$row['price']."</td></tr>" ;
-                            }        
-                        }    
-                    ?>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm-6 pl-4 mt-4 border">
-            <h4 class="text-primary border-bottom">Add to your stock:</h4>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data" class="col-sm-8 float-right bg-light">
-                <div class="form-group">
-                    ISBN:<small class="text-danger">     * <?php echo $isbnErr;?></small>
-                    <input type="text" name="isbn" placeholder="Enter ISBN" class="form-control">
-                </div>
-                <div class="form-group">
-                    Book Title:<small class="text-danger">     * <?php echo $titleErr;?></small>
-                    <input type="text" name="title" placeholder="Enter title" class="form-control">
-                </div>
-                <div class="form-group">
-                    Author(s):<small class="text-danger">     * <?php echo $authorErr;?></small>
-                    <input type="text" name="author" placeholder="Enter Author(s) -separated by comma" class="form-control">
-                </div>
-                <div class="form-group">
-                    Genre(s):<small class="text-danger">     * <?php echo $genreErr;?></small>
-                    <input type="text" name="genre" placeholder="Enter Genre(s) -separated by comma" class="form-control">
-                </div>
-                <div class="form-group">
-                    Tag(s):<small class="text-danger"></small>
-                    <input type="text" name="tag" placeholder="Enter Tag(s) -separated by comma" class="form-control">
-                </div>
-                <div class="form-group">
-                    Quantity:<small class="text-danger">     * <?php echo $qtyErr;?></small>
-                    <input type="number" name="qty" placeholder="Enter quantity" class="form-control">
-                </div>
-                <div class="form-group">
-                    Price:<small class="text-danger">     * <?php echo $priceErr;?></small>
-                    <input type="number" name="price" placeholder="Enter price" class="form-control">
-                </div>
-                <div class="form-group">
-                    Add Image:<small class="text-danger">   <?php echo $imageErr;?></small>
-                    <input class="" type="file" name="image">
-                </div>
-                <div class="form-group">
-                    <input type="submit" name="submit" value="Update" class="text-success">
-                </div>
-            </form> 
-            <?php
-                echo "<h6 class='text-danger'>$return_data</h6>";
-            ?>    
+    <div class="container-fluid bookdetails1">
+        <div class="row mb-4 pl-3 pt-3">
+            <div class="col-sm-4 mt-4">
+                <button class=" btn-success mb-5"><a href="orderdashboard.php" style="text-decoration: none" class="text-dark">ORDER DASHBOARD</a></button><br>
+                <button class=" btn-success mb-5"><a href="orderdashboard.php" style="text-decoration: none" class="text-dark">ORDER DASHBOARD</a></button><br>
+                <button class=" btn-success mb-5"><a href="orderdashboard.php" style="text-decoration: none" class="text-dark">ORDER DASHBOARD</a></button><br>
+                <button class=" btn-success mb-5"><a href="orderdashboard.php" style="text-decoration: none" class="text-dark">ORDER DASHBOARD</a></button><br>
+                <h4 class="text-success font-weight-bold">Add to your stock:</h4>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data" class=" bg-light pl-4 pr-4 pb-2 pt-4 rounded">
+                    <div class="form-group">
+                        ISBN:<small class="text-danger">     * <?php echo $isbnErr;?></small>
+                        <input type="text" name="isbn" placeholder="Enter ISBN" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        Book Title:<small class="text-danger">     * <?php echo $titleErr;?></small>
+                        <input type="text" name="title" placeholder="Enter title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        Author(s):<small class="text-danger">     * <?php echo $authorErr;?></small>
+                        <input type="text" name="author" placeholder="Enter Author(s) -separated by comma" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        Genre(s):<small class="text-danger">     * <?php echo $genreErr;?></small>
+                        <input type="text" name="genre" placeholder="Enter Genre(s) -separated by comma" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        Tag(s):<small class="text-danger"></small>
+                        <input type="text" name="tag" placeholder="Enter Tag(s) -separated by comma" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        Quantity:<small class="text-danger">     * <?php echo $qtyErr;?></small>
+                        <input type="number" name="qty" placeholder="Enter quantity" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        Price:<small class="text-danger">     * <?php echo $priceErr;?></small>
+                        <input type="number" name="price" placeholder="Enter price" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        Add Image:<small class="text-danger">   <?php echo $imageErr;?></small>
+                        <input class="" type="file" name="image">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" value="Update" class="text-success">
+                    </div>
+                </form> 
+            </div>
+            <div class="col-sm-8 pl-4 mt-4">
+                <h4 class="text-success font-weight-bold">Your Stock:</h4>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr class="bg-success h5">
+                            <th></th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">ISBN</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Price(&#8377)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            require '../lib/databasedial.php';
+                            $stmt=$conn->prepare("SELECT title, pic, book_isbn, quantity, price from book INNER JOIN book_seller on `book`.id=book_seller.book_id AND user_id=?");//showing the stock of the seller
+                            $stmt->bind_param("s", $_SESSION['id']);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            if ($result->num_rows != 0) {
+                                while ($row=$result->fetch_assoc()) {
+                                    $pic = "uploads/".$row['pic'];
+                                    echo "<tr><td class='bg-light text-center'><img src='".$pic."' width='40px' height='55px'></td>  <td class='font-weight-bold text-center '><a href='book.php?isbn=".$row['book_isbn']."' style='text-decoration:none;' class='text-dark'>".ucwords($row['title'])."</a></td><td class='text-center'>".$row['book_isbn']."</td><td class='text-center'>".$row['quantity']."</td><td class='text-center bg-light'>".$row['price']."</td></tr>" ;
+                                }        
+                            }    
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <?php require_once '../view/footer.php'; ?>

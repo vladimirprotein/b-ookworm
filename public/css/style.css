@@ -2,6 +2,14 @@
 	clear:left;
 }
 
+.color1{
+  color: #36a367;
+}
+
+.bg-color1{
+  background-color: #36a367;
+}
+
 #contacts {
 	background-color: #333333;
 	min-height: 70px;

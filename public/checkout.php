@@ -13,7 +13,7 @@
         <?php require_once '../view/header.php'; ?> 
         <?php require_once '../view/navbar.php'; ?>             
     </header>
-    <div class="bookdetails1 container-fluid  pl-4 row pt-4">
+    <div class="bookdetails1 pr-4  pl-4 row pt-4">
     	<div class="pl-4 col-sm-7">
             <form method="POST" action="orderpage.php">
                 <div class="form-group">
@@ -25,7 +25,7 @@
                         $result = $stmt->get_result();
                         if($result->num_rows != 0){
                             while($row = $result->fetch_assoc()){
-                                echo "<label class='bg-info rounded pl-3 pt-3 pb-3 pr-3 mb-1'><input type='radio' class='' name='address' value='".$row['id']."' checked>"."<div class='ml-3'>".$row['name']."<br>".$row['addr1'].", ".$row['addr2']." ".$row['addr3']."<br>".$row['city'].", ".$row['district'].", ".$row['state'].", PIN: ".$row['pin']."<br>"."Contact: ".$row['contact']."</div></label><br>";
+                                echo "<label class='bg-light rounded pl-3 pt-3 pb-3 pr-3 mb-1'><input type='radio' class='' name='address' value='".$row['id']."' checked>"."<div class='ml-3'>".$row['name']."<br>".$row['addr1'].", ".$row['addr2']." ".$row['addr3']."<br>".$row['city'].", ".$row['district'].", ".$row['state'].", PIN: ".$row['pin']."<br>"."Contact: ".$row['contact']."</div></label><br>";
                             }
                         }
                         else{
@@ -57,7 +57,7 @@
                         $pic="uploads/".$row['pic'];
                         $subtotal= $row['quantity']*$row['price'];
                         $total+=$subtotal;
-                        echo "<tr class='mb-5 bg-light' style=''><td>"."<img src='".$pic."' width=66 height=80   >"."</td> <td class='h5 text-success'>"."<a href='book.php?isbn=".$row['isbn'].  "' "." style='text-decoration:none' class='text-secondary font-weight-bold' >".ucwords($row['title'])."</a>"."<td>X ".$row['quantity']."</td><td class='h5 text-secondary subtotal'>".$subtotal."</td></tr>" ;
+                        echo "<tr class='mb-5 bg-light' style=''><td>"."<img src='".$pic."' width=66 height=80   >"."</td> <td class='h5'>"."<a href='book.php?isbn=".$row['isbn'].  "' "." style='text-decoration:none' class='text-secondary font-weight-bold' >".ucwords($row['title'])."</a><span class='pl-1 h6'>(".$row['quantity'].")</span></td><td class='h5 text-secondary subtotal'>&#8377 ".$subtotal."</td></tr>" ;
                     }
                     if($total > 500){
                         $delivery = 0;
@@ -67,8 +67,8 @@
                         $total += 40;
                     }
                     echo "
-                        <tr><td></td><td class='text-success'></td><th class=' bg-light' id='totaltext'>Delivery:</th><td class='h4 bg-light'>".$delivery."</td></tr>
-                        <tr><td></td><td class='text-success' id='coupon'></td><th class=' bg-light' id='totaltext'>Amount:</th><td class='h4 bg-light text-success font-weight-bold' id='totalprice'>".$total."</td></tr>
+                        <tr><td class='text-success'></td><th class=' bg-light' id='totaltext'>Delivery:</th><td class='h4 bg-light'>&#8377 ".$delivery."</td></tr>
+                        <tr><td class='text-success' id='coupon'></td><th class=' bg-light' id='totaltext'>Amount:</th><td class='h4 bg-light text-success font-weight-bold h5' id='totalprice'>&#8377 ".$total."</td></tr>
                         </tbody>
                         </table>";  
                 }
@@ -80,8 +80,7 @@
 
         </div>
     </div>
-    <footer>
-    	<?php require_once "../view/footer.php"; ?>
-    </footer>
+
+    <?php require_once "../view/footer.php"; ?>
 </body>
 </html>

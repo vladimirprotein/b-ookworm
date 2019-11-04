@@ -42,10 +42,10 @@
     </header>
     <div class="row bookdetails1">
         <div class="container-fluid mt-4 col-sm-11">
-            <h3 class=" pl-3 mb-5 border border-dark">Here's what we have:</h3>
+            <h3 class=" pl-3 mb-5 font-italic">Here's what we have:</h3>
             <h6 class="pl-3 mb-3">Search result for: <?php echo $search ; ?></h6>
             <?php
-                $stmt=$conn->prepare("SELECT book.title as title, book.pic as pic, author.name as author, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price from (((book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id) INNER JOIN book_author on book.id = book_author.book_id) inner join author on book_author.author_id = author.id where author.name like ? OR book.title like ? order by title ");
+                $stmt=$conn->prepare("SELECT book.title as title, book.pic as pic, author.name as author, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price from (((book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id) INNER JOIN book_author on book.id = book_author.book_id) inner join author on book_author.author_id = author.id where author.name like ? OR book.title like ? order by title, price ");
                 $stmt->bind_param("ss", $searchfinal, $searchfinal);
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -53,21 +53,26 @@
                     echo "
                     <table class='table table-striped table-hover'>
                         <thead>
-                            <tr class='text-warning h5 bg-dark border-warning'>
-                                <th></th>
-                                <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Price<span class='h6'>(INR)</span></th>
-                                <th>Seller</th>
+                            <tr class='text-light h5 bg-secondary'>
+                                <th class='text-center'></th>
+                                <th class='text-center'>Title</th>
+                                <th class='text-center'>ISBN</th>
+                                <th class='text-center'>Price</th>
+                                <th class='text-center'>Seller</th>
                             </tr>
                         </thead>
                         <tbody> ";
-                            while ($row=$result->fetch_assoc()) {
-                                $pic="uploads/".$row['pic'];
-                                echo "<tr class='mb-5'><td>"."<img src='".$pic."' width=66 height=80>"."</td> <td class='h5 text-success'>"."<a href='book.php?isbn=".$row['isbn'].  "' "." style='text-decoration:none' class='text-success' >".ucwords($row['title'])."</a>"."</td><td onclick='bookpopup(this.innerHTML)'>".$row['isbn']."</td><td>".$row['price']."</td><td>".$row['seller']."</td></tr>" ;
-                            }
-                        echo "
-                        </tbody>
+                    $previsbn = " ";
+                    while ($row=$result->fetch_assoc()) {
+                        if($row['isbn'] == $previsbn){
+                            continue;
+                        }
+                        $previsbn = $row['isbn'];
+                        $pic="uploads/".$row['pic'];
+                        echo "<tr class='mb-5'><td class='text-center'>"."<img src='".$pic."' width=66 height=80>"."</td> <td class='h5 text-success text-center'>"."<a href='book.php?isbn=".$row['isbn'].  "' "." style='text-decoration:none' class='text-success' >".ucwords($row['title'])."</a>"."</td><td class='text-center' onclick='bookpopup(this.innerHTML)'>".$row['isbn']."</td><td class='text-center font-weight-bold bg-secondary'>&#8377 ".$row['price']."</td><td class='bg-light text-center'>".$row['seller']."</td></tr>" ;
+                    }
+                    echo "
+                    </tbody>
                     </table>";  
                 }
                 else{

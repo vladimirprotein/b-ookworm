@@ -31,7 +31,7 @@ function loadpage(arg1) {
 		cell1.innerHTML=arg1.seller[i];
 		cell2.innerHTML=arg1.email[i];
 		cell3.innerHTML=arg1.created_at[i];
-		cell4.innerHTML=arg1.price[i];
+		cell4.innerHTML="&#8377 "+arg1.price[i];
 		cell5.innerHTML="Add to Cart";
 		cell5.name=arg1.bsid[i];
 		row.appendChild(cell1);

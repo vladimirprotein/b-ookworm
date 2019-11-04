@@ -24,14 +24,14 @@
                 $total=0;
                 echo " <table class='table table-striped'>
                     <thead>
-                        <tr class='text-light h5 bg-dark border-light'>
+                        <tr class='text-light h5 bg-secondary'>
                             <th></th>
                             <th>Title</th>
                             <th>ISBN</th>
                             <th>Seller</th>
-                            <th>Price<span class='h6'>(INR)</span></th>
+                            <th>Price</th>
                             <th>Quantity</th>
-                            <th>Sub-Total<span class='h6'>(INR)</span></th>
+                            <th>Sub-Total</th>
                         </tr>
                     </thead>
                     <tbody>";
