@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 04, 2019 at 07:29 PM
+-- Generation Time: Nov 07, 2019 at 07:42 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -110,15 +110,15 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`id`, `book_isbn`, `title`, `pic`, `popularity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(60, '123456', 'engineering thermodynamics', '5d78dccdcbc8a-engineering-thermodynamics-original-imaehwanf7xmvcht.jpeg', 40, '2019-09-11', NULL, NULL),
+(60, '123456', 'engineering thermodynamics', '5d78dccdcbc8a-engineering-thermodynamics-original-imaehwanf7xmvcht.jpeg', 41, '2019-09-11', NULL, NULL),
 (61, '234rdd', 'design of machine elements', '5d78e4a9c64f0-designof.jpeg', 62, '2019-09-11', NULL, NULL),
 (62, 'kjih68', 'i c engines', '5d78e4ed11f39-ice.jpg', 7, '2019-09-11', NULL, NULL),
 (63, 'asxxxc', 'theory of machines', '5d78e56c91a1e-ssr.jpg', 9, '2019-09-11', NULL, NULL),
-(64, 'lkoiijh', 'power plant engineering', '5d78e5ae53d79-ppe.jpg', 8, '2019-09-11', NULL, NULL),
+(64, 'lkoiijh', 'power plant engineering', '5d78e5ae53d79-ppe.jpg', 10, '2019-09-11', NULL, NULL),
 (65, 'trtgd', 'engineering mathematics', '5d80a9241abd9-daspal.jpg', 28, '2019-09-17', NULL, NULL),
 (66, 'rev2355', 'revolution 2020', '5d823142b16c2-rev2020.jpeg', 8, '2019-09-18', NULL, NULL),
-(67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 26, '2019-09-24', NULL, NULL),
-(72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 16, '2019-10-17', NULL, NULL);
+(67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 29, '2019-09-24', NULL, NULL),
+(72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 17, '2019-10-17', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -288,7 +288,11 @@ INSERT INTO `cart` (`id`, `user_id`, `book_seller_id`, `quantity`, `order_uid`, 
 (49, 1, 37, 1, 'OD-2019-11-01-5dbbf6a215611', 'Not Shipped', '2019-11-01', '2019-11-01', NULL),
 (50, 1, 49, 1, 'OD-2019-11-01-5dbbf6a215611', 'Not Shipped', '2019-11-01', '2019-11-01', NULL),
 (51, 1, 35, 2, 'OD-2019-11-02-5dbd36e1e13dd', 'Not Shipped', '2019-11-01', '2019-11-02', NULL),
-(52, 1, 35, 2, 'OD-2019-11-02-5dbd3e5233afd', 'Not Shipped', '2019-11-02', '2019-11-02', NULL);
+(52, 1, 35, 2, 'OD-2019-11-02-5dbd3e5233afd', 'Not Shipped', '2019-11-02', '2019-11-02', NULL),
+(53, 1, 44, 3, 'OD-2019-11-07-5dc405ad7e633', 'Not Shipped', '2019-11-05', '2019-11-07', NULL),
+(54, 1, 35, 2, 'OD-2019-11-07-5dc405ad7e633', 'Not Shipped', '2019-11-07', '2019-11-07', NULL),
+(55, 1, 45, 1, 'OD-2019-11-07-5dc405ad7e633', 'Not Shipped', '2019-11-07', '2019-11-07', NULL),
+(56, 1, 49, 1, 'OD-2019-11-07-5dc405ad7e633', 'Not Shipped', '2019-11-07', '2019-11-07', NULL);
 
 -- --------------------------------------------------------
 
@@ -336,7 +340,8 @@ INSERT INTO `orders` (`id`, `order_uid`, `user_id`, `transaction_id`, `address_i
 (47, 'OD-2019-11-01-5dbbf678716e5', 1, NULL, 7, NULL, '2019-11-01 09:10:16'),
 (48, 'OD-2019-11-01-5dbbf6a215611', 1, NULL, 8, NULL, '2019-11-01 09:10:58'),
 (49, 'OD-2019-11-02-5dbd36e1e13dd', 1, NULL, 7, NULL, '2019-11-02 07:57:21'),
-(50, 'OD-2019-11-02-5dbd3e5233afd', 1, NULL, 7, NULL, '2019-11-02 08:29:06');
+(50, 'OD-2019-11-02-5dbd3e5233afd', 1, NULL, 7, NULL, '2019-11-02 08:29:06'),
+(51, 'OD-2019-11-07-5dc405ad7e633', 1, NULL, 7, NULL, '2019-11-07 11:53:17');
 
 -- --------------------------------------------------------
 
@@ -505,7 +510,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `unique_id`, `name`, `email`, `phone`, `pass`, `user_type_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, '5d6e34a32736f', 'Animesh', 'animesh1@live.com', 8986722466, 'qwerty', 2, '2019-09-01', '2019-11-02', NULL),
-(49, '5d70dc842387e', 'HYPSTAR', 'hypstar124@gmail.com', 8935850328, 'qwerty', 3, '2019-09-05', '2019-11-04', NULL),
+(49, '5d70dc842387e', 'HYPSTARq', 'hypstar124@gmail.com', 8935850328, 'qwerty', 3, '2019-09-05', '2019-11-07', NULL),
 (50, '5d70fd74cb1ef', 'sellerxyz', 'sellerxyz@seller.com', 123456, 'qwerty', 3, '2019-09-05', NULL, NULL),
 (51, '5d710babb7635', 'sellerqwe', 'seller2@seller.com', 56775, 'qwerty', 3, '2019-09-05', NULL, NULL),
 (52, '5d7276a345b28', 'sevii', 'hgcgnjcvj@aaaqq.com', 1234511, '1111', 3, '2019-09-06', NULL, NULL),
@@ -709,7 +714,7 @@ ALTER TABLE `book_tag`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT for table `genre`
 --
@@ -719,7 +724,7 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `searches`
 --

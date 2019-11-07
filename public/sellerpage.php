@@ -205,7 +205,7 @@
         }   
     ?>
     <div class="container-fluid bookdetails1">
-        <div class="row mb-4 pl-3 pt-3">
+        <div class="row pb-4 pl-3 pt-3">
             <div class="col-sm-4 mt-4">
                 <button class=" btn-success mb-5"><a href="orderdashboard.php" style="text-decoration: none" class="text-dark">ORDER DASHBOARD</a></button><br>
                 <button class=" btn-success mb-5"><a href="orderdashboard.php" style="text-decoration: none" class="text-dark">ORDER DASHBOARD</a></button><br>
