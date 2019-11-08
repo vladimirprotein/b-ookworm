@@ -107,8 +107,11 @@
         <li class="mb-3"><a href="address.php"><button type="button" class="btn-sm btn-success">
           My Addresses
         </button></a></li>
-        <li><a href="cart.php"><button type="button" class="btn-sm">
+        <li class="mb-3"><a href="cart.php"><button type="button" class="btn-sm">
           My CART
+        </button></a></li>
+        <li class="mb-3"><a href="wishlist.php"><button type="button" class="btn-sm btn-success">
+          Wishlist
         </button></a></li>
 
 				<!-- The Modal -->

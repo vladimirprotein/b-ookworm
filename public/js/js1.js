@@ -165,6 +165,20 @@ $("#submit6").click(function() {
 	});
 });
 
+$(".update_tracking_id").click(function() {
+	var update = $(this);
+	var uid =  update.attr("uid");
+	var value = update.parent().prev().children().val();
+	$.post("api/update_tracking_id.php", {uid: uid, value: value}, function(data, status){
+		obj = JSON.parse(data);
+		if (status === 'success') {
+			if(obj.message == 'Tracking ID updated'){
+				update.parents().eq(4).children().eq(1).children().eq(3).children().eq(0).html(value);
+			}
+		}
+	});
+});
+
 
 
 

@@ -16,6 +16,8 @@
 		$stmt2->bind_param("ssi", $orderuid, $updated_at, $_SESSION['id']);
 		if ($stmt2->execute()) {
 			$message = "successful";
+			$stmt4 = $conn->prepare("UPDATE book_seller INNER JOIN cart ON book_seller.id = cart.book_seller_id SET book_seller.quantity = book_seller.quantity - cart.quantity WHERE cart.order_uid = '$orderuid'");
+			$stmt4->execute();
 			$stmt3 = $conn->prepare("SELECT cart.user_id as customer_id, cart.order_uid, book.book_isbn as book_isbn, book.title as title, book_seller.price as price, cart.quantity as quantity, user.name as seller, user.email as email, address.name as name, address.contact as contact, address.addr1 as addr1, address.addr2 as addr2, address.addr3 as addr3, address.pin as pin, pincode.city as city, pincode.district as district, pincode.state as state FROM (((((cart INNER JOIN book_seller ON cart.book_seller_id = book_seller.id) INNER JOIN `user` ON book_seller.user_id = `user`.id) INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN orders ON orders.order_uid = cart.order_uid) INNER JOIN address ON address.id = orders.address_id) INNER JOIN pincode ON address.pin = pincode.pin  where cart.order_uid = '$orderuid'");
 			$stmt3->execute();
 			$result = $stmt3->get_result();

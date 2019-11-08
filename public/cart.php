@@ -13,7 +13,7 @@
         <?php require_once '../view/navbar.php'; ?>             
     </header>
     <div class=" container-fluid bookdetails1">
-        <h2 class="pt-5 ml-4 mb-4 h2 text-secondary font-italic font-weight-bold">Your Cart:</h2>
+        <h2 class="pt-5 ml-4 mb-4 h2 text-secondary font-italic font-weight-bold">My Cart:</h2>
         <?php
             require '../lib/databasedial.php';
             $stmt=$conn->prepare("SELECT book.pic as pic, book.title as title, book_seller.id as bsid, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price, cart.quantity as quantity from ((book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id) INNER JOIN cart ON cart.book_seller_id = book_seller.id WHERE cart.user_id = ? and cart.order_uid is null ");

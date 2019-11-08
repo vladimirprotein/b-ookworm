@@ -1,5 +1,5 @@
 <footer class="">
-    <div class="pr-4 pl-4 mt-6 row" style="background-color: #836a8a;">
+    <div class="pr-4 pl-4 mt-6 row" style="background-color: #0b631d;">
     	<div class="col-6 ">
     		<p class="mt-4 text-right">&copy Copyright 2019 Bookworm.com</p>
     		<p class="mt-4 text-right">Author: Animesh Sharma</p>
