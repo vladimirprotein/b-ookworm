@@ -85,14 +85,15 @@
 	          	require_once '../lib/databasedial.php'; // establishing connection with the database
 	          	$unique_id=uniqid();
 	          	$created_at=date("Y-m-d",time());
+	          	$password = md5($pass."!book#worm");
 	          	$stmt = $conn->prepare( "INSERT INTO user (name, user_type_id, unique_id, email, phone, pass, created_at)
 	          	VALUES (?, ?, '$unique_id', ?, ?, ?, '$created_at')"); // inserting record to the user table
-	          	$stmt->bind_param("sssss",$name, $type, $email, $phone, $pass) ;
+	          	$stmt->bind_param("sssss",$name, $type, $email, $phone, $password) ;
 	          	if ($stmt->execute()) { // if entry is successful
 				    $return_data= "User added successfully.";
 				    $to= $email;
 					$subject= "Welcome to Bookworm.";
-					$text= "Hey there, our new worm, ".$name." :) \nWelcome on board with BOOKWORM.\nYour Email: ".$email."\nPassword: ".$pass."\nPhone: ".$phone."\nLook for our distinguished collection of variety of books. Happy Feeding!\n\nTeam Bookworm\nbookworm.com";
+					$text= "Hey there, our new worm, ".$name." :) \nWelcome on board with BOOKWORM.\nYour Email: ".$email."\nPassword: ".$pass."\nPhone: ".$phone."\nLook for our distinguished collection of variety of books. Happy Feeding!\n\nTeam Bookworm.\nbookworm.mindfire@gmail.com";
 					$headers= "From: Ani";
 					mail($to, $subject, $text, $headers);
 				} else {

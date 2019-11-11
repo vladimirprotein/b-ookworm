@@ -1,8 +1,8 @@
 <?php
 	error_reporting(0);
 	require_once "../../lib/rememberme.php";
-	$old= $_POST['old'];
-	$new= $_POST['new'];
+	$old= md5($_POST['old']."!book#worm");
+	$new= md5($_POST['new']."!book#worm");
 	require_once "../../lib/databasedial.php";
 	$updated_at=date("Y-m-d",time());
 	$stmt= $conn->prepare("SELECT pass FROM `user` WHERE id=?");

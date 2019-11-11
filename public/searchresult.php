@@ -7,18 +7,19 @@
     }
     else{
         $search = $searchErr = "";
-        if(empty($_GET["search"])){
-            $searchErr='Enter Something';
+        $search = trim($_GET['search']);
+        if(strlen($search) < 3){
+            $searchErr='Enter 3+ characters';
             header('Location: index.php');
             exit();
         }
         else{
-            $search=strtolower(test_input($_GET["search"]));
+            $search=strtolower(test_input($search));
             $searchfinal="%$search%";
         }
     }
     require_once "../lib/databasedial.php";
-    if(strlen($search)>0){
+    if(strlen($search) >= 3){
         $stmt = $conn->prepare("INSERT INTO searches(user_id, search) values (?, ?)");
         $stmt->bind_param("is", $_SESSION['id'], $search);
         $stmt->execute();

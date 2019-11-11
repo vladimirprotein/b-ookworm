@@ -19,26 +19,36 @@ function loadpage(arg1) {
 		var cell3= document.createElement('TH');
 		var cell4= document.createElement('TH');
 		var cell5= document.createElement('BUTTON');
+		var cell6= document.createElement('BUTTON');
 		//cell1.classList.add('btn-sm');
 		//cell1.classList.add('btn-success');
 		cell4.classList.add('btn');
 		cell4.classList.add('btn-success');
 		cell5.addEventListener("click", function(){addtocart(this.name)});
+		cell6.addEventListener("click", function(){addtowishlist(this.name)});
 		cell5.classList.add('btn-sm');
-		cell5.classList.add('btn-warning');
+		cell5.classList.add('btn-success');
+		cell6.classList.add('btn-sm');
+		cell6.classList.add('btn-warning');
 		cell5.classList.add('float-right');
+		cell6.classList.add('mt-2');
+		cell6.classList.add('float-right');
 		cell5.classList.add('mt-2');
+		cell6.classList.add('mt-2');
 		cell1.innerHTML=arg1.seller[i];
 		cell2.innerHTML=arg1.email[i];
 		cell3.innerHTML=arg1.created_at[i];
 		cell4.innerHTML="&#8377 "+arg1.price[i];
 		cell5.innerHTML="Add to Cart";
 		cell5.name=arg1.bsid[i];
+		cell6.innerHTML="Wishlist";
+		cell6.name=arg1.bsid[i];
 		row.appendChild(cell1);
 		row.appendChild(cell2);
 		row.appendChild(cell3);
 		row.appendChild(cell4);
 		row.appendChild(cell5);
+		row.appendChild(cell6);
 		row.classList.add('mt-5');
 		document.getElementById('sellertable').appendChild(row);
 	}
@@ -62,6 +72,9 @@ function loadpage(arg1) {
 function addtocart(bsid) {
 	ajaxcall("api/addtocart.php", bsid , addedtocart);
 }
+function addtowishlist(bsid) {
+	ajaxcall("api/addtowishlist.php", bsid , addedtocart);
+}
 function addedtocart(arg){
 	if(arg.responsecode ==100){
 		window.open("userlogin.php", "_blank");
@@ -71,21 +84,8 @@ function addedtocart(arg){
 	}
 }
 
-function increase_qty(bsid) {
-	ajaxcall("api/addtocart.php", bsid, updatecartpage);
-}
 
-function decrease_qty(bsid) {
-	ajaxcall("api/removefromcart.php", bsid, updatecartpage);
-}
 
-function updatecartpage(obj){
-	window.open("cart.php", "_self");
-}
-
-function removeitem(bsid){
-	ajaxcall("api/deleteitem.php", bsid, updatecartpage);
-}
 
 
 $(document).ready(function(){
@@ -117,6 +117,35 @@ $(document).ready(function(){
 			if (status === 'success') {
 				$("#totalprice").html($("#totalprice").html() - remove.parent().prev().html());
 				remove.parents('tr').remove();
+			}
+		});
+	});
+	$(".removeitemwish").click(function(){
+		var remove = $(this);
+		$.get("api/deletefromwishlist.php?a="+($(this).attr("name")), function(data, status){
+			if (status === 'success') {
+				remove.parents('tr').remove();
+			}
+		});
+	});
+	$(".movetocart").click(function(){
+		var move = $(this);
+		$.get("api/movetocart.php?a="+($(this).attr("name")), function(data, status){
+			if (status === 'success') {
+				obj = JSON.parse(data);
+				move.parents('tr').remove();
+				alert(obj.message);
+			}
+		});
+	});
+	$(".movetowishlist").click(function(){
+		var move = $(this);
+		$.get("api/movetowishlist.php?a="+($(this).attr("name")), function(data, status){
+			if (status === 'success') {
+				obj = JSON.parse(data);
+				$("#totalprice").html($("#totalprice").html() - move.parent().prev().html());
+				move.parents('tr').remove();
+				alert(obj.message);
 			}
 		});
 	});

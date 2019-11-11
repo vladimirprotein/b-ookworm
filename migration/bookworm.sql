@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 08, 2019 at 07:24 PM
+-- Generation Time: Nov 11, 2019 at 07:29 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -86,7 +86,9 @@ INSERT INTO `author` (`id`, `name`, `popularity`, `created_at`, `updated_at`, `d
 (126, 'ani', 0, '2019-10-17', NULL, NULL),
 (127, ' mesh', 0, '2019-10-17', NULL, NULL),
 (128, ' sharma', 0, '2019-10-17', NULL, NULL),
-(132, ' p k nag', 0, '2019-10-17', NULL, NULL);
+(132, ' p k nag', 0, '2019-10-17', NULL, NULL),
+(133, 'Sevi Surabhi', 0, '2019-11-10', NULL, NULL),
+(134, ' Animesh', 0, '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -110,15 +112,16 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`id`, `book_isbn`, `title`, `pic`, `popularity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(60, '123456', 'engineering thermodynamics', '5d78dccdcbc8a-engineering-thermodynamics-original-imaehwanf7xmvcht.jpeg', 46, '2019-09-11', NULL, NULL),
-(61, '234rdd', 'design of machine elements', '5d78e4a9c64f0-designof.jpeg', 62, '2019-09-11', NULL, NULL),
-(62, 'kjih68', 'i c engines', '5d78e4ed11f39-ice.jpg', 7, '2019-09-11', NULL, NULL),
+(60, '123456', 'engineering thermodynamics', '5d78dccdcbc8a-engineering-thermodynamics-original-imaehwanf7xmvcht.jpeg', 54, '2019-09-11', NULL, NULL),
+(61, '234rdd', 'design of machine elements', '5d78e4a9c64f0-designof.jpeg', 63, '2019-09-11', NULL, NULL),
+(62, 'kjih68', 'i c engines', '5d78e4ed11f39-ice.jpg', 11, '2019-09-11', NULL, NULL),
 (63, 'asxxxc', 'theory of machines', '5d78e56c91a1e-ssr.jpg', 9, '2019-09-11', NULL, NULL),
 (64, 'lkoiijh', 'power plant engineering', '5d78e5ae53d79-ppe.jpg', 10, '2019-09-11', NULL, NULL),
-(65, 'trtgd', 'engineering mathematics', '5d80a9241abd9-daspal.jpg', 28, '2019-09-17', NULL, NULL),
-(66, 'rev2355', 'revolution 2020', '5d823142b16c2-rev2020.jpeg', 8, '2019-09-18', NULL, NULL),
-(67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 29, '2019-09-24', NULL, NULL),
-(72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 18, '2019-10-17', NULL, NULL);
+(65, 'trtgd', 'engineering mathematics', '5d80a9241abd9-daspal.jpg', 36, '2019-09-17', NULL, NULL),
+(66, 'rev2355', 'revolution 2020', '5d823142b16c2-rev2020.jpeg', 10, '2019-09-18', NULL, NULL),
+(67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 36, '2019-09-24', NULL, NULL),
+(72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 19, '2019-10-17', NULL, NULL),
+(73, '34xgg54gc45g', 'java for beginners', NULL, 2, '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -153,7 +156,9 @@ INSERT INTO `book_author` (`id`, `author_id`, `book_id`, `created_at`, `updated_
 (20, 115, 67, '2019-10-17', NULL, NULL),
 (21, 116, 67, '2019-10-17', NULL, NULL),
 (22, 120, 72, '2019-10-17', NULL, NULL),
-(23, 121, 72, '2019-10-17', NULL, NULL);
+(23, 121, 72, '2019-10-17', NULL, NULL),
+(24, 133, 73, '2019-11-10', NULL, NULL),
+(25, 134, 73, '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -183,7 +188,8 @@ INSERT INTO `book_genre` (`id`, `genre_id`, `book_id`, `created_at`, `updated_at
 (16, 11, 65, '2019-10-17', NULL, NULL),
 (17, 12, 66, '2019-10-17', NULL, NULL),
 (18, 11, 67, '2019-10-17', NULL, NULL),
-(19, 11, 72, '2019-10-17', NULL, NULL);
+(19, 11, 72, '2019-10-17', NULL, NULL),
+(20, 13, 73, '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -207,18 +213,19 @@ CREATE TABLE `book_seller` (
 --
 
 INSERT INTO `book_seller` (`id`, `user_id`, `book_id`, `quantity`, `price`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(35, 49, 60, 252, 550, '2019-09-11', '2019-10-14', NULL),
+(35, 49, 60, 246, 550, '2019-09-11', '2019-10-14', NULL),
 (36, 51, 61, 1000, 600, '2019-09-11', NULL, NULL),
 (37, 51, 62, 300, 460, '2019-09-11', NULL, NULL),
 (38, 50, 63, 400, 550, '2019-09-11', NULL, NULL),
 (39, 50, 64, 300, 470, '2019-09-11', NULL, NULL),
 (40, 49, 64, 500, 510, '2019-09-18', NULL, NULL),
-(41, 51, 65, 400, 357, '2019-09-17', NULL, NULL),
-(42, 50, 66, 2000, 195, '2019-09-18', NULL, NULL),
+(41, 51, 65, 398, 357, '2019-09-17', NULL, NULL),
+(42, 50, 66, 1997, 195, '2019-09-18', NULL, NULL),
 (43, 49, 66, 144, 545, '2019-09-23', NULL, NULL),
 (44, 49, 67, 400, 459, '2019-09-24', NULL, NULL),
 (45, 49, 60, 36, 559, '2019-10-17', '2019-10-17', NULL),
-(49, 49, 72, 450, 390, '2019-10-17', NULL, NULL);
+(49, 49, 72, 450, 390, '2019-10-17', NULL, NULL),
+(50, 49, 73, 198, 340, '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -257,7 +264,8 @@ INSERT INTO `book_tag` (`id`, `tag_id`, `book_id`, `created_at`, `updated_at`, `
 (17, 3, 64, '2019-10-17', NULL, NULL),
 (18, 4, 65, '2019-10-17', NULL, NULL),
 (19, 3, 67, '2019-10-17', NULL, NULL),
-(20, 4, 72, '2019-10-17', NULL, NULL);
+(20, 4, 72, '2019-10-17', NULL, NULL),
+(21, 6, 73, '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -293,9 +301,15 @@ INSERT INTO `cart` (`id`, `user_id`, `book_seller_id`, `quantity`, `order_uid`, 
 (53, 1, 44, 3, 'OD-2019-11-07-5dc405ad7e633', 0, 'Blue Dart: 1111111111', '2019-11-05', '2019-11-07', NULL),
 (54, 1, 35, 2, 'OD-2019-11-07-5dc405ad7e633', 0, 'Blue Dart: 1111111111', '2019-11-07', '2019-11-07', NULL),
 (55, 1, 45, 1, 'OD-2019-11-07-5dc405ad7e633', 0, 'Blue Dart: 1111111111', '2019-11-07', '2019-11-07', NULL),
-(56, 1, 49, 1, 'OD-2019-11-07-5dc405ad7e633', 2, 'Blue Dart: 1111111111', '2019-11-07', '2019-11-07', NULL),
+(56, 1, 49, 1, 'OD-2019-11-07-5dc405ad7e633', 0, 'Blue Dart: 1111111111', '2019-11-07', '2019-11-07', NULL),
 (57, 1, 35, 4, 'OD-2019-11-08-5dc55086f1671', 0, 'Bhartiya Daaki', '2019-11-08', '2019-11-08', NULL),
-(60, 49, 39, 1, NULL, 3, 'Not Shipped', NULL, NULL, NULL);
+(61, 1, 35, 3, 'OD-2019-11-09-5dc5c90227bda', 0, 'Not Shipped', '2019-11-09', '2019-11-09', NULL),
+(62, 1, 42, 3, 'OD-2019-11-09-5dc6b2df69686', 0, 'Not Shipped', '2019-11-09', '2019-11-09', NULL),
+(63, 1, 35, 3, 'OD-2019-11-10-5dc837b92870b', 0, 'Blue Dart: 1234566', '2019-11-10', '2019-11-10', NULL),
+(64, 1, 50, 1, 'OD-2019-11-10-5dc8407ecf16a', 0, 'Not Shipped', '2019-11-10', '2019-11-10', NULL),
+(67, 1, 41, 2, 'OD-2019-11-11-5dc93249f048f', 0, 'Not Shipped', '2019-11-11', '2019-11-11', NULL),
+(68, 1, 50, 1, 'OD-2019-11-11-5dc932f497045', 0, 'DHL: 67654546', '2019-11-11', '2019-11-11', NULL),
+(83, 1, 37, 1, NULL, 1, 'Not Shipped', '2019-11-11', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -317,7 +331,8 @@ CREATE TABLE `genre` (
 
 INSERT INTO `genre` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (11, 'engineering', '2019-10-17', NULL, NULL),
-(12, 'fiction', '2019-10-17', NULL, NULL);
+(12, 'fiction', '2019-10-17', NULL, NULL),
+(13, 'Textbook', '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -345,7 +360,13 @@ INSERT INTO `orders` (`id`, `order_uid`, `user_id`, `transaction_id`, `address_i
 (49, 'OD-2019-11-02-5dbd36e1e13dd', 1, NULL, 7, NULL, '2019-11-02 07:57:21'),
 (50, 'OD-2019-11-02-5dbd3e5233afd', 1, NULL, 7, NULL, '2019-11-02 08:29:06'),
 (51, 'OD-2019-11-07-5dc405ad7e633', 1, NULL, 7, NULL, '2019-11-07 11:53:17'),
-(52, 'OD-2019-11-08-5dc55086f1671', 1, NULL, 7, NULL, '2019-11-08 11:24:54');
+(52, 'OD-2019-11-08-5dc55086f1671', 1, NULL, 7, NULL, '2019-11-08 11:24:54'),
+(53, 'OD-2019-11-09-5dc5c90227bda', 1, NULL, 8, NULL, '2019-11-08 19:58:58'),
+(54, 'OD-2019-11-09-5dc6b2df69686', 1, NULL, 7, NULL, '2019-11-09 12:36:47'),
+(55, 'OD-2019-11-10-5dc837b92870b', 1, NULL, 7, NULL, '2019-11-10 16:15:53'),
+(56, 'OD-2019-11-10-5dc8407ecf16a', 1, NULL, 7, NULL, '2019-11-10 16:53:18'),
+(57, 'OD-2019-11-11-5dc93249f048f', 1, NULL, 7, NULL, '2019-11-11 10:04:57'),
+(58, 'OD-2019-11-11-5dc932f497045', 1, NULL, 7, NULL, '2019-11-11 10:07:48');
 
 -- --------------------------------------------------------
 
@@ -464,7 +485,26 @@ INSERT INTO `searches` (`id`, `user_id`, `search`, `date`) VALUES
 (53, 49, 'eng', '2019-11-04 13:42:09'),
 (54, 49, 'eng', '2019-11-04 13:42:10'),
 (55, 49, 'eng', '2019-11-04 13:42:24'),
-(56, 49, 'a', '2019-11-04 13:43:34');
+(56, 49, 'a', '2019-11-04 13:43:34'),
+(57, 1, 'j', '2019-11-08 19:57:54'),
+(58, 1, 'a', '2019-11-10 16:10:24'),
+(59, 1, 'a', '2019-11-10 16:14:08'),
+(60, 1, 'java', '2019-11-10 16:52:50'),
+(62, 1, 'a', '2019-11-11 07:34:06'),
+(63, 1, 'asd', '2019-11-11 07:37:14'),
+(64, 1, 'v k', '2019-11-11 07:49:05'),
+(65, 1, 'anmseh', '2019-11-11 07:49:52'),
+(66, 1, 'anh', '2019-11-11 07:50:22'),
+(67, 1, 'dsfg', '2019-11-11 07:51:18'),
+(68, 1, 'eng', '2019-11-11 10:04:08'),
+(69, 1, 'java', '2019-11-11 10:05:52'),
+(70, 1, 'flu', '2019-11-11 10:31:24'),
+(71, 1, 'eng', '2019-11-11 10:43:54'),
+(72, 1, 'eng', '2019-11-11 11:38:27'),
+(73, 1, 'chet', '2019-11-11 12:02:27'),
+(74, 1, 'gan', '2019-11-11 13:43:19'),
+(75, 1, 'gan', '2019-11-11 13:46:07'),
+(76, 1, 'gan', '2019-11-11 13:48:21');
 
 -- --------------------------------------------------------
 
@@ -487,7 +527,8 @@ CREATE TABLE `tag` (
 INSERT INTO `tag` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (3, 'best seller', '2019-10-17', NULL, NULL),
 (4, 'new arrival', '2019-10-17', NULL, NULL),
-(5, 'textbook', '2019-10-17', NULL, NULL);
+(5, 'textbook', '2019-10-17', NULL, NULL),
+(6, 'New Arrival', '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -501,7 +542,7 @@ CREATE TABLE `user` (
   `name` varchar(80) COLLATE utf8mb4_bin NOT NULL,
   `email` varchar(300) COLLATE utf8mb4_bin NOT NULL,
   `phone` bigint(15) UNSIGNED NOT NULL,
-  `pass` varchar(100) COLLATE utf8mb4_bin NOT NULL,
+  `pass` varchar(200) COLLATE utf8mb4_bin NOT NULL,
   `user_type_id` int(1) NOT NULL,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
@@ -513,19 +554,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `unique_id`, `name`, `email`, `phone`, `pass`, `user_type_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '5d6e34a32736f', 'Animesh', 'animesh1@live.com', 8986722466, 'qwerty', 2, '2019-09-01', '2019-11-02', NULL),
-(49, '5d70dc842387e', 'HYPSTAR', 'hypstar124@gmail.com', 8935850328, 'qwerty', 3, '2019-09-05', '2019-11-08', NULL),
-(50, '5d70fd74cb1ef', 'sellerxyz', 'sellerxyz@seller.com', 123456, 'qwerty', 3, '2019-09-05', NULL, NULL),
-(51, '5d710babb7635', 'sellerqwe', 'seller2@seller.com', 56775, 'qwerty', 3, '2019-09-05', NULL, NULL),
-(52, '5d7276a345b28', 'sevii', 'hgcgnjcvj@aaaqq.com', 1234511, '1111', 3, '2019-09-06', NULL, NULL),
-(53, '5d84c4feb9ce2', 'aniemsh', 'dfs@jhjh.com', 1221212121, 'qwerty', 2, '2019-09-20', NULL, NULL),
-(54, '5d84c5b547ca2', 'animehss', 'sevi@sevi.com', 8986722466, '12345', 2, '2019-09-20', '2019-10-15', NULL),
-(65, '5da5a6fcc8142', 'animesh', 'seller@saeller.com', 8986722466, 'qqqqq', 2, '2019-10-15', NULL, NULL),
-(66, '5da5a76541c5a', 'animesh', 'sellaaaaaer@seller.com', 8986722466, 'qqq', 2, '2019-10-15', NULL, NULL),
-(67, '5da5a832a28a8', 'animesh', 'sellaaaaaer@seller.comz', 8986722466, 'aaaaa', 2, '2019-10-15', NULL, NULL),
-(68, '5da5ae625879c', 'dcd', 'dds@fvsv.v', 9999876565, 'qqqq', 3, '2019-10-15', NULL, NULL),
-(70, '5da6fbc005679', 'Anni', 'beingannni@gmail.com', 8935850328, '11111', 2, '2019-10-16', NULL, NULL),
-(71, '5da6fcc42c3e7', 'Surabhi Sharma', 'sevi2202@gmail.com', 8249544810, '12345', 2, '2019-10-16', '2019-10-16', NULL);
+(1, '5d6e34a32736f', 'Animesh Sharma', 'animesh1@live.com', 8986722466, 'ad3ae2f9fdae79ca91f3d2c3e62d0ff8', 2, '2019-09-01', '2019-11-10', NULL),
+(49, '5d70dc842387e', 'HYPSTAR', 'hypstar124@gmail.com', 8935850328, 'ad3ae2f9fdae79ca91f3d2c3e62d0ff8', 3, '2019-09-05', '2019-11-08', NULL),
+(50, '5d70fd74cb1ef', 'sellerxyz', 'sellerxyz@seller.com', 123456, 'ad3ae2f9fdae79ca91f3d2c3e62d0ff8', 3, '2019-09-05', NULL, NULL),
+(51, '5d710babb7635', 'sellerqwe', 'seller2@seller.com', 56775, 'ad3ae2f9fdae79ca91f3d2c3e62d0ff8', 3, '2019-09-05', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -688,62 +720,62 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 --
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 --
 -- AUTO_INCREMENT for table `book_author`
 --
 ALTER TABLE `book_author`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `book_genre`
 --
 ALTER TABLE `book_genre`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `book_seller`
 --
 ALTER TABLE `book_seller`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `book_tag`
 --
 ALTER TABLE `book_tag`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 --
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT for table `searches`
 --
 ALTER TABLE `searches`
-  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- Constraints for dumped tables
 --

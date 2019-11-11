@@ -41,7 +41,7 @@
 	      	if (!$is_error){ // if error variable remains false and form input is all okay
 	          	require_once '../lib/databasedial.php'; // establishing connection with the database
 	          	$stmt=$conn->prepare("SELECT * from user where email=? and pass=?"); // finding the record from user table
-	          	$stmt->bind_param("ss", $email,$pass);
+	          	$stmt->bind_param("ss", $email, md5($pass."!book#worm"));
 	      		$stmt->execute();
 	      		$result = $stmt->get_result();
 
