@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 11, 2019 at 07:29 PM
--- Server version: 5.7.27-0ubuntu0.18.04.1
+-- Generation Time: Nov 19, 2019 at 06:55 PM
+-- Server version: 5.7.28-0ubuntu0.18.04.4
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -87,8 +87,8 @@ INSERT INTO `author` (`id`, `name`, `popularity`, `created_at`, `updated_at`, `d
 (127, ' mesh', 0, '2019-10-17', NULL, NULL),
 (128, ' sharma', 0, '2019-10-17', NULL, NULL),
 (132, ' p k nag', 0, '2019-10-17', NULL, NULL),
-(133, 'Sevi Surabhi', 0, '2019-11-10', NULL, NULL),
-(134, ' Animesh', 0, '2019-11-10', NULL, NULL);
+(133, 'sevi surabhi', 0, '2019-11-10', NULL, NULL),
+(134, ' animesh', 0, '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -113,15 +113,15 @@ CREATE TABLE `book` (
 
 INSERT INTO `book` (`id`, `book_isbn`, `title`, `pic`, `popularity`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (60, '123456', 'engineering thermodynamics', '5d78dccdcbc8a-engineering-thermodynamics-original-imaehwanf7xmvcht.jpeg', 54, '2019-09-11', NULL, NULL),
-(61, '234rdd', 'design of machine elements', '5d78e4a9c64f0-designof.jpeg', 63, '2019-09-11', NULL, NULL),
-(62, 'kjih68', 'i c engines', '5d78e4ed11f39-ice.jpg', 11, '2019-09-11', NULL, NULL),
+(61, '234rdd', 'design of machine elements', '5d78e4a9c64f0-designof.jpeg', 64, '2019-09-11', NULL, NULL),
+(62, 'kjih68', 'i c engines', '5d78e4ed11f39-ice.jpg', 17, '2019-09-11', NULL, NULL),
 (63, 'asxxxc', 'theory of machines', '5d78e56c91a1e-ssr.jpg', 9, '2019-09-11', NULL, NULL),
-(64, 'lkoiijh', 'power plant engineering', '5d78e5ae53d79-ppe.jpg', 10, '2019-09-11', NULL, NULL),
-(65, 'trtgd', 'engineering mathematics', '5d80a9241abd9-daspal.jpg', 36, '2019-09-17', NULL, NULL),
+(64, 'lkoiijh', 'power plant engineering', '5d78e5ae53d79-ppe.jpg', 12, '2019-09-11', NULL, NULL),
+(65, 'trtgd', 'engineering mathematics', '5d80a9241abd9-daspal.jpg', 41, '2019-09-17', NULL, NULL),
 (66, 'rev2355', 'revolution 2020', '5d823142b16c2-rev2020.jpeg', 10, '2019-09-18', NULL, NULL),
-(67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 36, '2019-09-24', NULL, NULL),
+(67, 'fl1232', 'fluid mechanics', '5d89fcb4709f7-fluidmech.jpg', 43, '2019-09-24', NULL, NULL),
 (72, 'py3453', 'learning python', '5da860e256171-pyth.jpg', 19, '2019-10-17', NULL, NULL),
-(73, '34xgg54gc45g', 'java for beginners', NULL, 2, '2019-11-10', NULL, NULL);
+(73, 'hjkh75', 'java for beginners', 'java-31c-4RZu9NL.jpg', 4, '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -217,9 +217,9 @@ INSERT INTO `book_seller` (`id`, `user_id`, `book_id`, `quantity`, `price`, `cre
 (36, 51, 61, 1000, 600, '2019-09-11', NULL, NULL),
 (37, 51, 62, 300, 460, '2019-09-11', NULL, NULL),
 (38, 50, 63, 400, 550, '2019-09-11', NULL, NULL),
-(39, 50, 64, 300, 470, '2019-09-11', NULL, NULL),
-(40, 49, 64, 500, 510, '2019-09-18', NULL, NULL),
-(41, 51, 65, 398, 357, '2019-09-17', NULL, NULL),
+(39, 50, 64, 299, 470, '2019-09-11', NULL, NULL),
+(40, 49, 64, 499, 510, '2019-09-18', NULL, NULL),
+(41, 51, 65, 397, 357, '2019-09-17', NULL, NULL),
 (42, 50, 66, 1997, 195, '2019-09-18', NULL, NULL),
 (43, 49, 66, 144, 545, '2019-09-23', NULL, NULL),
 (44, 49, 67, 400, 459, '2019-09-24', NULL, NULL),
@@ -308,8 +308,11 @@ INSERT INTO `cart` (`id`, `user_id`, `book_seller_id`, `quantity`, `order_uid`, 
 (63, 1, 35, 3, 'OD-2019-11-10-5dc837b92870b', 0, 'Blue Dart: 1234566', '2019-11-10', '2019-11-10', NULL),
 (64, 1, 50, 1, 'OD-2019-11-10-5dc8407ecf16a', 0, 'Not Shipped', '2019-11-10', '2019-11-10', NULL),
 (67, 1, 41, 2, 'OD-2019-11-11-5dc93249f048f', 0, 'Not Shipped', '2019-11-11', '2019-11-11', NULL),
-(68, 1, 50, 1, 'OD-2019-11-11-5dc932f497045', 0, 'DHL: 67654546', '2019-11-11', '2019-11-11', NULL),
-(83, 1, 37, 1, NULL, 1, 'Not Shipped', '2019-11-11', NULL, NULL);
+(68, 1, 50, 1, 'OD-2019-11-11-5dc932f497045', 0, 'NahiDenge', '2019-11-11', '2019-11-11', NULL),
+(94, 1, 41, 1, 'OD-2019-11-19-5dd39b82179e0', 0, 'Not Shipped', '2019-11-19', '2019-11-19', NULL),
+(95, 1, 39, 1, 'OD-2019-11-19-5dd39b82179e0', 0, 'Not Shipped', '2019-11-19', '2019-11-19', NULL),
+(96, 1, 40, 1, 'OD-2019-11-19-5dd39b82179e0', 0, 'Not Shipped', '2019-11-19', '2019-11-19', NULL),
+(99, 1, 50, 1, NULL, 1, 'Not Shipped', '2019-11-19', '2019-11-19', NULL);
 
 -- --------------------------------------------------------
 
@@ -332,7 +335,7 @@ CREATE TABLE `genre` (
 INSERT INTO `genre` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (11, 'engineering', '2019-10-17', NULL, NULL),
 (12, 'fiction', '2019-10-17', NULL, NULL),
-(13, 'Textbook', '2019-11-10', NULL, NULL);
+(13, 'textbook', '2019-11-10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -366,7 +369,8 @@ INSERT INTO `orders` (`id`, `order_uid`, `user_id`, `transaction_id`, `address_i
 (55, 'OD-2019-11-10-5dc837b92870b', 1, NULL, 7, NULL, '2019-11-10 16:15:53'),
 (56, 'OD-2019-11-10-5dc8407ecf16a', 1, NULL, 7, NULL, '2019-11-10 16:53:18'),
 (57, 'OD-2019-11-11-5dc93249f048f', 1, NULL, 7, NULL, '2019-11-11 10:04:57'),
-(58, 'OD-2019-11-11-5dc932f497045', 1, NULL, 7, NULL, '2019-11-11 10:07:48');
+(58, 'OD-2019-11-11-5dc932f497045', 1, NULL, 7, NULL, '2019-11-11 10:07:48'),
+(59, 'OD-2019-11-19-5dd39b82179e0', 1, NULL, 7, NULL, '2019-11-19 07:36:34');
 
 -- --------------------------------------------------------
 
@@ -504,7 +508,73 @@ INSERT INTO `searches` (`id`, `user_id`, `search`, `date`) VALUES
 (73, 1, 'chet', '2019-11-11 12:02:27'),
 (74, 1, 'gan', '2019-11-11 13:43:19'),
 (75, 1, 'gan', '2019-11-11 13:46:07'),
-(76, 1, 'gan', '2019-11-11 13:48:21');
+(76, 1, 'gan', '2019-11-11 13:48:21'),
+(77, 1, 'eng', '2019-11-12 06:40:46'),
+(78, 1, 'eng', '2019-11-12 07:01:09'),
+(79, 1, 'nag', '2019-11-12 07:01:13'),
+(80, 1, 'eng', '2019-11-12 07:04:00'),
+(81, 1, 'eng', '2019-11-12 07:04:17'),
+(82, 1, 'eng', '2019-11-12 07:15:11'),
+(83, 1, 'eng', '2019-11-12 12:43:49'),
+(84, 1, 'eng', '2019-11-12 12:44:43'),
+(85, 1, 'eng', '2019-11-12 12:45:12'),
+(86, 1, 'i c', '2019-11-12 12:50:21'),
+(87, 1, 'eng', '2019-11-19 06:50:08'),
+(88, 1, 'eng', '2019-11-19 06:50:18'),
+(89, 1, 'eng', '2019-11-19 07:12:46'),
+(90, 1, 'eng', '2019-11-19 07:14:24'),
+(91, 1, 'eng', '2019-11-19 07:14:31'),
+(92, 1, 'book4', '2019-11-19 07:22:44'),
+(93, 1, 'nag', '2019-11-19 07:22:55'),
+(94, 1, 'nag', '2019-11-19 07:32:58'),
+(95, 1, 'nag', '2019-11-19 07:34:37'),
+(96, 1, 'nag', '2019-11-19 07:35:03'),
+(97, 1, 'fluid', '2019-11-19 07:35:12'),
+(98, 1, 'eng', '2019-11-19 07:35:26'),
+(99, 1, 'fluid', '2019-11-19 07:37:56'),
+(100, 1, 'fluid', '2019-11-19 07:41:12'),
+(101, 1, 'fluid', '2019-11-19 07:41:36'),
+(102, 1, 'fluid', '2019-11-19 07:42:45'),
+(103, 1, 'eng', '2019-11-19 07:42:49'),
+(104, 1, 'fluid', '2019-11-19 07:43:08'),
+(105, 1, 'jansuz', '2019-11-19 07:43:18'),
+(106, 1, 'jansuz', '2019-11-19 07:43:26'),
+(107, 1, 'pal', '2019-11-19 07:43:31'),
+(108, 1, 'pal', '2019-11-19 07:44:33'),
+(109, 1, 'pal', '2019-11-19 07:44:35'),
+(110, 1, 'pal', '2019-11-19 07:44:36'),
+(111, 1, 'pal', '2019-11-19 07:44:38'),
+(112, 1, 'eng', '2019-11-19 07:45:26'),
+(113, 1, 'eng', '2019-11-19 07:45:39'),
+(114, 1, 'eng', '2019-11-19 07:45:42'),
+(115, 1, 'eng', '2019-11-19 07:46:45'),
+(116, 1, 'i c', '2019-11-19 07:46:50'),
+(117, 1, 'i c', '2019-11-19 07:47:25'),
+(118, 1, 'ganesan', '2019-11-19 07:47:31'),
+(119, 1, 'pal', '2019-11-19 07:47:36'),
+(120, 1, 'das', '2019-11-19 07:47:40'),
+(121, 1, 'math', '2019-11-19 07:47:57'),
+(122, 1, 'janusz', '2019-11-19 07:51:04'),
+(123, 1, 'jack', '2019-11-19 07:52:51'),
+(124, 1, 'java', '2019-11-19 08:04:55'),
+(125, 1, 'anim', '2019-11-19 08:05:03'),
+(126, 1, 'animesh', '2019-11-19 08:05:08'),
+(127, 1, 'java', '2019-11-19 08:05:12'),
+(128, 1, 'das', '2019-11-19 08:05:34'),
+(129, 1, 'p k', '2019-11-19 08:05:39'),
+(130, 1, 'animesh', '2019-11-19 08:05:42'),
+(131, 1, 'ani', '2019-11-19 08:05:46'),
+(132, 1, 'anim', '2019-11-19 08:05:53'),
+(133, 1, 'fluid', '2019-11-19 08:07:35'),
+(134, 1, 'lynne', '2019-11-19 08:07:44'),
+(135, 1, 'sevi', '2019-11-19 08:07:50'),
+(136, 1, 'java', '2019-11-19 08:07:56'),
+(137, 1, 'theory', '2019-11-19 08:08:11'),
+(138, 1, 'rattan', '2019-11-19 08:08:16'),
+(139, 1, 's s', '2019-11-19 08:08:20'),
+(140, 1, 'animesh', '2019-11-19 08:08:34'),
+(141, 1, 'animesh', '2019-11-19 08:09:51'),
+(142, 1, 'sur', '2019-11-19 08:12:02');
 
 -- --------------------------------------------------------
 
@@ -646,7 +716,8 @@ ALTER TABLE `book_tag`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_id` (`user_id`,`book_seller_id`,`order_uid`),
+  ADD UNIQUE KEY `user_id` (`user_id`,`book_seller_id`,`order_uid`,`if_wishlist`),
+  ADD UNIQUE KEY `user_id1` (`user_id`,`book_seller_id`,`order_uid`,`if_wishlist`),
   ADD KEY `fkbookseller` (`book_seller_id`),
   ADD KEY `fkorderuid1` (`order_uid`);
 
@@ -750,7 +821,7 @@ ALTER TABLE `book_tag`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 --
 -- AUTO_INCREMENT for table `genre`
 --
@@ -760,12 +831,12 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT for table `searches`
 --
 ALTER TABLE `searches`
-  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 --
 -- AUTO_INCREMENT for table `tag`
 --
@@ -775,7 +846,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- Constraints for dumped tables
 --
