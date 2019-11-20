@@ -72,7 +72,7 @@
                         <tbody> ";
                     while ($row=$result->fetch_assoc()) {
                         $pic="uploads/".$row['pic'];
-                        echo "<tr class='mb-5'><td class='text-center'>"."<img src='".$pic."' width=66 height=80>"."</td> <td class='h5 text-success text-center'>"."<a href='book.php?isbn=".$row['isbn'].  "' "." style='text-decoration:none' class='text-success' >".ucwords($row['title'])."</a>"."</td><td class='text-center'>".ucwords(str_replace(",","<br>",$row['author']))."</td><td class='text-center' onclick='bookpopup(this.innerHTML)'>".$row['isbn']."</td><td class='text-center font-weight-bold bg-secondary'>".$row['price']."</td><td class='bg-light text-center'>".str_replace(",","<br>",$row['seller'])."</td></tr>" ;
+                        echo "<tr class='mb-5'><td class='text-center'>"."<img src='".$pic."' width=66 height=80>"."</td> <td class='h5 text-success text-center'>"."<a href='book.php?isbn=".$row['isbn'].  "' "." style='text-decoration:none' class='text-success' >".ucwords($row['title'])."</a>"."</td><td class='text-center'>".ucwords(str_replace(",","<br>",$row['author']))."</td><td class='text-center' onclick='bookpopup(this.innerHTML)'>".$row['isbn']."</td><td class='text-center font-weight-bold bg-secondary'>&#8377 ".$row['price']."</td><td class='bg-light text-center'>".str_replace(",","<br>",$row['seller'])."</td></tr>" ;
                     }
                     echo "
                     </tbody>
