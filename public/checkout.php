@@ -35,6 +35,9 @@
                 </div>
                 <div class="form-group">
                     PAYMENT MODE: Cash on Delivery
+
+                    <script src="https://www.paypal.com/sdk/js?client-id=ASekijT97tyFCeHNQq7PKNHU1dAoh26IUFmiZI2gTeLrnwvWuWvuuZpjyY2Jv3JtTNjckXkyAsDGabmk&currency=INR"></script>
+                      <div id="paypal-button-container"></div>
                 </div>
                 <div class="form-group">
                     <input type="submit" name="placeorder" id="placeorder" value="Place Order" class="btn btn-secondary mt-5">
@@ -44,7 +47,7 @@
         <div class="col-sm-5">
             <h4>Order Summary:</h4>
             <?php
-                $stmt=$conn->prepare("SELECT book.pic as pic, book.title as title, book_seller.id as bsid, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price, cart.quantity as quantity from ((book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id) INNER JOIN cart ON cart.book_seller_id = book_seller.id WHERE cart.user_id = ? and cart.order_uid is null ");
+                $stmt=$conn->prepare("SELECT book.pic as pic, book.title as title, book_seller.id as bsid, book.book_isbn as isbn, `user`.name as seller, book_seller.price as price, cart.quantity as quantity from ((book_seller INNER JOIN book ON book_seller.book_id = book.id) INNER JOIN `user` ON book_seller.user_id = `user`.id) INNER JOIN cart ON cart.book_seller_id = book_seller.id WHERE cart.user_id = ? and cart.order_uid is null and if_wishlist = 0 ");
                 $stmt->bind_param("s", $_SESSION['id'] );
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -63,8 +66,7 @@
                         $delivery = 0;
                     }
                     else{
-                        $delivery = 40;
-                        $total += 40;
+                        ;
                     }
                     echo "
                         <tr><td class='text-success'></td><th class=' bg-light' id='totaltext'>Delivery:</th><td class='h4 bg-light'>&#8377 ".$delivery."</td></tr>
@@ -73,8 +75,9 @@
                         </table>";  
                 }
                 else {
-                    echo "<h3 class='pl-3 text-secondary'>What!! You still have nothing in your cart!</h3>" ;
-                }    
+                    
+                }
+
             ?>
 
 
@@ -82,5 +85,25 @@
     </div>
 
     <?php require_once "../view/footer.php"; ?>
+
+
+
+    <script>
+      paypal.Buttons({
+        createOrder: function(data, actions) {
+          // This function sets up the details of the transaction, including the amount and line item details.
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: '10'
+              }
+            }]
+          });
+        }
+      }).render('#paypal-button-container');
+    </script>
+
+    
+    
 </body>
 </html>
