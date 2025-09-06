@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+vendor/
+.venv/
+venv/
+pip-wheel-metadata/
+__pycache__/
+*.pyc
+
+# Environments
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+build/
+dist/
+.out/
+.next/
+coverage/
+.pytest_cache/
+target/
+bin/
+obj/
+*.class
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+*.iml
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Misc
+*.local
+.tmp/
+.sass-cache/
+.cache/
